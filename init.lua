@@ -6,7 +6,11 @@ if vim.loader then
   vim.loader.enable()
 end
 
-vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
+if vim.fn.has("win32") == 0 then
+  vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
+else
+  return
+end
 
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
