@@ -1,5 +1,4 @@
 local M = {}
-
 M.colors = {
   bg = "#201C33",
   bg_dark = "#1E1A30",
@@ -7,11 +6,9 @@ M.colors = {
   bg_bright = "#463E57",
 
   fg = "#FFF1E0",
-
   black = "#2F2A38",
   black_med = "#4C435C",
   black_bright = "#8977A8",
-
   white = "#EEE6FF",
   white_bright = "#ffffff",
 
@@ -30,7 +27,6 @@ M.colors = {
   yellow = "#FFD080",
 
   butter = "#fffacf",
-
   milk = "#fdf6e3",
   cream = "#e6dac3",
   cashew = "#CEB999",
@@ -47,10 +43,9 @@ M.colors = {
   powder = "#EAC6F5",
   dust = "#EAD2F1",
   mistyrose = "#ffe4e1",
-  rebeccapurple = "#3C2C74",
+  darkpurple = "#3C2C74",
 
   evergreen = "#9fdfb4",
-
   snow = "#e4fffe",
   ice = "#a4e2e0",
   mint = "#a2e0ca",
@@ -58,7 +53,7 @@ M.colors = {
   nectar = "#f0f070",
   cayenne = "#FF7D90",
   yam = "#e86f54",
-  pumpkin = "#ff9969", -- TODO
+  pumpkin = "#ff9969",
   rose = "#b32e29",
 
   grey2 = "#222222",
