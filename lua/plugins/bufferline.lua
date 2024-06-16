@@ -1,3 +1,7 @@
+local ui = require("util.ui")
+local icons = ui.icons
+local colors = require("util.colors").colors
+
 local function is_ft(b, ft)
   return vim.bo[b].filetype == ft
 end
@@ -28,6 +32,11 @@ return {
       highlights = {
         background = { italic = true },
         buffer_selected = { bold = true },
+        fill = { bg = colors.darkpurple },
+        separator = { fg = colors.darkpurple },
+        separator_selected = { fg = colors.darkpurple },
+        separator_visible = { fg = colors.darkpurple },
+        close_button_selected = { fg = colors.skyblue },
       },
       options = {
         themable = true,
@@ -40,11 +49,11 @@ return {
         mode = "buffers",
         numbers = "none",
         custom_filter = custom_filter,
-        buffer_close_icon = "󰅖",
-        modified_icon = "●",
-        close_icon = "",
-        left_trunc_marker = "",
-        right_trunc_marker = "",
+        buffer_close_icon = icons.ui.Close,
+        modified_icon = icons.ui.SmallCircle,
+        close_icon = icons.ui.BoldClose,
+        left_trunc_marker = icons.ui.ArrowCircleLeft,
+        right_trunc_marker = icons.ui.ArrowCircleRight,
         offsets = {
           {
             filetype = "neo-tree",
@@ -102,13 +111,13 @@ return {
         groups = {
           options = { toggle_hidden_on_enter = true },
           items = {
-            require("bufferline").groups.builtin.pinned:with({ icon = "" }),
+            require("bufferline").groups.builtin.pinned:with({ icon = icons.misc.Pin }),
             require("bufferline").groups.builtin.ungrouped,
           },
           {
             name = "Dependencies",
-            icon = "",
-            highlight = { fg = "#ECBE7B" },
+            icon = icons.misc.BoldGear,
+            highlight = { fg = colors.nectar },
             matcher = function(buf)
               return vim.startswith(buf.path, vim.env.VIMRUNTIME)
             end,
@@ -121,14 +130,14 @@ return {
           },
           {
             name = "Tests",
-            icon = "",
+            icon = icons.misc.Test,
             matcher = function(buf)
               return buf.name:match("[_%.]spec") or buf.name:match("[_%.]test")
             end,
           },
           {
             name = "Docs",
-            icon = "",
+            icon = icons.misc.Docs,
             matcher = function(buf)
               if vim.bo[buf.id].filetype == "man" or buf.path:match("man://") then
                 return true

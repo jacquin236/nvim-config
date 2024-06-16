@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+local ui = require("util.ui")
+local border = ui.border
 
 return {
   {
@@ -18,7 +20,7 @@ return {
         NormalFloat = { link = 'NormalFloat' },
       },
       float_opts = {
-        border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+        border = border,
         winblend = 3,
       },
       size = function(term)

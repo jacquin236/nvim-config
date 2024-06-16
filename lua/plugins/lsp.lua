@@ -75,7 +75,7 @@ return {
     opts = {
       priority = 40,
       autocmd = { enabled = true },
-      sign = { enabled = true, text = "💡" },
+      sign = { enabled = true },
       action_kinds = { "quickfix", "refactor" },
       ignore = {
         actions_without_kind = true,

@@ -5,7 +5,7 @@ return {
     opts = {
       plugins = { spelling = { enabled = true, suggestions = 9 } },
       window = {
-        border = "single",
+        border = require("util.ui").border,
         position = "bottom",
         margin = { 2, 2, 2, 2 },
         padding = { 1, 0, 1, 0 },

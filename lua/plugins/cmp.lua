@@ -51,7 +51,6 @@ return {
       require("luasnip.loaders.from_vscode").lazy_load()
 
       ls.filetype_extend("typescriptreact", { "javascript", "typescript" })
-      ls.filetype_extend("dart", { "flutter" })
       ls.filetype_extend("NeogitCommitMessage", { "gitcommit" })
     end,
   },
@@ -93,28 +92,6 @@ return {
       hl(0, "CmpItemAbbrDeprecated", { link = "Comment", strikethrough = true })
       hl(0, "CmpItemMenu", { link = "Comment", italic = true })
 
-      local function shift_tab(fallback)
-        if not cmp.visible() then
-          return fallback()
-        end
-        if luasnip.jumpable(-1) then
-          luasnip.jump(-1)
-        end
-      end
-
-      local function tab(fallback) -- make TAB behave like Android Studio
-        if not cmp.visible() then
-          return fallback()
-        end
-        if not cmp.get_selected_entry() then
-          return cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-        end
-        if luasnip.expand_or_jumpable() then
-          return luasnip.expand_or_jump()
-        end
-        cmp.confirm()
-      end
-
       cmp.setup({
         completion = { completeopt = "menu,menuone,noinsert", keyword_length = 2 },
         window = {
@@ -143,8 +120,6 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<CR>"] = LazyVim.cmp.confirm({ select = auto_select }),
           ["<C-y>"] = LazyVim.cmp.confirm({ select = true }),
-          ["<S-TAB>"] = cmp.mapping(shift_tab, { "i", "s" }),
-          ["<TAB>"] = cmp.mapping(tab, { "i", "s" }),
           ["<C-CR>"] = function(fallback)
             cmp.abort()
             fallback()
@@ -152,8 +127,8 @@ return {
         }),
         sources = {
           { name = "nvim_lsp", group_index = 1 },
-          { name = "luasnip", group_index = 1 },
-          { name = "path", group_index = 1 },
+          { name = "luasnip",  group_index = 1 },
+          { name = "path",     group_index = 1 },
           {
             name = "rg",
             keyword_length = 4,
@@ -169,7 +144,7 @@ return {
             },
             group_index = 2,
           },
-          { name = "spell", group_index = 2 },
+          { name = "spell",   group_index = 2 },
           { name = "snippets" },
           { name = "emoji" },
         },
@@ -178,9 +153,8 @@ return {
           format = function(entry, vim_item)
             local lspkind = require("lspkind")
             local kind = lspkind.cmp_format({
-              mode = "symbol",
+              mode = "symbol_text",
               maxwidth = math.min(50, math.floor(vim.o.columns * 0.5)),
-              ellipsis_char = ui.icons.misc.ellipsis,
               menu = {
                 nvim_lsp = "[LSP]",
                 nvim_lua = "[LUA]",
@@ -222,5 +196,51 @@ return {
         }),
       })
     end,
+  },
+  {
+    "abecodes/tabout.nvim",
+    event = "InsertCharPre",
+    opts = {},
+    keys = {
+      {
+        "<Tab>",
+        function()
+          if vim.snippet.jumpable(1) then
+            vim.schedule(function()
+              vim.snippet.jump(1)
+            end)
+            return
+          end
+          return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, false)
+        end,
+        expr = true,
+        mode = "i",
+      },
+      {
+        "<Tab>",
+        function()
+          vim.schedule(function()
+            vim.snippet.jump(1)
+          end)
+        end,
+        silent = true,
+        mode = "s",
+      },
+      {
+        "<S-Tab>",
+        function()
+          if vim.snippet.jumpable(-1) then
+            vim.schedule(function()
+              vim.snippet.jump(-1)
+            end)
+            return
+          end
+          return vim.api.nvim_replace_termcodes("<Plug>(TaboutBack)", true, true, false)
+        end,
+        expr = true,
+        silent = true,
+        mode = { "i", "s" },
+      },
+    },
   },
 }

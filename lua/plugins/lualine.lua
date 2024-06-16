@@ -16,17 +16,16 @@ return {
       lualine_require.require = require
 
       vim.o.laststatus = vim.g.lualine_laststatus
-      local colors = require("tokyonight.colors").setup()
-      local util = require("tokyonight.util")
+
+      local ui = require("util.ui")
+      local icons = ui.icons
+      local colors = require("util.colors").colors
 
       local mode = {
         "mode",
-        fmt = function(str)
-          return "󰀘 " .. str .. " "
-        end,
+        icon = icons.ui.Target,
         color = { gui = "bold" },
       }
-
       local conditions = {
         buffer_not_empty = function()
           return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -39,14 +38,14 @@ return {
       local filesize = {
         "filesize",
         cond = conditions.buffer_not_empty,
-        color = { fg = colors.orange, gui = "bold" },
+        color = { fg = colors.pumpkin, gui = "bold" },
         padding = 1,
       }
 
       local filename = {
         "filename",
         cond = conditions.buffer_not_empty,
-        color = { gui = "bold", fg = colors.fg },
+        color = { gui = "bold", fg = colors.white },
         path = 4,
         file_status = true,
         padding = 1,
@@ -55,7 +54,7 @@ return {
       local branch = {
         "branch",
         icon = "",
-        color = { fg = colors.teal },
+        color = { fg = colors.green },
       }
 
       local function diff_source()
@@ -71,12 +70,16 @@ return {
 
       local diff = {
         "diff",
-        symbols = { added = " ", modified = "󰝤 ", removed = " " },
+        symbols = {
+          added = icons.git.Added .. " ",
+          modified = icons.git.Modified .. " ",
+          removed = icons.git.Removed .. " ",
+        },
         padding = 1,
         cond = conditions.hide_in_width,
         source = diff_source,
         diff_color = {
-          added = { fg = colors.green },
+          added = { fg = colors.cyan },
           modified = { fg = colors.yellow },
           removed = { fg = colors.red },
         },
@@ -85,13 +88,18 @@ return {
       local diagnostics = {
         "diagnostics",
         sections = { "error", "warn", "info", "hint" },
-        symbols = { error = " ", warn = " ", info = " ", hint = " " },
+        symbols = {
+          error = icons.diagnostics.BoldError .. " ",
+          warn = icons.diagnostics.BoldWarning .. " ",
+          info = icons.diagnostics.BoldInformation .. " ",
+          hint = icons.diagnostics.BoldHint .. " ",
+        },
         colored = true,
         diagnostics_color = {
           error = { fg = colors.red },
           warn = { fg = colors.yellow },
           info = { fg = colors.green },
-          hint = { fg = colors.cyan },
+          hint = { fg = colors.oceanblue },
         },
         update_in_insert = false,
         always_visible = true,
@@ -101,22 +109,22 @@ return {
         "lsp_progress",
         display_components = { "lsp_client_name", { "title", "percentage", "message" }, "spinner" },
         colors = {
-          percentage = util.lighten(colors.magenta2, 0.7),
-          title = colors.magenta,
+          percentage = colors.nectar,
+          title = colors.hydrangea,
           message = colors.yellow,
           lsp_client_name = colors.cyan,
           use = true,
         },
         timer = { progress_enddelay = 1000, spinner = 2500, lsp_client_name_enddelay = 2500 },
-        spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
+        spinner_symbols = require("util.spinners").moon,
       }
 
       local spaces = {
         function()
           local shiftwidth = vim.api.nvim_get_option_value("shiftwidth", { buf = 0 })
-          return "󰌒 " .. "" .. shiftwidth
+          return icons.ui.Tab .. " " .. shiftwidth
         end,
-        color = { gui = "bold", fg = colors.red },
+        color = { gui = "bold", fg = colors.butter },
       }
 
       local progress = {
@@ -132,9 +140,9 @@ return {
 
       local time = {
         function()
-          return " " .. os.date("%R")
+          return icons.misc.Clock .. " " .. os.date("%R")
         end,
-        color = { fg = util.lighten(colors.teal, 0.6) },
+        color = { fg = colors.evergreen },
       }
 
       local location = {
@@ -150,7 +158,7 @@ return {
 
       local debugger = {
         function()
-          return "  " .. require("dap").status()
+          return icons.diagnostics.Debug .. " " .. require("dap").status()
         end,
         cond = function()
           return package.loaded["dap"] and require("dap").status() ~= ""
@@ -204,30 +212,32 @@ return {
           end
           return ""
         end,
-        color = { fg = util.lighten(colors.magenta2, 0.4) },
+        color = { fg = colors.blush },
       }
 
       local opts = {
         options = {
           theme = "auto",
+          icons_enabled = true,
           component_separators = "",
           section_separators = "",
-          globalstatus = true,
+          globalstatus = vim.o.laststatus == 3,
+          always_divide_middle = false,
           disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
         },
         sections = {
           lualine_a = { mode },
           lualine_b = { diagnostics },
-          lualine_c = { branch, filesize, filename },
-          lualine_x = { lsp_progress, debugger, diff },
-          lualine_y = { constant, search, statement, spaces, encoding, clients, location, time },
+          lualine_c = { branch, encoding, spaces, clients, filesize, filename },
+          lualine_x = { lsp_progress, constant, search, statement, debugger, diff },
+          lualine_y = { location, time },
           lualine_z = { progress },
         },
         inactive_sections = {
           lualine_a = {},
           lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
+          lualine_c = { filename },
+          lualine_x = { location },
           lualine_y = {},
           lualine_z = {},
         },
@@ -237,14 +247,14 @@ return {
       if vim.g.trouble_lualine then
         local trouble = require("trouble")
         local symbols = trouble.statusline
-          and trouble.statusline({
-            mode = "symbols",
-            groups = {},
-            title = false,
-            filter = { range = true },
-            format = "{kind_icon}{symbol.name:Normal}",
-            hl_group = "lualine_c_normal",
-          })
+            and trouble.statusline({
+              mode = "symbols",
+              groups = {},
+              title = false,
+              filter = { range = true },
+              format = "{kind_icon}{symbol.name:Normal}",
+              hl_group = "lualine_c_normal",
+            })
         table.insert(opts.sections.lualine_c, {
           symbols and symbols.get,
           cond = symbols and symbols.has,

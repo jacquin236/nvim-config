@@ -13,34 +13,39 @@ return {
         local helpers = require("incline.helpers")
         local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
         local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
-        local modified = vim.bo[props.buf].modified and "bold, italic" or "bold"
+        local modified = vim.bo[props.buf].modified and "bold,italic" or "bold"
+        local my_icons = require("util.ui").icons
 
         local function get_git_diff()
-          local icons = require("lazyvim.config").icons.git
+          local icons = {
+            removed = my_icons.git.Removed .. " ",
+            changed = my_icons.git.Modified .. " ",
+            added = my_icons.git.Added .. " ",
+          }
           icons["changed"] = icons.modified
-          local summary = vim.b.minidiff_summary
-          summary = summary
-              and {
-                added = summary.add,
-                modified = summary.change,
-                removed = summary.delete,
-              }
-            or vim.b[props.buf].gitsigns_status_dict
+          local signs = vim.b[props.buf].gitsigns_status_dict
           local labels = {}
-          if summary == nil then
+          if signs == nil then
             return labels
           end
-
           for name, icon in pairs(icons) do
-            if tonumber(summary[name]) and summary[name] > 0 then
-              table.insert(labels, { icon .. summary[name] .. " ", group = "Diff" .. name })
+            if tonumber(signs[name]) and signs[name] > 0 then
+              table.insert(labels, { icon .. signs[name] .. " ", group = "Diff" .. name })
             end
+          end
+          if #labels > 0 then
+            table.insert(labels, { "┊ " })
           end
           return labels
         end
 
         local function get_diagnostic_label()
-          local icons = require("lazyvim.config").icons.diagnostics
+          local icons = {
+            error = my_icons.diagnostics.BoldError .. " ",
+            warn = my_icons.diagnostics.BoldWarning .. " ",
+            info = my_icons.diagnostics.BoldInformation .. " ",
+            hint = my_icons.diagnostics.BoldHint .. " ",
+          }
           local label = {}
 
           for severity, icon in pairs(icons) do
@@ -63,8 +68,8 @@ return {
             guibg = ft_color,
             guifg = helpers.contrast_color(ft_color),
           } or "",
-          { " " .. filename, gui = modified },
-          { " 󰕮 " .. vim.api.nvim_win_get_number(props.win), group = "lualine_b_visual" },
+          { " " .. filename .. " ", gui = modified },
+          { "┊ 󰕮 " .. vim.api.nvim_win_get_number(props.win), group = "DevIconWindows" },
         }
         return buffer
       end,
