@@ -3,52 +3,35 @@ return {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
       "rafamadriz/friendly-snippets",
+      "saadparwaiz1/cmp_luasnip",
       { "garymjr/nvim-snippets", opts = { friendly_snippets = true } },
-      "onsails/lspkind-nvim",
+      { "petertriho/cmp-git", opts = { filetypes = { "gitcommit", "NeogitCommitMessage" } } },
     },
     opts = function(_, opts)
-      opts.completion.keyword_length = 1
-      opts.window = {
-        completion = {
-          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-          col_offset = -3,
-          side_padding = 0,
-        },
-        documentation = {
-          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
-        },
+      opts.completion.keyword_length = 2
+      opts.windows = {
+        completion = require("cmp").config.window.bordered({
+          scrollbar = false,
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          winhighlight = "NormalFloat:Pmenu,Cursorline:PmenuSel,FloatBorder:FloatBorder",
+        }),
+        documentation = require("cmp").config.window.bordered({
+          border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+          winhighlight = "FloatBorder:FloatBorder",
+        }),
       }
-      opts.formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-          local lspkind = require("lspkind")
-          local kind = lspkind.cmp_format({
-            mode = "symbol_text",
-            maxwidth = 50,
-          })(entry, vim_item)
-          local strings = vim.split(kind.kind, "%s", { trimempty = true })
-          kind.kind = " " .. (strings[1] or "") .. " "
-          kind.menu = "    (" .. (strings[2] or "") .. ")"
-          return kind
-        end,
-      }
-
       table.insert(opts.sources, { name = "snippets" })
+      table.insert(opts.sources, { name = "luasnip" })
     end,
 
     config = function(_, opts)
       local cmp = require("cmp")
-      local format_kinds = opts.formatting.format
-
       for _, source in ipairs(opts.sources) do
         if source.name == "copilot" then
-          source.group_index = 2 --disable copilot on default
+          source.group_index = 2
         else
           source.group_index = source.group_index or 1
         end
@@ -68,7 +51,9 @@ return {
       cmp.setup.cmdline({ "/", "?" }, {
         completion = { completeopt = "menu,menuone,noselect,noinsert" },
         mapping = cmp.mapping.preset.cmdline(),
-        sources = { { name = "buffer" } },
+        sources = {
+          { name = "buffer" },
+        },
       })
       cmp.setup.cmdline(":", {
         completion = { completeopt = "menu,menuone,noselect,noinsert" },
