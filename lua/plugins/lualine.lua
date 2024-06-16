@@ -25,7 +25,10 @@ return {
         "mode",
         icon = icons.ui.Target,
         color = { gui = "bold" },
+        separator = { left = icons.separators.BubbleRight },
+        right_padding = 1,
       }
+
       local conditions = {
         buffer_not_empty = function()
           return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
@@ -83,6 +86,7 @@ return {
           modified = { fg = colors.yellow },
           removed = { fg = colors.red },
         },
+        separator = { left = icons.separators.RightThinBlock, right = icons.separators.LeftThinBlock },
       }
 
       local diagnostics = {
@@ -107,7 +111,7 @@ return {
 
       local lsp_progress = {
         "lsp_progress",
-        display_components = { "lsp_client_name", { "title", "percentage", "message" }, "spinner" },
+        display_components = { "lsp_client_name", { "title", "percentage" }, "spinner" },
         colors = {
           percentage = colors.nectar,
           title = colors.hydrangea,
@@ -136,24 +140,31 @@ return {
           local index = math.ceil(line_ratio * #chars)
           return chars[index]
         end,
+        separator = { right = icons.separators.BubbleLeft },
+        left_padding = 1,
       }
 
       local time = {
         function()
           return icons.misc.Clock .. " " .. os.date("%R")
         end,
-        color = { fg = colors.evergreen },
+        color = { fg = colors.skyblue },
       }
 
       local location = {
         "location",
         color = { fg = colors.green },
+        separator = {
+          right = icons.separators.RightThinBlock,
+          left = icons.separators.LeftThinBlock,
+        },
+        padding = 1,
       }
 
       local encoding = {
         "o:encoding",
         fmt = string.upper,
-        color = { fg = colors.yellow },
+        color = { fg = colors.evergreen },
       }
 
       local debugger = {
@@ -212,7 +223,7 @@ return {
           end
           return ""
         end,
-        color = { fg = colors.blush },
+        color = { fg = colors.fg },
       }
 
       local opts = {
@@ -223,13 +234,16 @@ return {
           section_separators = "",
           globalstatus = vim.o.laststatus == 3,
           always_divide_middle = false,
-          disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+          disabled_filetypes = {
+            statusline = { "dashboard", "alpha", "starter" },
+            winbar = { "dashboard", "alpha", "starter" },
+          },
         },
         sections = {
           lualine_a = { mode },
           lualine_b = { diagnostics },
-          lualine_c = { branch, encoding, spaces, clients, filesize, filename },
-          lualine_x = { lsp_progress, constant, search, statement, debugger, diff },
+          lualine_c = { branch, filesize, filename },
+          lualine_x = { lsp_progress, constant, search, statement, debugger, diff, encoding, spaces, clients },
           lualine_y = { location, time },
           lualine_z = { progress },
         },
@@ -241,26 +255,31 @@ return {
           lualine_y = {},
           lualine_z = {},
         },
-        extensions = { "neo-tree", "lazy", "quickfix" },
+        extensions = { "neo-tree", "lazy", "quickfix", "toggleterm" },
+        winbar = {
+          lualine_a = {
+            { "filename", separator = { left = "", right = "" } },
+            { "%{%v:lua.dropbar.get_dropbar_str()%}", separator = { left = "", right = "" }, color = "nil" },
+          },
+        },
       }
 
       if vim.g.trouble_lualine then
         local trouble = require("trouble")
         local symbols = trouble.statusline
-            and trouble.statusline({
-              mode = "symbols",
-              groups = {},
-              title = false,
-              filter = { range = true },
-              format = "{kind_icon}{symbol.name:Normal}",
-              hl_group = "lualine_c_normal",
-            })
+          and trouble.statusline({
+            mode = "symbols",
+            groups = {},
+            title = false,
+            filter = { range = true },
+            format = "{kind_icon}{symbol.name:Normal}",
+            hl_group = "lualine_c_normal",
+          })
         table.insert(opts.sections.lualine_c, {
           symbols and symbols.get,
           cond = symbols and symbols.has,
         })
       end
-
       return opts
     end,
   },
