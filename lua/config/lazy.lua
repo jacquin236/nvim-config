@@ -50,5 +50,3 @@ require("lazy").setup({
     },
   },
 })
-
-require("util.lsp")
