@@ -149,6 +149,6 @@ return {
   -- Bootstrap colorscheme here
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "catppuccin-mocha" },
+    opts = { colorscheme = "duskfox" },
   },
 }
