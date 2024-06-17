@@ -1,8 +1,7 @@
 -- Helpers and utilities for vim.api
-
 local api = vim.api
 
-M = {}
+local M = {}
 
 ---@param bufnr? number @the buffer number to resolve
 ---@return number|nil @the resolved buffer number or nil if the buffer is invalid
@@ -38,6 +37,21 @@ end
 ---@param name string @the buffer option name
 ---@return any @the option value or nil if the window/option is invalid
 function M.win_get_buf_option(win, name)
+  win = M.resolve_winnr(win)
+  if not win then
+    return nil
+  end
+  local buf = api.nvim_win_get_buf(win)
+  if not buf then
+    return nil
+  end
+  return vim.bo[buf][name]
+end
+
+---@param win? number @the window number
+---@param name string @the buffer option name
+---@return any @the option value or nil if the window/option is invalid
+function M.win_get_buf_var(win, name)
   win = M.resolve_winnr(win)
   if not win then
     return nil

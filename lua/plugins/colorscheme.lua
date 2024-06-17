@@ -63,7 +63,6 @@ return {
     lazy = true,
     priority = 1000,
     opts = {
-      flavor = "mocha",
       term_colors = true,
       integrations = {
         alpha = true,
@@ -150,6 +149,6 @@ return {
   -- Bootstrap colorscheme here
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "tokyonight-night" },
+    opts = { colorscheme = "catppuccin-mocha" },
   },
 }

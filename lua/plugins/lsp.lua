@@ -1,3 +1,5 @@
+require("util.lsp")
+
 ---@diagnostic disable: missing-fields
 return {
   -- lsp servers

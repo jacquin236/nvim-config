@@ -118,3 +118,14 @@ autocmd({ "BufReadPost" }, {
   callback = update_highlight,
   once = true,
 })
+
+if vim.version().minor >= 10 then
+  autocmd("LspProgress", {
+    callback = function(args)
+      if string.find(args.match, "end") then
+        vim.cmd("redrawstatus")
+      end
+      vim.cmd("redrawstatus")
+    end,
+  })
+end

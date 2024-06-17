@@ -226,6 +226,33 @@ return {
         color = { fg = colors.fg },
       }
 
+      local formatter = {
+        function()
+          local status, conform = pcall(require, "conform")
+          if not status then
+            return "Conform not installed"
+          end
+          local lsp_format = require("conform.lsp_format")
+          local formatters = conform.list_formatters_for_buffer()
+          if formatters and #formatters > 0 then
+            local formatterNames = {}
+            for _, formatter in ipairs(formatters) do
+              table.insert(formatterNames, formatter)
+            end
+            return "󰷈 " .. table.concat(formatterNames, " ")
+          end
+
+          local bufnr = vim.api.nvim_get_current_buf()
+          local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
+          if not vim.tbl_isempty(lsp_clients) then
+            return " 󰷈 LSP Formatter "
+          end
+          return ""
+        end,
+        color = { gui = "italic", fg = colors.velvet },
+        padding = 1,
+      }
+
       local opts = {
         options = {
           theme = "auto",
@@ -242,8 +269,8 @@ return {
         sections = {
           lualine_a = { mode },
           lualine_b = { diagnostics },
-          lualine_c = { branch, filesize, filename },
-          lualine_x = { lsp_progress, constant, search, statement, debugger, diff, encoding, spaces, clients },
+          lualine_c = { branch, filesize, filename, lsp_progress, constant, clients },
+          lualine_x = { search, statement, debugger, diff, encoding, spaces, formatter },
           lualine_y = { location, time },
           lualine_z = { progress },
         },
