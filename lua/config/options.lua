@@ -126,3 +126,12 @@ opt.whichwrap:append("<>[]hl")
 if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
 end
+
+if vim.g.neovide then
+  vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
+  vim.g.neovide_scale_factor = 1
+  vim.g.neovide_window_blurred = true
+  vim.g.neovide_transparency = 0.7
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.g.neovide_cursor_smooth_blink = true
+end

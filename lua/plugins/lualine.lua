@@ -111,15 +111,15 @@ return {
 
       local lsp_progress = {
         "lsp_progress",
-        display_components = { "lsp_client_name", { "title", "percentage" }, "spinner" },
+        display_components = { "lsp_client_name", "percentage", "spinner" },
         colors = {
           percentage = colors.nectar,
-          title = colors.hydrangea,
           message = colors.yellow,
           lsp_client_name = colors.cyan,
           use = true,
         },
-        timer = { progress_enddelay = 1000, spinner = 2500, lsp_client_name_enddelay = 2500 },
+        display_components = { "lsp_client_name", "percentage", "spinner" },
+        timer = { progress_enddelay = 0, spinner = 3000, lsp_client_name_enddelay = 2500 },
         spinner_symbols = require("util.spinners").moon,
       }
 
@@ -269,8 +269,8 @@ return {
         sections = {
           lualine_a = { mode },
           lualine_b = { diagnostics },
-          lualine_c = { branch, filesize, filename, lsp_progress, constant, clients },
-          lualine_x = { search, statement, debugger, diff, encoding, spaces, formatter },
+          lualine_c = { branch, filesize, filename, constant, clients },
+          lualine_x = { lsp_progress, search, statement, debugger, diff, encoding, spaces, formatter },
           lualine_y = { location, time },
           lualine_z = { progress },
         },
