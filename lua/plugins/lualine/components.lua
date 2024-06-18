@@ -216,6 +216,18 @@ local formatter = {
   padding = 1,
 }
 
+local git_dir = {
+  function()
+    local git_directory = require("lualine.components.branch.git_branch").find_git_dir()
+    if git_directory then
+      local path_elements = vim.split(git_directory, "/")
+      return path_elements[#path_elements - 1]
+    end
+    return ""
+  end,
+  padding = 1,
+}
+
 return {
   mode = mode,
   diagnostics = diagnostics,
@@ -234,4 +246,5 @@ return {
   location = location,
   time = time,
   progress = progress,
+  git_dir = git_dir,
 }

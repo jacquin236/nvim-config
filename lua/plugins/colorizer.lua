@@ -1,5 +1,5 @@
----@type LazySpec[]
 return {
+  { "rktjmp/lush.nvim" },
   {
     "NvChad/nvim-colorizer.lua",
     cmd = {
@@ -32,6 +32,7 @@ return {
       { "<leader>co", "<cmd>CccPick<cr>", mode = "n", desc = "Open CCC Color Picker" },
     },
     config = function()
+      ---@diagnostic disable: no-unknown
       local ccc = require("ccc")
       local ColorInput = require("ccc.input")
       local utils = require("ccc.utils")

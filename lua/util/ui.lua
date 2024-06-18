@@ -202,6 +202,7 @@ M.icons = {
     Test = "",
     Docs = "",
     Pin = "",
+    BoltLight = "ϟ",
   },
 }
 

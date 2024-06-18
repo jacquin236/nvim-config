@@ -31,6 +31,7 @@ return {
         lualine_c = {
           component.branch,
           component.filesize,
+          component.git_dir,
           component.filename,
           component.constant,
         },

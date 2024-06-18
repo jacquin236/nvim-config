@@ -36,7 +36,7 @@ return {
         separator = { fg = colors.darkpurple },
         separator_selected = { fg = colors.darkpurple },
         separator_visible = { fg = colors.darkpurple },
-        close_button_selected = { fg = colors.skyblue },
+        close_button_selected = { fg = colors.blue },
       },
       options = {
         themable = true,
