@@ -31,16 +31,18 @@ require("lazy").setup({
   checker = {
     enabled = true,
     notify = false,
-    concurrency = 30,
     frequency = 3600,
+  },
+  ui = {
+    border = "rounded",
   },
   change_detection = { enabled = true, notify = false },
   performance = {
     rtp = {
       disabled_plugins = {
         "gzip",
-        "matchit",
-        "matchparen",
+        -- "matchit",
+        -- "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",

@@ -1,3 +1,4 @@
+---@diagnostic disable: no-unknown, undefined-field, duplicate-index
 local icons = require("util.ui").icons
 local colors = require("util.colors").colors
 
@@ -37,7 +38,7 @@ local filename = {
 local branch = {
   "branch",
   icon = icons.git.Branch,
-  color = { fg = colors.green },
+  color = { fg = colors.ice },
 }
 
 local diff = {
@@ -88,16 +89,14 @@ local diagnostics = {
 
 local lsp_progress = {
   "lsp_progress",
-  ---@diagnostic disable-next-line: duplicate-index
   display_components = { "lsp_client_name", "percentage", "spinner" },
   colors = {
     percentage = colors.nectar,
     lsp_client_name = colors.yellow,
     use = true,
   },
-  ---@diagnostic disable-next-line: duplicate-index
   display_components = { "lsp_client_name", "percentage", "spinner" },
-  timer = { progress_enddelay = 0, spinner = 3000, lsp_client_name_enddelay = 2500 },
+  timer = { progress_enddelay = 500, spinner = 2500, lsp_client_name_enddelay = 1000 },
   spinner_symbols = require("util.spinners").moon,
 }
 
@@ -119,7 +118,7 @@ local progress = {
     return chars[index]
   end,
   separator = { right = icons.separators.BubbleLeft },
-  left_padding = 1,
+  left_padding = 2,
 }
 
 local time = {
@@ -131,8 +130,7 @@ local time = {
 
 local location = {
   "location",
-  color = { fg = colors.green },
-  padding = 1,
+  color = { fg = colors.dust },
 }
 
 local encoding = {
@@ -226,6 +224,29 @@ local git_dir = {
     return ""
   end,
   padding = 1,
+  color = { fg = colors.violet_bright },
+}
+
+local lsp_server = {
+  function()
+    local msg = ""
+    local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+    local clients = vim.lsp.get_clients()
+    if next(clients) == nil then
+      return "LSP Inactive"
+    end
+    ---@diagnostic disable: undefined-field
+    for _, client in ipairs(clients) do
+      local filetypes = client.config.filetypes
+      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+        msg = client.name .. " " .. msg
+      end
+    end
+    return msg
+  end,
+  icon = icons.misc.BoldGear,
+  color = { gui = "italic", fg = colors.cashew },
+  padding = 1,
 }
 
 return {
@@ -247,4 +268,5 @@ return {
   time = time,
   progress = progress,
   git_dir = git_dir,
+  lsp_server = lsp_server,
 }

@@ -10,12 +10,13 @@ return {
     opts = function(_, opts)
       opts.source_selector = {
         winbar = true,
-        separator_active = "",
+        separator_active = icons.separators.LeftThinBlock,
         sources = {
           { source = "filesystem" },
           { source = "git_status" },
           { source = "document_symbols" },
         },
+        tabs_layout = "equal",
       }
       opts.enable_git_status = true
       opts.git_status_async = true
@@ -48,6 +49,7 @@ return {
           visible = true,
           hide_dotfiles = false,
           hide_gitignored = false,
+          hide_hidden = false,
           never_show = { "_.DS_Store" },
         },
       }
@@ -59,7 +61,7 @@ return {
         document_symbols = {
           follow_cursor = true,
           kinds = vim.iter(symbols):fold({}, function(acc, k, v)
-            acc[k] = { icon = v, hl = lsp_kind[k] }
+            acc[k] = { icon = v, hl = lsp_kind[k] } ---@diagnostic disable-line: no-unknown
             return acc
           end),
         },
@@ -78,6 +80,7 @@ return {
           },
         },
         file_size = { required_width = 50 },
+        symlink_target = { enabled = true },
         indent = {
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
           expander_collapsed = "",
