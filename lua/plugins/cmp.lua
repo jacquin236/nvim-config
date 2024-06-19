@@ -34,6 +34,7 @@ return {
           },
         },
         enable_autosnippets = true,
+        ---@diagnostic disable: no-unknown
         snip_env = {
           fmt = fmt,
           m = extras.match,

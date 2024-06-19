@@ -50,17 +50,10 @@ return {
   {
     "dracula/vim",
     name = "dracula",
-    lazy = true,
-  },
-  {
-    "LunarVim/lunar.nvim",
-    lazy = true,
-    priority = 1000,
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    lazy = true,
     priority = 1000,
     opts = {
       term_colors = true,
@@ -111,8 +104,6 @@ return {
   {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
-    lazy = true,
-    priority = 1000,
     config = function()
       vim.g.nightflyCursorColor = true
       vim.g.nightflyUnderlineMatchParen = true
@@ -123,13 +114,40 @@ return {
   {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
-    lazy = true,
-    priority = 1000,
     config = function()
       vim.g.moonflyCursorColor = true
       vim.g.moonflyUnderlineMatchParen = true
       vim.g.moonflyVirtualTextColor = true
       vim.g.moonflyWinSeparator = 2
+    end,
+  },
+  {
+    "marko-cerovac/material.nvim",
+    config = function()
+      require("material").setup({
+        lualine_style = "default",
+        high_visibility = { darker = true, lighter = true },
+        plugins = {
+          "dap",
+          "dashboard",
+          "gitsigns",
+          "illuminate",
+          "indent-blankline",
+          "mini",
+          "neogit",
+          "neotest",
+          "neo-tree",
+          "noice",
+          "nvim-cmp",
+          "nvim-web-devicons",
+          "rainbow-delimiters",
+          "telescope",
+          "trouble",
+          "which-key",
+          "nvim-notify",
+        },
+      })
+      vim.g.material_style = "deep ocean"
     end,
   },
   {
@@ -142,13 +160,18 @@ return {
     },
     config = function()
       require("transparent").setup({
-        extra_groups = { "NormalFloat", "Pmenu" },
+        extra_groups = { 
+          "NormalFloat",
+          "Pmenu", 
+          "NeoTreeNormal",
+          "NeoTreeNormalNC",
+        },
       })
     end,
   },
   -- Bootstrap colorscheme here
   {
     "LazyVim/LazyVim",
-    opts = { colorscheme = "duskfox" },
+    opts = { colorscheme = "material" },
   },
 }
