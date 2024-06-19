@@ -119,7 +119,7 @@ return {
     dependencies = {
       { "rouge8/neotest-rust" },
       { "haydenmeade/neotest-jest" },
-      { "neotest/neotest-go", dev = true },
+      { "nvim-neotest/neotest-go", dev = true },
       { "rcarriga/neotest-plenary", dependencies = { "nvim-lua/plenary.nvim" } },
     },
   },
