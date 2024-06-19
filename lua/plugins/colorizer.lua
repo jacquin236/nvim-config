@@ -1,5 +1,4 @@
 return {
-  { "rktjmp/lush.nvim" },
   {
     "NvChad/nvim-colorizer.lua",
     cmd = {

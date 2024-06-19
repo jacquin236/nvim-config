@@ -154,21 +154,26 @@ return {
     "xiyaowong/nvim-transparent",
     cmd = { "TransparentEnable", "TransparentToggle", "TransparentDisable" },
     keys = {
-      { "<localleader>t", "<cmd>TransparentToggle<cr>", desc = "Toggle Transparent" },
-      { "<localleader>to", "<cmd>TransparentEnable<cr>", desc = "Enable Transparent" },
+      { "<localleader>t",  "<cmd>TransparentToggle<cr>",  desc = "Toggle Transparent" },
+      { "<localleader>to", "<cmd>TransparentEnable<cr>",  desc = "Enable Transparent" },
       { "<localleader>tf", "<cmd>TransparentDisable<cr>", desc = "Disable Transparent" },
     },
     config = function()
       require("transparent").setup({
-        extra_groups = { 
+        extra_groups = {
           "NormalFloat",
-          "Pmenu", 
+          "Pmenu",
           "NeoTreeNormal",
           "NeoTreeNormalNC",
         },
       })
     end,
   },
+  --[[   {
+    "jacquin236/macaroon.nvim",
+    lazy = true,
+    dependencies = { "rktjmp/lush.nvim" },
+  }, ]]
   -- Bootstrap colorscheme here
   {
     "LazyVim/LazyVim",
