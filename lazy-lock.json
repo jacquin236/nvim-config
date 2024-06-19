@@ -4,7 +4,6 @@
   "SchemaStore.nvim": { "branch": "main", "commit": "35f36c50b9f1e1e916d0e3f004cb48dffd2bf737" },
   "bufferline.nvim": { "branch": "main", "commit": "99337f63f0a3c3ab9519f3d1da7618ca4f91cffe" },
   "catppuccin": { "branch": "main", "commit": "c0bea773a09e49e123136b099bce9ddc1bf395d2" },
-  "ccc.nvim": { "branch": "main", "commit": "22924b7bde685e1816140f17a897950ef82b969a" },
   "cmp-buffer": { "branch": "main", "commit": "3022dbc9166796b644a841a02de8dd1cc1d311fa" },
   "cmp-cmdline": { "branch": "main", "commit": "d250c63aa13ead745e3a40f61fdd3470efde3923" },
   "cmp-cmdline-history": { "branch": "master", "commit": "003573b72d4635ce636234a826fa8c4ba2895ffe" },
