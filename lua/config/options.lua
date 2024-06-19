@@ -79,18 +79,16 @@ opt.listchars = {
   precedes = "░",
   trail = "…",
 }
--- Fillchars
---[[ opt.fillchars = {
+
+opt.fillchars = {
   eob = " ", -- suppress ~ at EndOfBuffer
   diff = "╱", -- alternatives = ⣿ ░ ─
   msgsep = " ", -- alternatives: ‾ ─
   fold = " ",
-  foldopen = "▽", -- '▼'
-  foldclose = "▷", -- '▶'
+  foldopen = "▼",
+  foldclose = "▶",
   foldsep = " ",
-} ]]
-
-opt.fillchars = {
+  -- Required neovim >= 7.0
   horiz = "━",
   horizup = "┻",
   horizdown = "┳",
