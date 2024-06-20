@@ -34,14 +34,14 @@ return {
     },
     keys = {
       {
-        "<localleader>p",
+        "<leader>fP",
         function()
           require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
         end,
         desc = "Find Plugin File",
       },
       {
-        "<localleader>l",
+        "<leader>fl",
         function()
           local files = {} ---@type table<string, string>
           for _, plugin in pairs(require("lazy.core.config").plugins) do

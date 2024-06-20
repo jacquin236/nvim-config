@@ -169,12 +169,6 @@ return {
       })
     end,
   },
-  --[[   {
-    "jacquin236/macaroon.nvim",
-    lazy = true,
-    dependencies = { "rktjmp/lush.nvim" },
-  }, ]]
-  -- Bootstrap colorscheme here
   {
     "LazyVim/LazyVim",
     opts = { colorscheme = "material" },
