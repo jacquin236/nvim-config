@@ -6,42 +6,48 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- solves the issue of missing luarocks when running neovim
+vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
+-- Configuring Neovim to load user-installed Luarocks:
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/share/lua/5.1/?/init.lua"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/share/lua/5.1/?.lua"
+
 require("lazy").setup({
   spec = {
-    -- add LazyVim and import its plugins
-    {
-      "LazyVim/LazyVim",
-      import = "lazyvim.plugins",
-      news = {
-        lazyvim = true,
-        neovim = true,
-      },
-    },
-    { import = "plugins" },
+    { "LazyVim/LazyVim",        import = "lazyvim.plugins", opts = { news = { lazyvim = true, neovim = true } } },
+    { import = "plugins.code" },
+    { import = "plugins.themes" },
+    { import = "plugins.tools" },
+    { import = "plugins.ui" },
   },
-  defaults = {
-    lazy = true,
-    version = false,
-  },
-  install = {
-    colorscheme = { "tokyonight", "habamax" },
-  },
-  checker = {
-    enabled = true,
-    notify = false,
-    frequency = 3600,
-  },
+  defaults = { lazy = true, version = false },
+  install = { colorscheme = { "tokyonight", "habamax", "onedark" } },
+  checker = { enabled = true, concurrency = 30, notify = false, frequency = 3600 },
+  change_detection = { enabled = true, notify = true },
+  diff = { cmd = "terminal_git" },
   ui = {
     border = "rounded",
+    custom_keys = {
+      ["<localleader>l"] = function(plugin)
+        require("lazy.util").float_term({ "lazygit", "log" }, {
+          cwd = plugin.dir,
+        })
+      end,
+      ["<localleader>t"] = function(plugin)
+        require("lazy.util").float_term(nil, {
+          cwd = plugin.dir,
+        })
+      end,
+    },
   },
-  change_detection = { enabled = true, notify = false },
   performance = {
+    cache = { enabled = true },
     rtp = {
-      paths = { vim.fn.stdpath("data") .. "/site" },
+      path = { vim.fn.stdpath("data") .. "/site" },
       disabled_plugins = {
         "gzip",
-        -- "matchit",
-        -- "matchparen",
+        "matchit",
+        "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
@@ -51,7 +57,9 @@ require("lazy").setup({
     },
   },
   dev = {
-    path = vim.g.projects_dir .. '/nvim-projects',
+    path = vim.g.projects_dir .. "/nvim-projects",
+    patterns = { "jacquin236" },
     fallback = true,
   },
+  debug = false,
 })
