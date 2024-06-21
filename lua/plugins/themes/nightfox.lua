@@ -1,0 +1,36 @@
+return {
+  "EdenEast/nightfox.nvim",
+  lazy = true,
+  priority = 1000,
+  opts = {
+    options = {
+      transparent = false,
+      dim_active = false,
+      styles = {
+        comments = "italic",
+        keywords = "italic",
+      },
+      modules = {
+        "alpha",
+        "cmp",
+        "dashboard",
+        "dap_ui",
+        "diagnostic",
+        "gitsigns",
+        "illuminate",
+        "indent_blankline",
+        "lazy",
+        "mini",
+        "native_lsp",
+        "navic",
+        "neogit",
+        "neotree",
+        "notify",
+        "nvimtree",
+        "telescope",
+        "treesitter",
+        "whichkey",
+      },
+    },
+  },
+}

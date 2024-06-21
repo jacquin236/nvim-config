@@ -1,4 +1,4 @@
-local icons = require("util.ui").icons
+local icons = require("util.icons")
 local symbols = require("lspkind").symbol_map
 local lsp_kind = require("util.ui").lsp.highlights
 
@@ -55,7 +55,7 @@ return {
       }
       opts.default_component_configs = {
         icon = {
-          folder_empty = icons.documents.EmptyFolderOpen,
+          folder_empty = icons.documents.OpenFolderEmpty,
         },
         name = { highlight_opened_files = true },
         document_symbols = {
@@ -65,7 +65,7 @@ return {
             return acc
           end),
         },
-        modified = { symbol = icons.ui.SmallCircle .. " " },
+        modified = { symbol = icons.misc.CircleSmall .. " " },
         git_status = {
           symbols = {
             added = icons.git.Added,
@@ -73,8 +73,8 @@ return {
             modified = icons.git.Modified,
             renamed = icons.git.Renamed,
             untracked = icons.git.Untracked,
-            ignored = icons.git.Ignored2,
-            unstaged = icons.git.Unstaged2,
+            ignored = icons.git.IgnoredAlt,
+            unstaged = icons.git.UnstagedAlt,
             staged = icons.git.Staged,
             conflict = icons.git.Conflict,
           },

@@ -1,6 +1,5 @@
 local map = vim.keymap.set
-local ui = require("util.ui")
-local border = ui.border
+local border = require("util.ui").border
 
 return {
   {

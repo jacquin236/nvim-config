@@ -1,6 +1,4 @@
-local ui = require("util.ui")
-local icons = ui.icons
-local border = ui.border
+local border = require("util.ui").border
 local lspkind = require("lspkind")
 
 return {
@@ -36,17 +34,17 @@ return {
           },
           enable = function(buf, win)
             return vim.fn.win_gettype(win) == ""
-              and vim.bo[buf].bt == ""
-              and vim.wo[win].winbar == ""
-              and not vim.wo[win].diff
-              and not vim.api.nvim_win_get_config(win).zindex
-              and vim.api.nvim_buf_get_name(buf) ~= ""
-              and (
-                vim.bo[buf].ft == "markdown"
-                or (
-                  buf and vim.api.nvim_buf_is_valid(buf) and (pcall(vim.treesitter.get_parser, buf)) and true or false
+                and vim.bo[buf].bt == ""
+                and vim.wo[win].winbar == ""
+                and not vim.wo[win].diff
+                and not vim.api.nvim_win_get_config(win).zindex
+                and vim.api.nvim_buf_get_name(buf) ~= ""
+                and (
+                  vim.bo[buf].ft == "markdown"
+                  or (
+                    buf and vim.api.nvim_buf_is_valid(buf) and (pcall(vim.treesitter.get_parser, buf)) and true or false
+                  )
                 )
-              )
           end,
         },
         icons = {

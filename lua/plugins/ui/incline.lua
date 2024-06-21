@@ -36,9 +36,9 @@ return {
             return
           end
           local icons = {
-            added = require("util.ui").icons.git.Added .. " ",
-            changed = require("util.ui").icons.git.Modified .. " ",
-            removed = require("util.ui").icons.git.Removed .. " ",
+            added = require("util.icons").git.Added .. " ",
+            changed = require("util.icons").git.Modified .. " ",
+            removed = require("util.icons").git.Removed .. " ",
           }
           icons["changed"] = icons.modified
           local summary = vim.b.minidiff_summary
@@ -67,10 +67,10 @@ return {
 
         local function get_diagnostics()
           local icons = {
-            error = require("util.ui").icons.diagnostics.BoldError .. " ",
-            warn = require("util.ui").icons.diagnostics.BoldWarning .. " ",
-            info = require("util.ui").icons.diagnostics.BoldInformation .. " ",
-            hint = require("util.ui").icons.diagnostics.BoldHint .. " ",
+            error = require("util.icons").diagnostics.Error .. " ",
+            warn = require("util.icons").diagnostics.Warning .. " ",
+            info = require("util.icons").diagnostics.Information .. " ",
+            hint = require("util.icons").diagnostics.Hint .. " ",
           }
           local label = {}
           for severity, icon in pairs(icons) do

@@ -1,12 +1,12 @@
 ---@diagnostic disable: no-unknown, undefined-field, duplicate-index
-local icons = require("util.ui").icons
-local colors = require("util.colors").colors
+local icons = require("util.icons")
+local colors = require("util.colors")
 
 local mode = {
   "mode",
   icon = icons.ui.Target,
   color = { gui = "bold" },
-  separator = { left = icons.separators.BubbleRight },
+  separator = { left = icons.separators.BubbleLeft },
   right_padding = 1,
 }
 
@@ -71,10 +71,10 @@ local diagnostics = {
   "diagnostics",
   sections = { "error", "warn", "info", "hint" },
   symbols = {
-    error = icons.diagnostics.BoldError .. " ",
-    warn = icons.diagnostics.BoldWarning .. " ",
-    info = icons.diagnostics.BoldInformation .. " ",
-    hint = icons.diagnostics.BoldHint .. " ",
+    error = icons.diagnostics.Error .. " ",
+    warn = icons.diagnostics.Warning .. " ",
+    info = icons.diagnostics.Information .. " ",
+    hint = icons.diagnostics.Hint .. " ",
   },
   colored = true,
   diagnostics_color = {
@@ -117,7 +117,7 @@ local progress = {
     local index = math.cell(line_ratio * #chars)
     return chars[index]
   end,
-  separator = { right = icons.separators.BubbleLeft },
+  separator = { right = icons.separators.BubbleRight },
   left_padding = 2,
 }
 
