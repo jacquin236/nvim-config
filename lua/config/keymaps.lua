@@ -1,13 +1,9 @@
 local map = vim.keymap.set
 
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
+map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Number: Toggle Line Number" })
+map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Number: Toggle Relative Number" })
 
-map("n", "<leader>fm", function()
-  require("conform").format({ lsp_fallback = true })
-end, { desc = "format files" })
-
-map("n", "<leader><TAB>n", "<Cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<leader><TAB>n", "<Cmd>tabnew<CR>", { desc = "New Tab" })
 map("n", "<leader><TAB><TAB>", function()
   vim.ui.select(vim.api.nvim_list_tabpages(), {
     prompt = "Select Tab:",
@@ -36,4 +32,24 @@ map("n", "<leader><TAB><TAB>", function()
       vim.cmd(tabid .. "tabnext")
     end
   end)
-end, { desc = "Select tab" })
+end, { desc = "Select Tab" })
+
+-- WinShift
+map({ "n", "t" }, "<A-h>", require("smart-splits").resize_left, { desc = "SmartSplits: Resize Left" })
+map({ "n", "t" }, "<A-j>", require("smart-splits").resize_down, { desc = "SmartSplits: Resize Down" })
+map({ "n", "t" }, "<A-k>", require("smart-splits").resize_up, { desc = "SmartSplits Resize Up" })
+map({ "n", "t" }, "<A-l>", require("smart-splits").resize_right, { desc = "SmartSplits: Resize Right" })
+map({ "n", "t" }, "<C-h>", require("smart-splits").move_cursor_left, { desc = "SmartSplits: Move Cursor Left" })
+map({ "n", "t" }, "<C-j>", require("smart-splits").move_cursor_down, { desc = "SmartSplits: Move Cursor Down" })
+map({ "n", "t" }, "<C-k>", require("smart-splits").move_cursor_up, { desc = "SmartSplits: Move Cursor Up" })
+map({ "n", "t" }, "<C-l>", require("smart-splits").move_cursor_right, { desc = "SmartSplits: Move Cursor Right" })
+map(
+  { "n", "t" },
+  "<C-\\>",
+  require("smart-splits").move_cursor_previous,
+  { desc = "SmartSplits: Move Cursor Previous" }
+)
+map("n", "<leader><leader>h", require("smart-splits").swap_buf_left, { desc = "SmartSplits: Swap Buffers Left" })
+map("n", "<leader><leader>j", require("smart-splits").swap_buf_down, { desc = "SmartSplits: Swap Buffers Down" })
+map("n", "<leader><leader>k", require("smart-splits").swap_buf_up, { desc = "SmartSplits: Swap Buffers Up" })
+map("n", "<leader><leader>l", require("smart-splits").swap_buf_right, { desc = "SmartSplits: Swap Buffers Right" })

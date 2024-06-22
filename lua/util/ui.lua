@@ -1,6 +1,10 @@
+local colors = require("util.colors")
+
 return {
   border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   lsp = {
+    --- This is a mapping of LSP Kinds to highlight groups. LSP Kinds come via the LSP spec
+    --- see: https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#symbolKind
     highlights = {
       File = "Directory",
       Snippet = "Label",
@@ -35,5 +39,11 @@ return {
       Interface = "@lsp.type.interface",
       TypeParameter = "@lsp.type.parameter",
     },
-  }
+    colors = {
+      error = colors.red,
+      warn = colors.yellow,
+      hint = colors.oceanblue,
+      info = colors.green,
+    },
+  },
 }

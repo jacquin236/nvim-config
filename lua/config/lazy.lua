@@ -1,12 +1,18 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
-    lazypath })
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
--- solves the issue of missing luarocks when running neovim
+-- solves the issue of missing luarocks when using homebrew to run NeoVim
 vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
 -- Configuring Neovim to load user-installed Luarocks:
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/share/lua/5.1/?/init.lua"
@@ -14,18 +20,30 @@ package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/shar
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim",        import = "lazyvim.plugins", opts = { news = { lazyvim = true, neovim = true } } },
-    { import = "plugins.code" },
+    {
+      "LazyVim/LazyVim",
+      import = "lazyvim.plugins",
+      opts = {
+        news = { lazyvim = true, neovim = true },
+      },
+    },
     { import = "plugins.themes" },
-    { import = "plugins.tools" },
+    { import = "plugins.editor" },
     { import = "plugins.ui" },
+    { import = "plugins.lsp" },
+    { import = "plugins.tools" },
   },
   defaults = { lazy = true, version = false },
-  install = { colorscheme = { "tokyonight", "habamax", "onedark" } },
+  install = {
+    missing = true,
+    colorscheme = { "tokyonight", "habamax", "onedark", "catppuccin" },
+  },
   checker = { enabled = true, concurrency = 30, notify = false, frequency = 3600 },
   change_detection = { enabled = true, notify = true },
   diff = { cmd = "terminal_git" },
   ui = {
+    wrap = true,
+    size = { width = 0.88, height = 0.8 },
     border = "rounded",
     custom_keys = {
       ["<localleader>l"] = function(plugin)
@@ -41,9 +59,15 @@ require("lazy").setup({
     },
   },
   performance = {
-    cache = { enabled = true },
+    cache = {
+      enabled = true,
+      path = vim.fn.stdpath("cache") .. "/lazy/cache",
+      disable_events = { "UIEnter", "BufReadPre" },
+      ttl = 3600 * 24 * 2,
+    },
+    reset_packpath = true,
     rtp = {
-      path = { vim.fn.stdpath("data") .. "/site" },
+      paths = { vim.fn.stdpath("data") .. "/site" },
       disabled_plugins = {
         "gzip",
         "matchit",
