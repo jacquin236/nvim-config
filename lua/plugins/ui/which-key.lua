@@ -3,7 +3,7 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
-      plugins = { spelling = { enabled = true, suggestions = 9 } },
+      plugins = { spelling = { enabled = true, suggestions = 15 } },
       window = {
         border = require("util.ui").border,
         position = "bottom",

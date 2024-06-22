@@ -1,6 +1,5 @@
 local colors = require("util.colors")
 local icons = require("util.icons")
-local filter = require("plugins.ui.bufferline.filter")
 
 local groups = {
   options = { toggle_hidden_on_enter = true },
@@ -50,7 +49,7 @@ local offsets = {
     filetype = "neo-tree",
     text = " EXPLORER",
     highlight = "Directory",
-    text_align = "left",
+    text_align = "center",
     padding = 1,
   },
   {
@@ -86,8 +85,8 @@ local highlights = {
   separator = { fg = colors.darkpurple },
   separator_selected = { fg = colors.darkpurple },
   separator_visible = { fg = colors.darkpurple },
-  close_button_selected = { fg = colors.blue },
-  indicator_selected = { fg = colors.pumpkin },
+  close_button_visible = { fg = colors.anise },
+  close_button_selected = { fg = colors.pumpkin },
 }
 
 local options = {
@@ -103,7 +102,7 @@ local options = {
   mode = "buffers",
   numbers = "none",
   buffer_close_icon = icons.ui.Close,
-  modified_icon = icons.ui.SmallCircle,
+  modified_icon = icons.misc.CircleSmall,
   close_icon = icons.ui.BoldClose,
   left_trunc_marker = icons.ui.ArrowCircleLeft,
   right_trunc_marker = icons.ui.ArrowCircleRight,
@@ -127,11 +126,29 @@ local options = {
   debug = { logging = false },
   max_name_length = 18,
   max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-  truncate_names = true,  -- whether or not tab names should be truncated
+  truncate_names = true, -- whether or not tab names should be truncated
   tab_size = 18,
-  custom_filter = filter.custom_filter,
   groups = groups,
   offsets = offsets,
+  custom_filter = function(buf, buf_nums)
+    local function is_ft(b, ft)
+      return vim.bo[b].filetype == ft
+    end
+
+    local logs = vim.tbl_filter(function(b)
+      return is_ft(b, "log")
+    end, buf_nums or {})
+    if vim.tbl_isempty(logs) then
+      return true
+    end
+    local tab_num = vim.fn.tabpagenr()
+    local last_tab = vim.fn.tabpagenr("$")
+    local is_log = is_ft(buf, "log")
+    if last_tab == 1 then
+      return true
+    end
+    return (tab_num == last_tab and is_log) or (tab_num ~= last_tab and not is_log)
+  end,
 }
 
 return {

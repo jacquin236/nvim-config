@@ -10,11 +10,4 @@ return {
       vim.g.undotree_SetFocusWhenToggle = 1
     end,
   },
-  {
-    "simnalamburt/vim-mundo",
-    cmd = "MundoToggle",
-    keys = {
-      { "<leader>uu", "<cmd>MundoToggle<cr>", desc = "Undotree Mundo" },
-    },
-  },
 }

@@ -7,6 +7,17 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     branch = "v3.x",
     cmd = "Neotree",
+    init = function()
+      vim.api.nvim_create_autocmd("BufEnter", {
+        desc = "Load NeoTree if entering a directory",
+        callback = function(args)
+          if vim.fn.isdirectory(vim.api.nvim_buf_get_name(args.buf)) > 0 then
+            require("lazy").load({ plugins = { "neo-tree.nvim" } })
+            vim.api.nvim_del_autocmd(args.id)
+          end
+        end,
+      })
+    end,
     opts = function(_, opts)
       opts.source_selector = {
         winbar = true,
@@ -88,6 +99,19 @@ return {
           expander_highlight = "NeoTreeExpander",
         },
       }
+      opts.window = {
+        mappings = {
+          ["o"] = "toggle_node",
+          ["<cr>"] = "open_with_window_picker",
+          ["P"] = { "toggle_preview", config = { use_float = false } },
+          ["<esc>"] = "revert_preview",
+        },
+      }
     end,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-tree/nvim-web-devicons",
+    },
   },
 }

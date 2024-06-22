@@ -7,7 +7,7 @@ local mode = {
   icon = icons.ui.Target,
   color = { gui = "bold" },
   separator = { left = icons.separators.BubbleLeft },
-  right_padding = 1,
+  right_padding = 2,
 }
 
 local conditions = {
@@ -28,17 +28,24 @@ local filesize = {
 
 local filename = {
   "filename",
-  cond = conditions.buffer_not_empty,
-  color = { gui = "bold", fg = colors.white },
+  color = { gui = "bold" },
   path = 4,
+  cond = conditions.buffer_not_empty,
+  symbols = {
+    modified = icons.misc.CircleSmall,
+    readonly = icons.misc.CircleSmallEmpty,
+    unnamed = "[UNTITLED]",
+    newfile = "[NEW]",
+  },
   file_status = true,
-  padding = 1,
 }
 
 local branch = {
-  "branch",
+  "b:gitsigns_head",
   icon = icons.git.Branch,
   color = { fg = colors.ice },
+  separator = { right = icons.separators.RightThinBlock },
+  left_padding = 1,
 }
 
 local diff = {
@@ -85,6 +92,8 @@ local diagnostics = {
   },
   update_in_insert = false,
   always_visible = true,
+  separator = { right = icons.separators.RightThinBlock },
+  right_padding = 1,
 }
 
 local lsp_progress = {
@@ -108,13 +117,13 @@ local spaces = {
   color = { fg = colors.butter },
 }
 
-local progress = {
+local scrollbar = {
   function()
     local current_line = vim.fn.line(".")
     local total_lines = vim.fn.line("$")
     local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
     local line_ratio = current_line / total_lines
-    local index = math.cell(line_ratio * #chars)
+    local index = math.ceil(line_ratio * #chars)
     return chars[index]
   end,
   separator = { right = icons.separators.BubbleRight },
@@ -123,9 +132,9 @@ local progress = {
 
 local time = {
   function()
-    return icons.misc.Clock .. " " .. os.date("%R")
+    return " " .. os.date("%R")
   end,
-  color = { fg = colors.skyblue },
+  color = { gui = "bold" },
 }
 
 local location = {
@@ -266,7 +275,7 @@ return {
   formatter = formatter,
   location = location,
   time = time,
-  progress = progress,
+  scrollbar = scrollbar,
   git_dir = git_dir,
   lsp_server = lsp_server,
 }

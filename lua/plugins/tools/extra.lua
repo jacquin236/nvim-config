@@ -25,6 +25,4 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     opts = {},
   },
-  { "mtdl9/vim-log-highlighting", lazy = false },
-
 }
