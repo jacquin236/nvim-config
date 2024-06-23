@@ -1,7 +1,6 @@
 return {
   "EdenEast/nightfox.nvim",
-  lazy = true,
-  priority = 1000,
+  lazy = false,
   opts = {
     options = {
       compile_path = vim.fn.stdpath("cache") .. "/nightfox",

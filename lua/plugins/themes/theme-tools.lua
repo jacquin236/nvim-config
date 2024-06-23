@@ -18,20 +18,4 @@ return {
       })
     end,
   },
-  {
-    "folke/styler.nvim",
-    config = function()
-      require("styler").setup({
-        themes = {
-          markdown = { colorscheme = "catppuccin-mocha", background = "dark" },
-          help = { colorscheme = "catppuccin-mocha", background = "dark" },
-          lua = { colorscheme = "cyberdream" },
-          rust = { colorscheme = "tokyonight" },
-          go = { colorscheme = "tokyonight" },
-          json = { colorscheme = "aurora" },
-          typescript = { colorscheme = "dustfox" },
-        },
-      })
-    end,
-  },
 }

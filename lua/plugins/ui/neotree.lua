@@ -25,12 +25,11 @@ return {
         winbar = true,
         separator_active = "",
         sources = {
-          { source = "filesystem" },
-          { source = "git_status" },
-          { source = "document_symbols" },
-          { source = "buffers" },
+          { source = "filesystem", display_name = icons.documents.Folder .. " " .. "Files" },
+          { source = "git_status", display_name = icons.git.Logo .. "  " .. "Git" },
+          { source = "buffers", display_name = icons.misc.List .. "  " .. "Buffers" },
         },
-        content_layout = "equal",
+        content_layout = "center",
         tabs_layout = "equal",
         padding = 1,
       }
@@ -97,7 +96,7 @@ return {
             conflict = icons.git.Conflict,
           },
         },
-        file_size = { enabled = true, required_width = 50 },
+        file_size = { enabled = true, required_width = 55 },
         symlink_target = { enabled = true },
         indent = {
           indent_size = 2,
