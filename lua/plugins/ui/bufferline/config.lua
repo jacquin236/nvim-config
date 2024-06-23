@@ -48,7 +48,7 @@ local offsets = {
   {
     filetype = "neo-tree",
     text = " EXPLORER",
-    highlight = "PanelHeading",
+    highlight = "Directory",
     text_align = "left",
     padding = 1,
   },

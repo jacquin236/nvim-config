@@ -4,6 +4,7 @@ vim.g.projects_dir = vim.env.PROJECTS_DIR or vim.fn.expand("~/projects")
 if vim.loader then
   vim.loader.enable()
 end
+
 if vim.env.VSCODE then
   vim.g.vscode = true
 end

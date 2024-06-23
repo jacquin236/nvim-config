@@ -1,7 +1,7 @@
 return {
   {
     "craftzdog/solarized-osaka.nvim",
-    lazy = true,
+    lazy = false,
     opts = {
       transparent = true,
       terminal_colors = true,

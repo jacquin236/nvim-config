@@ -1,7 +1,7 @@
 return {
   {
     "navarasu/onedark.nvim",
-    lazy = true,
+    lazy = false,
     opts = {
       style = "deep",
       term_colors = true,

@@ -1,6 +1,7 @@
 return {
   {
     "marko-cerovac/material.nvim",
+    lazy = false,
     config = function()
       require("material").setup({
         lualine_style = "default",

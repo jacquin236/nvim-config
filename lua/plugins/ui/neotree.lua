@@ -100,7 +100,7 @@ return {
         file_size = { enabled = true, required_width = 50 },
         symlink_target = { enabled = true },
         indent = {
-          indent_size = 1,
+          indent_size = 2,
           padding = 1,
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
           expander_collapsed = "",
