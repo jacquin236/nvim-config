@@ -2,12 +2,36 @@ return {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { '<leader>gs', function() require("neogit").open() end,               desc = 'Open Status Buffer' },
-      { '<leader>gc', function() require("neogit").open({ 'commit' }) end,   desc = 'Open Commit Buffer' },
-      { '<leader>gl', function() require("neogit").popups.pull.create() end, desc = 'Open Pull Popup' },
-      { '<leader>gp', function() require("neogit").popups.push.create() end, desc = 'Open Push Popup' },
+      {
+        "<leader>gs",
+        function()
+          require("neogit").open()
+        end,
+        desc = "Open Status Buffer",
+      },
+      {
+        "<leader>gc",
+        function()
+          require("neogit").open({ "commit" })
+        end,
+        desc = "Open Commit Buffer",
+      },
+      {
+        "<leader>gl",
+        function()
+          require("neogit").popups.pull.create()
+        end,
+        desc = "Open Pull Popup",
+      },
+      {
+        "<leader>gp",
+        function()
+          require("neogit").popups.push.create()
+        end,
+        desc = "Open Push Popup",
+      },
     },
     opts = {
       disable_signs = false,
@@ -16,9 +40,9 @@ return {
       disable_builtin_notifications = true,
       disable_insert_on_commit = false,
       signs = {
-        section = { '', '󰘕' }, -- "󰁙", "󰁊"
-        item = { '▸', '▾' },
-        hunk = { '󰐕', '󰍴' },
+        section = { "", "󰘕" }, -- "󰁙", "󰁊"
+        item = { "▸", "▾" },
+        hunk = { "󰐕", "󰍴" },
       },
       integrations = {
         diffview = true,
@@ -29,9 +53,9 @@ return {
     "sindrets/diffview.nvim",
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>",          desc = "Diffview: Open",         mode = "n" },
-      { 'gh',         [[:'<'>DiffviewFileHistory<cr>]], desc = 'Diffview: File History', mode = 'v' },
-      { '<leader>gh', '<cmd>DiffviewFileHistory<cr>',   desc = 'Diffview: File History', mode = 'n' },
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview: Open", mode = "n" },
+      { "gh", [[:'<'>DiffviewFileHistory<cr>]], desc = "Diffview: File History", mode = "v" },
+      { "<leader>gh", "<cmd>DiffviewFileHistory<cr>", desc = "Diffview: File History", mode = "n" },
     },
     opts = {
       default_args = { DiffviewFileHistory = { "%" } },
@@ -44,13 +68,13 @@ return {
         end,
       },
       keymaps = {
-        view = { q = '<cmd>DiffviewClose<cr>' },
-        file_panel = { q = '<cmd>DiffviewClose<cr>' },
-        file_history_panel = { q = '<cmd>DiffviewClose<cr>' },
+        view = { q = "<cmd>DiffviewClose<cr>" },
+        file_panel = { q = "<cmd>DiffviewClose<cr>" },
+        file_history_panel = { q = "<cmd>DiffviewClose<cr>" },
       },
     },
     config = function(_, opts)
-      require('diffview').setup(opts)
+      require("diffview").setup(opts)
     end,
   },
 }
