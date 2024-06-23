@@ -21,7 +21,7 @@ return {
       always_divide_middle = false,
       disabled_filetypes = {
         statusline = { "dashboard" },
-        winbar = { "dashboard", "neo-tree" },
+        winbar = { "dashboard", "neo-tree", "toggleterm", "Trouble", "spectre_panel", "qf", "noice", "dbui" },
       },
     },
     sections = {
@@ -54,7 +54,7 @@ return {
       lualine_y = { component.time },
       lualine_z = { component.scrollbar },
     },
-    extensions = { "lazy", "mason" },
+    extensions = { "lazy", "mason", "quickfix", "toggleterm", "trouble" },
     winbar = {
       lualine_a = {
         { "filename", separator = { left = "", right = "" }, color = { gui = "bold" } },

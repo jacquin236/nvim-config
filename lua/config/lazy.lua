@@ -36,14 +36,23 @@ require("lazy").setup({
   defaults = { lazy = true, version = false },
   install = {
     missing = true,
-    colorscheme = { "tokyonight", "habamax", "onedark", "catppuccin" },
+    colorscheme = {
+      "tokyonight",
+      "habamax",
+      "onedark",
+      "catppuccin",
+      "dracula",
+      "material",
+      "kanagawa",
+      "gruvbox",
+    },
   },
   checker = { enabled = true, concurrency = 30, notify = false, frequency = 3600 },
   change_detection = { enabled = true, notify = true },
   diff = { cmd = "terminal_git" },
   ui = {
     wrap = true,
-    size = { width = 0.88, height = 0.8 },
+    size = { width = 0.9, height = 0.9 },
     border = "rounded",
     custom_keys = {
       ["<localleader>l"] = function(plugin)

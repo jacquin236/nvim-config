@@ -23,8 +23,8 @@ return {
       hint = "floating-big-letter",
       filter_rules = {
         bo = {
-          filetype = { "incline", "noice", "neo-tree", "notify" },
-          buftype = { "terminal" },
+          filetype = { "incline", "noice", "neo-tree", "notify", "neo-tree-popup" },
+          buftype = { "terminal", "quickfix" },
         },
         autoselect_one = true,
         include_current_win = true,

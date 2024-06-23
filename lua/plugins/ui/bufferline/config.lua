@@ -48,8 +48,8 @@ local offsets = {
   {
     filetype = "neo-tree",
     text = " EXPLORER",
-    highlight = "Directory",
-    text_align = "center",
+    highlight = "PanelHeading",
+    text_align = "left",
     padding = 1,
   },
   {
@@ -79,14 +79,16 @@ local offsets = {
 }
 
 local highlights = {
-  background = { italic = true },
-  buffer_selected = { bold = true },
-  fill = { bg = colors.darkpurple },
-  separator = { fg = colors.darkpurple },
-  separator_selected = { fg = colors.darkpurple },
-  separator_visible = { fg = colors.darkpurple },
-  close_button_visible = { fg = colors.anise },
-  close_button_selected = { fg = colors.pumpkin },
+  buffer_selected = { bold = true, italic = true },
+  group_label = { bg = colors.bg_dark },
+  separator = { fg = colors.bg_dark },
+  fill = { bg = colors.bg_dark },
+  separator_visible = { fg = colors.bg_dark },
+  separator_selected = { fg = colors.bg_dark },
+  offset_separator = { bg = colors.bg_dark, italic = true, bold = true },
+  close_button_visible = { fg = colors.velvet },
+  close_button_selected = { fg = colors.oceanblue },
+  modified_visible = { fg = colors.green },
 }
 
 local options = {

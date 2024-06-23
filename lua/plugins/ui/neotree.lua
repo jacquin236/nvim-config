@@ -19,15 +19,20 @@ return {
       })
     end,
     opts = function(_, opts)
+      opts.popup_border_style = "rounded"
+      opts.use_popups_for_input = true
       opts.source_selector = {
         winbar = true,
-        separator_active = icons.separators.LeftThinBlock,
+        separator_active = "",
         sources = {
           { source = "filesystem" },
           { source = "git_status" },
           { source = "document_symbols" },
+          { source = "buffers" },
         },
+        content_layout = "equal",
         tabs_layout = "equal",
+        padding = 1,
       }
       opts.enable_git_status = true
       opts.git_status_async = true
@@ -67,6 +72,8 @@ return {
       opts.default_component_configs = {
         icon = {
           folder_empty = icons.documents.OpenFolderEmpty,
+          folder_open = icons.documents.OpenFolder,
+          folder_closed = icons.documents.Folder,
         },
         name = { highlight_opened_files = true },
         document_symbols = {
@@ -90,9 +97,11 @@ return {
             conflict = icons.git.Conflict,
           },
         },
-        file_size = { required_width = 50 },
+        file_size = { enabled = true, required_width = 50 },
         symlink_target = { enabled = true },
         indent = {
+          indent_size = 1,
+          padding = 1,
           with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
           expander_collapsed = "",
           expander_expanded = "",
