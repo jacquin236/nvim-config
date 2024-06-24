@@ -1,5 +1,5 @@
 return {
-  { import = "plugins.editor.lang.typescript" },
+  { import = "plugins.lang.typescript" },
   {
     "williamboman/mason.nvim",
     opts = { ensure_installed = { "graphql-language-service-cli" } },

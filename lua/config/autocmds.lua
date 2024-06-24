@@ -1,13 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 
--- Disable diagnostics in a .env file
-autocmd("BufRead", {
-  pattern = ".env",
-  callback = function()
-    vim.diagnostic.disable(false)
-  end,
-})
-
 -- Do not list quickfix buffers
 autocmd("FileType", {
   pattern = "qf",
@@ -70,49 +62,6 @@ autocmd("OptionSet", {
       lead = lead .. " "
     end
     vim.opt_local.listchars:append({ leadmultispace = lead })
-  end,
-})
-
--- Auto close window when leaving
-local auto_close_filetype = {
-  "lazy",
-  "mason",
-  "lspinfo",
-  "toggleterm",
-  "null-ls-info",
-  "TelescopePrompt",
-  "notify",
-}
-autocmd("BufLeave", {
-  group = vim.api.nvim_create_augroup("lazyvim_auto_close_win", { clear = true }),
-  callback = function()
-    local ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
-    if vim.fn.index(auto_close_filetype, ft) ~= -1 then
-      local winids = vim.fn.win_findbuf(event.buf)
-      for _, win in pairs(winids) do
-        vim.api.nvim_win_close(win, true)
-      end
-    end
-  end
-})
-
--- Disable leader and localleader for some filetypes
-autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("lazyvim_unbind_leader_key", { clear = true }),
-  pattern = {
-    "lazy",
-    "mason",
-    "lspinfo",
-    "toggleterm",
-    "null-ls-info",
-    "neo-tree-popup",
-    "TelescopePrompt",
-    "notify",
-    "floaterm",
-  },
-  callback = function(event)
-    vim.keymap.set("n", "<leader>", "<nop>", { buffer = event.buf, desc = "" })
-    vim.keymap.set("n", "<localleader>", "<nop>", { buffer = event.buf, desc = "" })
   end,
 })
 
@@ -180,36 +129,3 @@ if vim.version().minor >= 10 then
     end,
   })
 end
-
--- Toggle between relative/absolute line numbers
-local numbertoggle = vim.api.nvim_create_augroup("numbertoggle", { clear = true })
-autocmd({ "BufEnter", "FocusGained", "InsertLeave", "CmdlineLeave", "WinEnter" }, {
-  pattern = "*",
-  group = numbertoggle,
-  callback = function()
-    if vim.o.nu and vim.api.nvim_get_mode().mode ~= "i" then
-      vim.opt.relativenumber = true
-    end
-  end,
-})
-
-autocmd({ "BufLeave", "FocusLost", "InsertEnter", "CmdlineEnter", "WinLeave" }, {
-  pattern = "*",
-  group = numbertoggle,
-  callback = function()
-    if vim.o.nu then
-      vim.opt.relativenumber = false
-      vim.cmd.redraw()
-    end
-  end,
-})
-
---Create a dir when saving a file if it doesnt exist
-autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
-  callback = function(args)
-    if args.match:match("^%w%w+://") then return end
-    local file = vim.uv.fs_realpath(args.match) or args.match
-    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
-  end
-})

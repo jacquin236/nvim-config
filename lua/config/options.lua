@@ -1,11 +1,3 @@
--- make all keymaps silent by default
-local keymap_set = vim.keymap.set
----@diagnostic disable-next-line: duplicate-set-field
-vim.keymap.set = function(mode, lhs, rhs, opts)
-  opts = opts or {}
-  opts.silent = opts.silent ~= false
-  return keymap_set(mode, lhs, rhs, opts)
-end
 
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
@@ -15,45 +7,7 @@ local o, opt, g = vim.o, vim.opt, vim.g
 
 -- Root dir detection
 g.root_spec = { "lsp", { ".git", "lua", "Makefile", "go.mod", "cargo.toml", "src" }, "cwd" }
-
--- Encoding
-vim.scriptencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
-
--- Spell checking
-o.spell = true
-o.spellang = { "en" }
-
--- Keymap leader
-g.mapleader = " "
-g.maplocalleader = "\\"
-
--- Auto format on save
-g.autoformat = true
-
--- Enable EditorConfig integration
-g.editorconfig = true
-
--- Timings
-o.updatetime = 300
-o.timeout = true
-o.timeoutlen = 500
-o.ttimeoutlen = 10
-
--- Windows split
-o.splitkeep = "screen"
-o.splitbelow = true
-o.splitright = true
-
--- Display
-o.breakindentopt = "sbr"
-o.linebreak = true -- lines wrap at words rather than random characters
-o.ruler = false
-opt.statuscolumn = [[%!v:lua.require'util.statusline'.statuscolumn()]]
-
--- Indentation
-o.wrap = false
+ 
 o.wrapmargin = 2
 o.autoindent = true
 o.smartindent = true
@@ -62,12 +16,11 @@ o.shiftround = true
 o.expandtab = true
 
 -- Backspace
-o.backspace = { "start", "eol", "indent" }
-o.breakindent = true
+opt.backspace = { "start", "eol", "indent" }
+opt.breakindent = true
 
 -- diff
-opt.diffopt = opt.diffopt
-  + {
+opt.diffopt = {
     "vertical",
     "iwhite",
     "hiddenoff",
@@ -144,13 +97,14 @@ if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
 end
 
-if vim.fn.has("nvim-0.10") == 1 then
-  opt.smoothscroll = true
-end
+g.loaded_python3_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
+g.loaded_node_provider = 0
 
 if vim.g.neovide then
   vim.o.guifont = "Fira Code,Symbols Nerd Font Mono:h34"
-  vim.g.neovide_scale_factor = 1
+  vim.g.neovide_scale_factor = 0.3
   vim.g.neovide_window_blurred = true
   vim.g.neovide_transparency = 0.7
   vim.g.neovide_cursor_animate_command_line = false

@@ -1,6 +1,6 @@
 return {
   { import = "lazyvim.plugins.extras.lang.typescript" },
-  { import = "plugins.editor.lang.json" },
+  { import = "plugins.lang.json" },
   { "williamboman/mason.nvim" },
   {
     "neovim/nvim-lspconfig",

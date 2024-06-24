@@ -2,12 +2,15 @@ return {
   { import = "lazyvim.plugins.extras.coding.luasnip" },
   {
     "L3MON4D3/LuaSnip",
+    version = "v2.*",
+    event = "InsertEnter",
+    build = "make install_jsregexp",
     dependencies = { "rafamadriz/friendly-snippets" },
     config = function()
       local ls = require("luasnip")
-      local types = require("luasnip.til.types")
-      local extras = require("luasnip.xtras")
-      local fmt = require("luasnip.xtras.fmt").fmt
+      local types = require("luasnip.util.types")
+      local extras = require("luasnip.extras")
+      local fmt = require("luasnip.extras.fmt").fmt
 
       ls.config.set_config({
         history = false,
@@ -44,24 +47,6 @@ return {
 
       require("luasnip.loaders.from_lua").lazy_load()
       require("luasnip.loaders.from_vscode").lazy_load()
-
-      ls.filetype_extend("typescriptreact", { "javascript", "typescript" })
-      ls.filetype_extend("NeogitCommitMessage", { "gitcommit" })
-      ls.filetype_extend("typescript", { "tsdoc" })
-      ls.filetype_extend("typescript", { "next-ts" })
-      ls.filetype_extend("javascript", { "jsdoc" })
-      ls.filetype_extend("javascript", { "next" })
-      ls.filetype_extend("lua", { "luadoc" })
-      ls.filetype_extend("python", { "pydoc" })
-      ls.filetype_extend("rust", { "rustdoc" })
-      ls.filetype_extend("cs", { "csharpdoc" })
-      ls.filetype_extend("java", { "javadoc" })
-      ls.filetype_extend("c", { "cdoc" })
-      ls.filetype_extend("cpp", { "cppdoc" })
-      ls.filetype_extend("php", { "phpdoc" })
-      ls.filetype_extend("kotlin", { "kdoc" })
-      ls.filetype_extend("ruby", { "rdoc" })
-      ls.filetype_extend("sh", { "shelldoc" })
 
       require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
     end,

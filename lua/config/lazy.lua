@@ -24,7 +24,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 require("lazy").setup({
   spec = {
     {
@@ -32,10 +31,21 @@ require("lazy").setup({
       import = "lazyvim.plugins",
       opts = {
         news = { lazyvim = true, neovim = true },
-        colorscheme = "tokyonight",
       },
     },
-    { import = "plugins" }
+    { import = "plugins.formatting" },
+    { import = "plugins.themes" },
+    { import = "plugins.ui" },
+    { import = "plugins.coding" },
+    { import = "plugins.editor" },
+    { import = "plugins.editor.telescope" },
+    { import = "plugins.editor.git" },
+    { import = "plugins.editor.dev" },
+    { import = "plugins.editor.colors" },
+    { import = "plugins.lsp" },
+    { import = "plugins.lang" },
+    { import = "plugins.tools" },
+    { import = "plugins.dap" },
   },
   local_spec = true,
   defaults = { lazy = true, version = false },
@@ -43,16 +53,16 @@ require("lazy").setup({
     missing = true,
     colorscheme = {
       "aurora",
-      "bamboo",
+      "ayu",
       "catppuccin",
       "cyberdream",
       "dracula",
-      "gruvbox",
+      "doom-one",
       "kanagawa",
       "material",
       "moonfly",
       "nightfly",
-      "solarized-osaka",
+      "sonokai",
       "tokyonight",
       "nightfox",
       "cyberdream",

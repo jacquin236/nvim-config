@@ -13,13 +13,4 @@ return {
       window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
     },
   },
-  {
-    "edluffy/hologram.nvim",
-    lazy = true,
-    config = function()
-      require("hologram").setup({
-        auto_display = true,
-      })
-    end,
-  },
 }

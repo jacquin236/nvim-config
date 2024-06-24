@@ -15,14 +15,11 @@ map("n", "<leader>fT", "<Nop>")
 
 -- Clipboard
 map("n", "<C-a>", "gg<S-V>G", { desc = "Select All Text", silent = true, noremap = true })
-map("n", "<C-c>", ":%y+<cr>", { desc = "Copy Whole Text", slient = true })
+map("n", "<C-c>", ":%y+<cr>", { desc = "Copy Whole Text", silent = true })
 map("i", "<C-v>", '<C-r>"', { desc = "Paste on Insert Mode" })
 map("v", "<C-v>", '"_dP', { desc = "Paste Without Overwriting" })
 map("n", "<C-z>", "<C-r>", { desc = "Redo" })
 
--- Delete and change without yanking
-map({ "n", "x" }, "<A-d>", '"_d', { desc = "Delete without yanking" })
-map({ "n", "x" }, "<A-c>", '"_c', { desc = "Change without yanking" })
 
 -- Dashboard
 map("n", "<leader>fd", function()
@@ -32,10 +29,6 @@ map("n", "<leader>fd", function()
     vim.cmd("Dashboard")
   end
 end, { desc = "Dashboard" })
-
--- Spelling
-map("n", "<leader>!", "zg", { desc = "Add Word to Dictionary" })
-map("n", "<leader>@", "zug", { desc = "Remove Word from Dictionary" })
 
 -- Statusline
 map("n", "<leader>uS", function()
@@ -47,7 +40,7 @@ map("n", "<leader>uS", function()
 end, { desc = "Toggle Statusline" })
 
 -- Tabline
-map("n", "<keader>u<tab>", function()
+map("n", "<leader>u<tab>", function()
   if vim.o.showtabline:get() == 0 then
     vim.o.showtabline = 2
   else
@@ -149,22 +142,4 @@ map("x", "g/", "<esc>/\\%V", { silent = false, desc = "Search Inside Visual Sele
 map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search Selected Text", silent = true })
 map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search Selected Text (Backwards)", silent = true })
 
--- Marks
-map("n", "dm", function()
-  local cur_line = vim.fn.line(".")
-  -- Delete buffer local mark
-  for _, mark in ipairs(vim.fn.getmarklist("%")) do
-    if mark.pos[2] == cur_line and mark.mark:match("[a-zA-Z]") then
-      vim.api.nvim_buf_del_mark(0, string.sub(mark.mark, 2, #mark.mark))
-      return
-    end
-  end
-  -- Delete global marks
-  local cur_buf = vim.api.nvim_win_get_buf(vim.api.nvim_get_current_win())
-  for _, mark in ipairs(vim.fn.getmarklist()) do
-    if mark.pos[1] == cur_buf and mark.pos[2] == cur_line and mark.mark:match("[a-zA-Z]") then
-      vim.api.nvim_buf_del_mark(0, string.sub(mark.mark, 2, #mark.mark))
-      return
-    end
-  end
-end, { noremap = true, desc = "Mark on Current Line" })
+

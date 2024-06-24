@@ -1,5 +1,3 @@
-local list = require("plugins.coding.cmp.cmp-list")
-
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -8,7 +6,42 @@ return {
     keys = {
       { "<leader>ciC", "<cmd>CmpStatus<CR>", desc = "Cmp Status" },
     },
-    dependencies = list,
+    dependencies = {
+      "onsails/lspkind.nvim",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "dmitmel/cmp-cmdline-history",
+      "hrsh7th/cmp-emoji",
+      "saadparwaiz1/cmp_luasnip",
+      "lukas-reineke/cmp-rg",
+      "rafamadriz/friendly-snippets",
+      "SergioRibera/cmp-dotenv",
+      {
+        "garymjr/nvim-snippets",
+        opts = { friendly_snippets = true }
+      },
+      {
+        "petertriho/cmp-git",
+        opts = {
+          filetypes = { "gitcommit", "NeogitCommitMessage" },
+        },
+      },
+      {
+        "f3fora/cmp-spell",
+        ft = { "gitcommit", "NeogitCommitMessage", "markdown", "norg", "org" },
+      },
+      {
+        "David-Kunz/cmp-npm",
+        dependencies = "nvim-lua/plenary.nvim",
+        ft = "json",
+        opts = {},
+      },
+      "amarakon/nvim-cmp-fonts",
+      "chrisgrieser/cmp-nerdfont",
+      "lukas-reineke/cmp-under-comparator",
+    },
     opts = function(_, opts)
       local cmp = require("cmp")
       local border = require("util.ui").border
@@ -75,6 +108,8 @@ return {
           local kind = lspkind.cmp_format({
             mode = "symbol_text",
             maxwidth = 50,
+            ellipsis_char = '...',
+            show_labelDetails = true,
           })(entry, vim_item)
           local strings = vim.split(kind.kind, "%s", { trimempty = true })
           kind.kind = " " .. (strings[1] or "") .. " "
