@@ -1,6 +1,3 @@
--- solves the issue of missing luarocks when using homebrew to run NeoVim
-vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
-
 -- Configuring Neovim to load user-installed Luarocks:
 local home = vim.env.HOME
 package.path = package.path .. ";" .. home .. "./luarocks/share/lua/5.1/?/init.lua;"
@@ -33,41 +30,12 @@ require("lazy").setup({
         news = { lazyvim = true, neovim = true },
       },
     },
-    { import = "plugins.formatting" },
-    { import = "plugins.themes" },
-    { import = "plugins.ui" },
-    { import = "plugins.coding" },
-    { import = "plugins.editor" },
-    { import = "plugins.editor.telescope" },
-    { import = "plugins.editor.git" },
-    { import = "plugins.editor.dev" },
-    { import = "plugins.editor.colors" },
-    { import = "plugins.lsp" },
-    { import = "plugins.lang" },
-    { import = "plugins.tools" },
-    { import = "plugins.dap" },
+    { import = "plugins" }
   },
-  local_spec = true,
   defaults = { lazy = true, version = false },
   install = {
     missing = true,
-    colorscheme = {
-      "aurora",
-      "ayu",
-      "catppuccin",
-      "cyberdream",
-      "dracula",
-      "doom-one",
-      "kanagawa",
-      "material",
-      "moonfly",
-      "nightfly",
-      "sonokai",
-      "tokyonight",
-      "nightfox",
-      "cyberdream",
-      "onedark",
-    },
+    colorscheme = { "tokyonight", "catppuccin" },
   },
   checker = { enabled = true, concurrency = 30, notify = false, frequency = 3600 },
   change_detection = { enabled = true, notify = true },
@@ -75,20 +43,7 @@ require("lazy").setup({
   ui = {
     wrap = true,
     size = { width = 0.9, height = 0.9 },
-    border = "rounded",
-    backdrop = 100,
-    custom_keys = {
-      ["<localleader>l"] = function(plugin)
-        require("lazy.util").float_term({ "lazygit", "log" }, {
-          cwd = plugin.dir,
-        })
-      end,
-      ["<localleader>t"] = function(plugin)
-        require("lazy.util").float_term(nil, {
-          cwd = plugin.dir,
-        })
-      end,
-    },
+    border = require("util.ui").border,
   },
   performance = {
     cache = {
