@@ -7,18 +7,12 @@ return {
       enabled = true
     },
     sign = {
-      enabled = false
+      enabled = true, text = require("util.icons").misc.Ligthbulb
     },
     action_kinds = { "quickfix", "refactor" },
     ignore = {
       actions_without_kind = true
     },
-    float = {
-      text = require("util.icons").misc.Lightbulb,
-      enabled = true,
-      win_opts = {
-        norder = "none"
-      },
-    },
+    float = { enabled = false },
   },
 }

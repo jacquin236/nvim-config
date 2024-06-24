@@ -13,14 +13,27 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 
 local o, opt, g = vim.o, vim.opt, vim.g
 
---Encoding
+-- Root dir detection
+g.root_spec = { "lsp", { ".git", "lua", "Makefile", "go.mod", "cargo.toml", "src" }, "cwd" }
+
+-- Encoding
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 
+-- Spell checking
+o.spell = true
+o.spellang = { "en" }
+
 -- Keymap leader
 g.mapleader = " "
 g.maplocalleader = "\\"
+
+-- Auto format on save
+g.autoformat = true
+
+-- Enable EditorConfig integration
+g.editorconfig = true
 
 -- Timings
 o.updatetime = 300
@@ -37,7 +50,6 @@ o.splitright = true
 o.breakindentopt = "sbr"
 o.linebreak = true -- lines wrap at words rather than random characters
 o.ruler = false
-o.cmdheight = 0
 opt.statuscolumn = [[%!v:lua.require'util.statusline'.statuscolumn()]]
 
 -- Indentation
@@ -48,6 +60,10 @@ o.smartindent = true
 o.shiftwidth = 2
 o.shiftround = true
 o.expandtab = true
+
+-- Backspace
+o.backspace = { "start", "eol", "indent" }
+o.breakindent = true
 
 -- diff
 opt.diffopt = opt.diffopt
@@ -68,7 +84,7 @@ o.incsearch = true
 o.hlsearch = true
 o.infercase = true
 o.smartcase = true
-o.scrolloff = 9
+o.scrolloff = 10
 o.sidescroll = 1
 o.sidescrolloff = 10
 
@@ -98,7 +114,10 @@ opt.fillchars = {
   verthoriz = "╋",
 }
 
+-- Disable cmdline stuff
+o.showcmd = false
 o.laststatus = 3
+o.cmdheight = 0
 
 -- Backup and swap
 o.backup = false
@@ -123,6 +142,10 @@ opt.whichwrap:append("<>[]hl")
 
 if vim.fn.has("win32") == 1 then
   LazyVim.terminal.setup("pwsh")
+end
+
+if vim.fn.has("nvim-0.10") == 1 then
+  opt.smoothscroll = true
 end
 
 if vim.g.neovide then

@@ -1,3 +1,15 @@
+-- solves the issue of missing luarocks when using homebrew to run NeoVim
+vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
+
+-- Configuring Neovim to load user-installed Luarocks:
+local home = vim.env.HOME
+package.path = package.path .. ";" .. home .. "./luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. home .. "./luarocks/share/lua/5.1/?.lua;"
+
+vim.g.projects_dir = vim.env.PROJECTS_DIR or vim.fn.expand("~/projects")
+
+------------------------------------------ LazyVim Setup -------------------------------------------
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -12,11 +24,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- solves the issue of missing luarocks when using homebrew to run NeoVim
-vim.env.DYLD_LIBRARY_PATH = "$HOMEBREW_PREFIX/lib/"
--- Configuring Neovim to load user-installed Luarocks:
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/share/lua/5.1/?/init.lua"
-package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "./luarocks/share/lua/5.1/?.lua"
 
 require("lazy").setup({
   spec = {
@@ -25,15 +32,12 @@ require("lazy").setup({
       import = "lazyvim.plugins",
       opts = {
         news = { lazyvim = true, neovim = true },
+        colorscheme = "tokyonight",
       },
     },
-    { import = "plugins.editor" },
-    { import = "plugins.ui" },
-    { import = "plugins.ui.telescope" },
-    { import = "plugins.lsp" },
-    { import = "plugins.themes" },
-    { import = "plugins.tools" },
+    { import = "plugins" }
   },
+  local_spec = true,
   defaults = { lazy = true, version = false },
   install = {
     missing = true,
@@ -62,6 +66,7 @@ require("lazy").setup({
     wrap = true,
     size = { width = 0.9, height = 0.9 },
     border = "rounded",
+    backdrop = 100,
     custom_keys = {
       ["<localleader>l"] = function(plugin)
         require("lazy.util").float_term({ "lazygit", "log" }, {

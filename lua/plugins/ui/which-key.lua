@@ -3,6 +3,9 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {
+      icons = {
+        group = "",
+      },
       plugins = { spelling = { enabled = true, suggestions = 15 } },
       window = {
         border = require("util.ui").border,
@@ -14,6 +17,20 @@ return {
       layout = {
         spacing = 1,
         align = "center",
+      },
+      defaults = {
+        ["<leader>ci"] = { name = "Info" },
+        ["<leader><tab>"] = { name = "󰓩 Tabs" },
+        ["<leader>b"] = { name = "󰖯 Buffer" },
+        ["<leader>c"] = { name = " Code" },
+        ["<leader>f"] = { name = "󰈔 File/Find" },
+        ["<leader>g"] = { name = " Git" },
+        ["<leader>l"] = { name = "󰒲 Lazy" },
+        ["<leader>q"] = { name = "󰗼 Quit/Session" },
+        ["<leader>s"] = { name = " Search" },
+        ["<leader>u"] = { name = " Ui" },
+        ["<leader>w"] = { name = "󱂬 Windows" },
+        ["<leader>x"] = { name = "󰁨 Diagnostics/Quickfix" },
       },
     },
   },

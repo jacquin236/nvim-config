@@ -54,7 +54,7 @@ return {
       lualine_y = { component.time },
       lualine_z = { component.scrollbar },
     },
-    extensions = { "lazy", "mason", "quickfix", "toggleterm", "trouble" },
+    extensions = { "lazy", "mason", "quickfix", "toggleterm", "trouble", "man", "nvim-dap-ui" },
     winbar = {
       lualine_a = {
         { "filename", separator = { left = "", right = "" }, color = { gui = "bold" } },

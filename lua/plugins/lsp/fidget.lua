@@ -1,7 +1,7 @@
 return {
   {
     "j-hui/fidget.nvim",
-    event = "VeryLazy",
+    event = "LspAttach",
     opts = {
       progress = {
         suppress_on_insert = false,
@@ -30,10 +30,10 @@ return {
       require("fidget").setup(opts)
     end,
     keys = {
-      { "<localleader>f", "<cmd>Fidget<cr>", mode = "n", desc = "Fidget: Toggle" },
-      { "<localleader>fc", "<cmd>Fidget clear<cr>", mode = "n", desc = "Fidget: Clear Active Notifications" },
+      { "<localleader>f",  "<cmd>Fidget<cr>",           mode = "n", desc = "Fidget: Toggle" },
+      { "<localleader>fc", "<cmd>Fidget clear<cr>",     mode = "n", desc = "Fidget: Clear Active Notifications" },
       { "<localleader>fC", "<cmd>Fidget clear_history", mode = "n", desc = "Fidget: Clear Notifications History" },
-      { "<localleader>fh", "<cmd>Fidget history<cr>", mode = "n", desc = "Fidget: Show Notifications History" },
+      { "<localleader>fh", "<cmd>Fidget history<cr>",   mode = "n", desc = "Fidget: Show Notifications History" },
       {
         "<localleader>fl",
         "<cmd>Fidget lsp_suppress<cr>",

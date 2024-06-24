@@ -22,6 +22,7 @@ return {
             position = { row = 2 },
           },
         },
+        progress = { enabled = false },
         signature = {
           enabled = true,
           opts = { position = { row = 2 } },
