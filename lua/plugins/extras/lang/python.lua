@@ -1,5 +1,6 @@
 -- LSP Server to use for Python.
 -- Set to "basedpyright" to use basedpyright instead of pyright.
+---@diagnostic disable: missing-fields
 vim.g.lazyvim_python_lsp = "basedpyright"
 vim.g.lazyvim_python_ruff = "ruff"
 
@@ -8,6 +9,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      ---@type lspconfig.options
       servers = {
         ---@type lspconfig.options.basedpyright
         basedpyright = {
@@ -15,14 +17,19 @@ return {
             basedpyright = {
               analysis = {
                 diagnosticSeverityOverrides = {
-                  reportUnusedCallResult = "information",
-                  reportUnusedExpression = "information",
+                  reportOptionalMemberAccess = "none",
+                  reportUnusedVariable = "none",
+                  reportUnusedCallResult = "none",
+                  reportUnusedExpression = "none",
                   reportUnknownMemberType = "none",
                   reportUnknownLambdaType = "none",
                   reportUnknownParameterType = "none",
+                  reportUnknownVariableTypeType = "none",
                   reportMissingParameterType = "none",
+                  reportMissingTypeStub = "information",
                   reportUnknownVariableType = "none",
                   reportUnknownArgumentType = "none",
+                  reportImplicitOverride = "none",
                   reportAny = "none",
                 },
               },
