@@ -7,6 +7,6 @@ return {
     vim.g.moonflyUnderlineMatchParen = true
     vim.g.moonflyVirtualTextColor = true
     vim.g.moonflyWinSeparator = 2
-    vim.g.moonflyTransparent = true
+    vim.g.moonflyTransparent = vim.g.transparent_enabled
   end,
 }

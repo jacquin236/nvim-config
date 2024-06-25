@@ -4,7 +4,7 @@ return {
   config = function()
     require("bamboo").setup({
       style = "vulgaris",
-      transparent = false,
+      transparent = vim.g.transparent_enabled,
       dim_inactive = false,
       term_colors = true,
       code_style = {

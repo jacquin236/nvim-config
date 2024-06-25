@@ -4,7 +4,7 @@ return {
   opts = {
     options = {
       compile_path = vim.fn.stdpath("cache") .. "/nightfox",
-      transparent = false,
+      transparent = vim.g.transparent_enabled,
       dim_active = false,
       styles = {
         comments = "italic",

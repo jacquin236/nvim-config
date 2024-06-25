@@ -28,7 +28,7 @@ return {
         sources = {
           { source = "filesystem", display_name = icons.documents.Folder .. " " .. "Files" },
           { source = "git_status", display_name = icons.git.Logo .. "  " .. "Git" },
-          { source = "buffers",    display_name = icons.misc.List .. "  " .. "Buffers" },
+          { source = "buffers", display_name = icons.misc.List .. "  " .. "Buffers" },
         },
         content_layout = "center",
         tabs_layout = "equal",
@@ -69,58 +69,16 @@ return {
           never_show = { "_.DS_Store" },
         },
       }
-      opts.default_component_configs = {
-        icon = {
-          folder_empty = icons.documents.OpenFolderEmpty,
-          folder_open = icons.documents.OpenFolder,
-          folder_closed = icons.documents.Folder,
-        },
-        name = { highlight_opened_files = true },
-        document_symbols = {
-          follow_cursor = true,
-          kinds = vim.iter(symbols):fold({}, function(acc, k, v)
-            acc[k] = { icon = v, hl = lsp_kind[k] } ---@diagnostic disable-line: no-unknown
-            return acc
-          end),
-        },
-        modified = { symbol = icons.misc.CircleSmall .. " " },
-        git_status = {
-          symbols = {
-            added = icons.git.Added,
-            deleted = icons.git.Removed,
-            modified = icons.git.Modified,
-            renamed = icons.git.Renamed,
-            untracked = icons.git.Untracked,
-            ignored = icons.git.IgnoredAlt,
-            unstaged = icons.git.UnstagedAlt,
-            staged = icons.git.Staged,
-            conflict = icons.git.Conflict,
-          },
-        },
-        file_size = { enabled = true, required_width = 55 },
-        symlink_target = { enabled = true },
-        indent = {
-          indent_size = 2,
-          padding = 1,
-          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-          expander_collapsed = "",
-          expander_expanded = "",
-          expander_highlight = "NeoTreeExpander",
-        },
-      }
+
       opts.window = {
         mappings = {
           ["e"] = "open",
-          ["E"] = function()
-            vim.api.nvim_exec("Neotree focus filesystem left", true)
-          end,
-          ["b"] = function()
-            vim.api.nvim_exec("Neotree focus buffers left", true)
-          end,
-          ["g"] = function()
-            vim.api.nvim_exec("Neotree focus git_status left", true)
-          end,
+          ["o"] = "toggle_node",
+          ["<cr>"] = "open_with_window_picker",
+          ["<c-s>"] = "split_with_window_picker",
+          ["<c-v>"] = "vsplit_with_window_picker",
           ["<c-/>"] = "fuzzy_finder_directory",
+          ["<esc>"] = "revert_preview",
           ["D"] = function(state)
             local node = state.tree:get_node()
             local log = require("neo-tree.log")
@@ -151,11 +109,54 @@ return {
           end,
         },
       }
+
+      opts.default_component_configs = {
+        icon = {
+          folder_empty = icons.documents.OpenFolderEmpty,
+          folder_open = icons.documents.OpenFolder,
+          folder_closed = icons.documents.Folder,
+        },
+        name = { highlight_opened_files = true },
+        document_symbols = {
+          follow_cursor = true,
+          kinds = vim.iter(symbols):fold({}, function(acc, k, v)
+            acc[k] = { icon = v, hl = lsp_kind[k] } ---@diagnostic disable-line: no-unknown
+            return acc
+          end),
+        },
+        modified = { symbol = icons.misc.CircleSmall .. " " },
+        git_status = {
+          symbols = {
+            added = icons.git.Added,
+            deleted = icons.git.Removed,
+            modified = icons.git.Modified,
+            renamed = icons.git.Renamed,
+            untracked = icons.git.Untracked,
+            ignored = icons.git.IgnoredAlt,
+            unstaged = icons.git.UnstagedAlt,
+            staged = icons.git.Staged,
+            conflict = icons.git.Conflict,
+          },
+        },
+        file_size = { enabled = true, required_width = 50 },
+        symlink_target = { enabled = true },
+        indent = {
+          indent_size = 2,
+          padding = 1,
+          with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+          expander_collapsed = "",
+          expander_expanded = "",
+          expander_highlight = "NeoTreeExpander",
+        },
+      }
     end,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "nvim-tree/nvim-web-devicons",
+    },
+    keys = {
+      { "<C-E>", "<cmd>Neotree toggle reveal<cr>", desc = "NeoTree" },
     },
   },
 }

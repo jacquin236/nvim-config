@@ -1,5 +1,10 @@
 return {
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1001,
+    opts = { rocks = { "magick" } },
+  },
+  {
     "3rd/image.nvim",
     lazy = true,
     ft = { "markdown", "vimwiki" },
@@ -7,7 +12,7 @@ return {
       integrations = {
         markdown = {
           enabled = true,
-          filetypes = { "markdown", "vimwiki" }
+          filetypes = { "markdown", "vimwiki" },
         },
         neorg = {
           enabled = true,

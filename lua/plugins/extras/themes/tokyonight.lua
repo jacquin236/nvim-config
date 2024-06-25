@@ -5,8 +5,8 @@ return {
   config = function()
     require("tokyonight").setup({
       style = "night",
-      transparent = false,
-      terminal_colors = true,
+      transparent = vim.g.transparent_enabled,
+      terminal_color = true,
       styles = {
         comments = {},
         keywords = {},

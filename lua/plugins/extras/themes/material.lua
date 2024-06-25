@@ -8,6 +8,7 @@ return {
       plugins = {
         "dap",
         "dashboard",
+        "fidget",
         "gitsigns",
         "illuminate",
         "indent-blankline",
@@ -23,6 +24,9 @@ return {
         "trouble",
         "which-key",
         "nvim-notify",
+      },
+      disable = {
+        background = vim.g.transparent_enabled,
       },
     })
     vim.g.material_style = "deep ocean"

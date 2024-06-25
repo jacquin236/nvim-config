@@ -3,6 +3,7 @@ local p = require("persistence")
 
 return {
   "folke/persistence.nvim",
+  event = "BufReadPre",
   keys = {
     {
       "<leader>qS",

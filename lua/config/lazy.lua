@@ -1,8 +1,3 @@
--- Configuring Neovim to load user-installed Luarocks:
-local home = vim.env.HOME
-package.path = package.path .. ";" .. home .. "./luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. home .. "./luarocks/share/lua/5.1/?.lua;"
-
 vim.g.projects_dir = vim.env.PROJECTS_DIR or vim.fn.expand("~/projects")
 
 ------------------------------------------ LazyVim Setup -------------------------------------------
@@ -30,7 +25,7 @@ require("lazy").setup({
         news = { lazyvim = true, neovim = true },
       },
     },
-    { import = "plugins" }
+    { import = "plugins" },
   },
   defaults = { lazy = true, version = false },
   install = {
@@ -49,7 +44,6 @@ require("lazy").setup({
     cache = {
       enabled = true,
       path = vim.fn.stdpath("cache") .. "/lazy/cache",
-      disable_events = { "UIEnter", "BufReadPre" },
       ttl = 3600 * 24 * 2,
     },
     reset_packpath = true,

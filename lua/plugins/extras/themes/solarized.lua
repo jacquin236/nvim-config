@@ -2,12 +2,8 @@ return {
   "craftzdog/solarized-osaka.nvim",
   lazy = false,
   opts = {
-    transparent = false,
+    transparent = vim.g.transparent_enabled,
     terminal_colors = true,
-    styles = {
-      sidebars = "transparent",
-      floats = "transparent",
-    },
     sidebars = { "qf", "help", "vista_kind", "terminal" },
     lualine_bold = true,
   },

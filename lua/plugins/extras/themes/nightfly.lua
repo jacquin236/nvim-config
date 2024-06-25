@@ -7,6 +7,6 @@ return {
     vim.g.nightflyUnderlineMatchParen = true
     vim.g.nightflyVirtualTextColor = true
     vim.g.nightflyWinSeparator = 2
-    vim.g.nightflyTransparent = true
+    vim.g.nightflyTransparent = vim.g.transparent_enabled
   end,
 }

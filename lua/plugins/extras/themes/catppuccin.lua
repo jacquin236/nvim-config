@@ -8,7 +8,7 @@ return {
 
     require("catppuccin").setup({
       background = { light = "macchiato", dark = "mocha" },
-      transparent_background = false,
+      transparent_background = vim.g.transparent_enabled,
       show_end_of_buffer = false,
       term_colors = true,
       compile_path = vim.fn.stdpath("cache") .. "/catppuccin",

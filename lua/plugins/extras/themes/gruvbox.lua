@@ -18,7 +18,7 @@ return {
       strikethrough = true,
       inverse = false,
       dim_inactive = false,
-      transparent_mode = false,
+      transparent_mode = vim.g.transparent_enabled,
     })
   end,
 }
