@@ -14,18 +14,18 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
     keys = {
-      { "<leader>os", "<cmd>DevcontainerStart<cr>",             desc = "Start" },
-      { "<leader>oS", "<cmd>DevcontainerStop<cr>",              desc = "Stop" },
-      { "<leader>ol", "<cmd>DevcontainerLogs<cr>",              desc = "Log" },
+      { "<leader>os", "<cmd>DevcontainerStart<cr>", desc = "Start" },
+      { "<leader>oS", "<cmd>DevcontainerStop<cr>", desc = "Stop" },
+      { "<leader>ol", "<cmd>DevcontainerLogs<cr>", desc = "Log" },
       { "<leader>oc", "<cmd>DevcontainerEditNearestConfig<cr>", desc = "Config" },
-      { "<leader>oa", "<cmd>DevcontainerAttach<cr>",            desc = "Attach" },
+      { "<leader>oa", "<cmd>DevcontainerAttach<cr>", desc = "Attach" },
     },
   },
   {
     "folke/which-key.nvim",
     opts = {
       defaults = {
-        ["<leader>o"] = { name = "  C[o]ntainers" },
+        ["<leader>o"] = { name = " C[o]ntainers" },
       },
     },
   },
