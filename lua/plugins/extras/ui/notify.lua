@@ -8,7 +8,7 @@ return {
       timeout = 3000,
       fps = 20,
       top_down = true,
-      background_colour = "NotifyBackground",
+      background_colour = "NormalFloat",
       render = "default",
       minimum_width = 50,
       icons = {
