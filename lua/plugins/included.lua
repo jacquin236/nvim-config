@@ -35,6 +35,11 @@ return {
   { import = "plugins.extras.formatting.prettier" },
   { import = "plugins.extras.formatting.shfmt" },
 
+  -- Docs
+  { import = "plugins.extras.editor.docs.devdocs" },
+  { import = "plugins.extras.editor.docs.neorg" },
+  { import = "plugins.extras.editor.docs.orgmode" },
+
   -- Enable some tools
   { import = "plugins.extras.tools.colorizer" },
   { import = "plugins.extras.tools.icon-picker" },
@@ -44,5 +49,5 @@ return {
   { import = "plugins.extras.dap" },
 
   -- Test
-  { import = "plugins.extras.test" }
+  { import = "plugins.extras.test" },
 }

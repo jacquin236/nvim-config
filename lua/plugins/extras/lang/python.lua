@@ -99,4 +99,13 @@ return {
       },
     },
   },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = {
+        "python-3.12",
+      },
+    },
+  },
 }

@@ -39,4 +39,11 @@ return {
       return opts
     end,
   },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "go" },
+    },
+  },
 }

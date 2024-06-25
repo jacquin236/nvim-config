@@ -35,4 +35,11 @@ return {
     },
     opts = {},
   },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "tailwindcss" },
+    },
+  },
 }

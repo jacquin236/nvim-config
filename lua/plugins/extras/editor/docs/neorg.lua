@@ -1,16 +1,36 @@
 return {
-  "nvim-neorg/neorg",
-  build = ":Neorg sync-parsers",
-  dependencies = { "nvim-lua/plenary.nvim" },
-  ft = "norg",
-  opts = {
-    load = {
-      ["core.defaults"] = {},                                                         -- Loads default behaviour
-      ["core.concealer"] = {},                                                        -- Adds pretty icons to your documents
-      ["core.keybinds"] = {},                                                         -- Adds default keybindings
-      ["core.completion"] = { config = { engine = "nvim-cmp" } },                     -- Enables support for completion plugins
-      ["core.journal"] = {},                                                          -- Enables support for the journal module
-      ["core.dirman"] = { config = { workspaces = { notes = "~/projects/notes" } } }, -- Manages Neorg workspaces
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+  },
+  {
+    "nvim-neorg/neorg",
+    dependencies = {
+      "vhyrro/luarocks.nvim",
+      "nvim-lua/plenary.nvim",
     },
+    ft = "norg",
+    config = function()
+      require("neorg").setup({
+        load = {
+          ["core.defaults"] = {},
+          ["core.concealer"] = {},
+          ["core.completion"] = {
+            config = {
+              engine = "nvim-cmp",
+            },
+          },
+          ["core.journal"] = {},
+          ["core.dirman"] = {
+            config = {
+              workspaces = {
+                notes = "~/projects/neorg/",
+              },
+            },
+          },
+        },
+      })
+    end,
   },
 }

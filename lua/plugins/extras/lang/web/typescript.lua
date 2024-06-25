@@ -34,7 +34,7 @@ return {
       flags = { watch = false },
     },
     keys = {
-      { "<leader>ct", ft = { "typescript", "typescriptreact" }, "<cmd>TSC<cr>",     desc = "Type Check" },
+      { "<leader>ct", ft = { "typescript", "typescriptreact" }, "<cmd>TSC<cr>", desc = "Type Check" },
       { "<leader>xy", ft = { "typescript", "typescriptreact" }, "<cmd>TSCOpen<cr>", desc = "Type Check Quickfix" },
     },
     ft = { "typescript", "typescriptreact" },
@@ -73,7 +73,21 @@ return {
       },
     },
     keys = {
-      { "<leader>tw", function() require('neotest').run.run({ jestCommand = 'jest --watch ' }) end, desc = "Run Watch" },
+      ---@diagnostic disable: missing-fields
+      {
+        "<leader>tw",
+        function()
+          require("neotest").run.run({ jestCommand = "jest --watch " })
+        end,
+        desc = "Run Watch",
+      },
+    },
+  },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "react", "typescript" },
     },
   },
 }

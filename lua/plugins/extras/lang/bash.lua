@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = { ensure_installed = { "bash" } }
+    opts = { ensure_installed = { "bash" } },
   },
   {
     "neovim/nvim-lspconfig",
@@ -29,6 +29,13 @@ return {
       adapters = {
         ["neotest-bash"] = {},
       },
+    },
+  },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "bash" },
     },
   },
 }

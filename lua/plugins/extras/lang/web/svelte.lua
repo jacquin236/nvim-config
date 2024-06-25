@@ -39,4 +39,11 @@ return {
     "dmmulroy/ts-error-translator.nvim",
     opts = {},
   },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "svelte" },
+    },
+  },
 }

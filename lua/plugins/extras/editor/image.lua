@@ -6,7 +6,7 @@ return {
   },
   {
     "3rd/image.nvim",
-    lazy = true,
+    dependencies = { "luarocks.nvim" },
     ft = { "markdown", "vimwiki" },
     opts = {
       integrations = {

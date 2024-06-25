@@ -4,7 +4,7 @@ return {
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
       { "<leader>gR", "<cmd>DiffviewFileHistory<CR>", desc = "Repo History (Diff)" },
-      { "<leader>gd", "<cmd>DiffviewOpen<CR>",        desc = "Diff View" },
+      { "<leader>gd", "<cmd>DiffviewOpen<CR>", desc = "Diff View" },
     },
     opts = function(_, opts)
       local actions = require("diffview.actions")
@@ -17,6 +17,9 @@ return {
       }
       opts.hooks = {
         diff_buf_read = function(bufnr)
+          local opt = vim.opt_local
+          opt.wrap, opt.list, opt.relativenumber = false, false, false
+          opt.colorcolumn = ""
           vim.b[bufnr].view_activated = false
         end,
       }

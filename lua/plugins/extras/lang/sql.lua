@@ -8,11 +8,11 @@ return {
     },
     keys = {
       { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "Add Connection" },
-      { "<leader>Du", "<cmd>DBUIToggle<cr>",        desc = "Toggle DBUI" },
-      { "<leader>Df", "<cmd>DBUIFindBuffer<cr>",    desc = "Find Buffer" },
-      { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>",  desc = "Rename Buffer" },
+      { "<leader>Du", "<cmd>DBUIToggle<cr>", desc = "Toggle DBUI" },
+      { "<leader>Df", "<cmd>DBUIFindBuffer<cr>", desc = "Find Buffer" },
+      { "<leader>Dr", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename Buffer" },
       { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
-    }
+    },
   },
   {
     "folke/which-key.nvim",
@@ -29,5 +29,12 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = { servers = { sqlls = {} } },
-  }
+  },
+  {
+    "jacquin236/nvim-devdocs",
+    optional = true,
+    opts = {
+      ensure_installed = { "sqlite", "postgresql-16" },
+    },
+  },
 }
