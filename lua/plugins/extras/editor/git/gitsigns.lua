@@ -10,13 +10,21 @@ return {
       delay = 5,
       ignore_whitespace = false,
     },
-    current_line_blame_formatter = " <author>, <author_time>  <summary>",
-    preview_config = { border = border },
-    --- Experimental features
-    _inline2 = false,
-    _extmark_signs = true,
-    _signs_staged_enable = false,
-    ---
+    current_line_blame_formatter = " <author>, <author_time> · <summary>",
+    preview_config = {
+      border = border,
+      style = "minimal",
+      relative = "cursor",
+      row = 0,
+      col = 1,
+    },
+    watch_gitdir = {
+      interval = 1000,
+      follow_files = true,
+    },
+    attach_to_untracked = true,
+    update_debounce = 200,
+    max_file_length = 40000,
   },
   keys = {
     -- stylua: ignore

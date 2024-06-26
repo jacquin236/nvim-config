@@ -2,7 +2,6 @@ local border = require("util.ui").border
 
 return {
   "jacquin236/nvim-devdocs",
-  dev = true,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
@@ -33,8 +32,8 @@ return {
       border = border,
     },
     wrap = false,
-    previewer_cmd = "glow",
-    cmd_args = { "-s", "dark", "-w", "80" },
+    previewer_cmd = nil,
+    cmd_args = {},
     cmd_ignore = {},
     picker_cmd = false,
     picker_cmd_args = {},

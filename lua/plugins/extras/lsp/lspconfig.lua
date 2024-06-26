@@ -16,6 +16,7 @@ return {
     opts = {
       diagnostics = {
         virtual_text = {
+          prefix = "icons",
           float = {
             border = {
               { "╭", "FloatBorder" },
@@ -32,14 +33,25 @@ return {
       },
       inlay_hints = { enabled = true },
       codelens = { enabled = false },
-      servers = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              hint = {
-                enable = true,
-                setType = true,
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = { dynamicRegistration = false },
+        },
+        textDocument = {
+          completion = {
+            completionItem = {
+              snippetSupport = true,
+              resolveSupport = {
+                properties = {
+                  "documentation",
+                  "detail",
+                  "additionalTextEdits",
+                },
               },
+            },
+            foldingRange = {
+              dynamicRegistration = false,
+              lineFoldingOnly = true,
             },
           },
         },

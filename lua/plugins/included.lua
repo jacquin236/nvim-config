@@ -18,6 +18,7 @@ return {
   { import = "plugins.extras.editor.git" },
 
   -- Languages
+  { import = "plugins.extras.lang.lua" },
   { import = "plugins.extras.lang.web.typescript" },
   { import = "plugins.extras.lang.web.tailwind" },
   { import = "plugins.extras.lang.web.html-css" },
@@ -28,10 +29,12 @@ return {
   { import = "plugins.extras.lang.rust" },
   { import = "plugins.extras.lang.xml" },
   { import = "plugins.extras.lang.yaml" },
+  { import = "plugins.extras.lang.markdown" },
 
   -- Docs
-  { import = "plugins.extras.editor.docs.neorg" },
-  { import = "plugins.extras.editor.docs.orgmode" },
+  -- { import = "plugins.extras.editor.docs.neorg" },
+  -- { import = "plugins.extras.editor.docs.orgmode" },
+  { import = "plugins.extras.editor.docs.devdocs" },
 
   -- Formatters
   { import = "plugins.extras.formatting.prettier" },
@@ -41,6 +44,7 @@ return {
   { import = "plugins.extras.tools.colorizer" },
   { import = "plugins.extras.tools.icon-picker" },
   { import = "plugins.extras.tools.project" },
+  { import = "plugins.extras.tools.esqueleto" },
 
   -- Debug
   { import = "plugins.extras.dap" },

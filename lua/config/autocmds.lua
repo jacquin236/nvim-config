@@ -26,7 +26,7 @@ autocmd("FileType", {
 
 -- autowrap on text-based file
 autocmd("FileType", {
-  pattern = { "text", "tex", "markdown", "rst" },
+  pattern = { "text", "tex", "markdown", "rst", "norg", "org" },
   callback = function()
     vim.wo.wrap = true
   end,

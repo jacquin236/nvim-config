@@ -40,10 +40,7 @@
     "prefix": "ignore (stylua)"
   },
   "ignore start/end (stylua)": {
-    "body": [
-      "-- stylua: ignore start",
-      "-- stylua: ignore end"
-    ],
+    "body": ["-- stylua: ignore start", "-- stylua: ignore end"],
     "prefix": "ignore start/end (stylua)"
   },
   "import module": {

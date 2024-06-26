@@ -32,6 +32,8 @@ return {
       auto_start_watch_mode = false,
       use_trouble_qflist = true,
       flags = { watch = false },
+      spinners = require("util.spinners").dots_pulse,
+      pretty_errors = true,
     },
     keys = {
       { "<leader>ct", ft = { "typescript", "typescriptreact" }, "<cmd>TSC<cr>", desc = "Type Check" },

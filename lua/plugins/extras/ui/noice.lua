@@ -87,6 +87,12 @@ return {
         },
         {
           view = "notify",
+          filter = { event = "notify", find = "Type%-checking" },
+          opts = { replace = true, merge = true, title = "TSC" },
+          stop = true,
+        },
+        {
+          view = "notify",
           filter = {
             any = {
               { event = "msg_show", min_height = 10 },
@@ -100,7 +106,7 @@ return {
           filter = {
             any = {
               { event = "msg_show", find = "^E486:" },
-              { event = "notify",   max_height = 1 },
+              { event = "notify", max_height = 1 },
             },
           },
         },

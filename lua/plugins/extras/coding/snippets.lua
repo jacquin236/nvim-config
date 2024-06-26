@@ -3,9 +3,12 @@ return {
     "chrisgrieser/nvim-scissors",
     dependencies = {
       "rcarriga/nvim-notify",
+      "nvim-telescope/telescope.nvim",
     },
     opts = {
       jsonFormatter = "jq",
+      snippetDir = vim.fn.stdpath("config") .. "/snippets",
+      backdrop = { enabled = true, blend = 0 },
     },
     -- stylua: ignore
     keys = {

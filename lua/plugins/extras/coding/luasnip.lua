@@ -2,10 +2,11 @@ return {
   { import = "lazyvim.plugins.extras.coding.luasnip" },
   {
     "L3MON4D3/LuaSnip",
-    version = "v2.*",
     event = "InsertEnter",
     build = "make install_jsregexp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+    },
     config = function()
       local ls = require("luasnip")
       local types = require("luasnip.util.types")
@@ -19,19 +20,19 @@ return {
         ext_opts = {
           [types.choiceNode] = {
             active = {
-              hl_mode = "combine",
               virt_text = { { "●", "Operator" } },
+              hl_mode = "combine",
             },
           },
           [types.insertNode] = {
             active = {
-              hl_mode = "combine",
               virt_text = { { "●", "Type" } },
+              hl_mode = "combine",
             },
           },
         },
+        ext_base_prio = 300,
         enable_autosnippets = true,
-        ---@diagnostic disable: no-unknown
         snip_env = {
           fmt = fmt,
           m = extras.match,
@@ -40,15 +41,30 @@ return {
           c = ls.choice_node,
           d = ls.dynamic_node,
           i = ls.insert_node,
-          l = extras.lamda,
+          l = extras.lambda,
           snippet = ls.snippet,
         },
       })
 
       require("luasnip.loaders.from_lua").lazy_load()
-      require("luasnip.loaders.from_vscode").lazy_load()
 
+      require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
+
+      ls.filetype_extend("typescript", { "tsdoc", "next-ts", "react-ts" })
+      ls.filetype_extend("javascript", { "jsdoc", "next", "react" })
+      ls.filetype_extend("lua", { "luadoc" })
+      ls.filetype_extend("python", { "pydoc" })
+      ls.filetype_extend("rust", { "rustdoc" })
+      ls.filetype_extend("cs", { "csharpdoc" })
+      ls.filetype_extend("java", { "javadoc" })
+      ls.filetype_extend("c", { "cdoc" })
+      ls.filetype_extend("cpp", { "cppdoc" })
+      ls.filetype_extend("php", { "phpdoc" })
+      ls.filetype_extend("kotlin", { "kdoc" })
+      ls.filetype_extend("ruby", { "rdoc" })
+      ls.filetype_extend("sh", { "shelldoc" })
+      ls.filetype_extend("NeogitCommitMessage", { "gitcommit" })
     end,
   },
 }
