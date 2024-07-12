@@ -64,7 +64,7 @@ map("n", "<leader>glL", function()
 end, { desc = "Lazygit Log (cwd)" })
 
 ------------------------------------------ Plugin Info ------------------------------------------
-ap("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "Formatting" })
+map("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "Formatting" })
 map("n", "<leader>ic", "<cmd>ConformInfo<cr>", { desc = "Conform" })
 local linters = function()
   local linters_attached = require("lint").linters_by_ft[vim.bo.filetype]

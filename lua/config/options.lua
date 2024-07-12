@@ -2,10 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-local o, opt, g = vim.o, vim.opt, vim.g
-
-g.lazyvim_statuscolumn.folds_open = true
-g.lazyvim_statuscolumn.folds_githl = true
+local g = vim.g
+local o = vim.o
+local opt = vim.opt
 
 -- autoformat
 g.autoformat = true
@@ -13,7 +12,7 @@ o.confirm = true -- prompt before save
 
 -- Font
 g.gui_font_default_size = 12
-g.gui_font_size = vim.g.gui_font_default_size
+g.gui_font_size = g.gui_font_default_size
 g.gui_font = "JetBrainsMono Nerd Font"
 
 -- Support true colors
@@ -49,12 +48,16 @@ opt.fillchars = {
   foldsep = " ",
 }
 opt.foldlevel = 99
-opt.opt.foldmethod = "expr"
+opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
 opt.foldtext = ""
 
 -- statuscolumn
 opt.statuscolumn = [[%!v:lua.require'util.statuscolumn'.statuscolumn()]]
+vim.g.lazyvim_statuscolumn = {
+  folds_open = true, -- show fold sign when fold is open
+  folds_githl = true, -- highlight fold sign with git sign color
+}
 
 -- Grepprg
 opt.grepformat = "%f:%l:%c:%m"
