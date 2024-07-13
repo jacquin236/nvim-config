@@ -10,7 +10,7 @@ return {
   { import = "modules.configs.completion.luasnip" },
   { import = "modules.configs.completion.format" },
   { import = "modules.configs.completion.lint" },
-  { import = "modules.configs.completion.snippets" },
+  { import = "modules.configs.completion.annotations" },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",

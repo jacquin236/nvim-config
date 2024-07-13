@@ -18,6 +18,13 @@ return {
         { "<leader>b", group = "buffer", icon = " " },
         { "<leader>f", group = "find/file", icon = "󰈞" },
         { "<leader>s", group = "search/replace", icon = " " },
+        { "<leader>w", group = "windows", icon = " " },
+        { "<leader>c", group = "code", icon = " " },
+        { "<leader>b", group = "buffer" },
+        { "<leader>g", group = "git", icon = " " },
+        { "<leader>q", group = "quit/session", icon = " " },
+        { "<leader>f", group = "file/find", icon = "󰈞" },
+        { "<leader><tab>", group = "tabs" },
       },
       ---@type wk.Win
       win = {
@@ -26,11 +33,8 @@ return {
         title = true,
         title_pos = "center",
         zindex = 1000,
-        wo = { winblend = 0 },
         border = border,
-        row = -3,
       },
-      preset = "modern",
       sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase", "desc" },
       layout = {
         width = { min = 20, max = 40 },
