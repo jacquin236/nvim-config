@@ -42,8 +42,8 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>oa", group = "[orgmode]⭐agenda", icon = " " },
-        { "<leader>oc", group = "[orgmode]⭐capture", icon = " " },
+        { "<leader>oa", group = "[orgmode] agenda", icon = " " },
+        { "<leader>oc", group = "[orgmode]󰓒 capture", icon = " " },
       },
     },
   },
