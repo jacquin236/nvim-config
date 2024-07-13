@@ -3,10 +3,9 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>o", group = "Docs/Notes" },
-        { "<leader>od", group = "󰓎 DevDocs" },
-        { "<leader>on", group = "󰓎 Neorg" },
-        { "<leader>oo", group = "󰓎 Orgmode" },
+        { "<leader>o", group = "docs/notes", icon = "󱓧 " },
+        { "<leader>od", group = "󰓎 DevDocs", icon = "" },
+        { "<leader>on", group = "󰓎 Neorg", icon = "𝝢" },
       },
     },
   },

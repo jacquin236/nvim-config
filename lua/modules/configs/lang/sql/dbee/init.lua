@@ -76,7 +76,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>Db", group = "[dbee] manager" },
+        { "<leader>Db", group = "[dbee] manager", icon = "🐝" },
       },
     },
   },

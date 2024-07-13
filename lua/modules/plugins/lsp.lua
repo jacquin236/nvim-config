@@ -22,9 +22,9 @@ return {
       keys[#keys + 1] = { "gy", vim.lsp.buf.type_definition(), desc = "[lsp] T[y]pe Definition" }
       keys[#keys + 1] = { "gD", vim.lsp.buf.declaration, desc = "[lsp] Declaration" }
       keys[#keys + 1] = { "gK", vim.lsp.buf.signature_help, desc = "[lsp] Signature Help", has = "signatureHelp" }
-      keys[#keys + 1] = { "K", vim.lsp.buf.hover, desc = "Hover" }
+      keys[#keys + 1] = { "K", false }
 
-      keys[#keys + 1] = { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "[lsp] Signature Help", has = "signatureHelp" }
+      keys[#keys + 1] = { "<c-k>", false }
       keys[#keys + 1] = { "<leader>ca", vim.lsp.buf.code_action, desc = "[lsp] Code Action", mode = { "n", "v" }, has = "codeAction" }
       keys[#keys + 1] = { "<leader>cc", vim.lsp.codelens.run, desc = "[lsp] Run Codelens", mode = { "n", "v" }, has = "codeLens" }
       keys[#keys + 1] = { "<leader>cC", vim.lsp.codelens.refresh, desc = "[lsp] Refresh & Display Codelens", mode = { "n" }, has = "codeLens" }
@@ -44,31 +44,8 @@ return {
     end,
     opts = {
       diagnostics = {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = {
-          prefix = "icons",
-          float = {
-            border = {
-              { "╭", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "╮", "FloatBorder" },
-              { "│", "FloatBorder" },
-              { "╯", "FloatBorder" },
-              { "─", "FloatBorder" },
-              { "╰", "FloatBorder" },
-              { "│", "FloatBorder" },
-            },
-          },
-        },
-        severity_sort = true,
-        signs = {
-          text = {
-            [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
-            [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
-            [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
-            [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
-          },
+        diagnostics = {
+          virtual_text = { prefix = "icons" },
         },
       },
       inlay_hints = { enabled = true, exclude = { "vue" } },
@@ -87,7 +64,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>cl", group = "Lsp" },
+        { "<leader>cl", group = "lsp", icon = "󰅟 " },
       },
     },
   },

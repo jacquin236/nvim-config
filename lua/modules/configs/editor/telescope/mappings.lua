@@ -181,9 +181,9 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>sS", group = "Goto Symbols (Workspace)" },
-        { "<leader>ss", group = "Goto Symbols (Dynamic)" },
-        { "<leader>lp", group = "Plugins" },
+        { "<leader>sS", group = "goto symbols (workspace)", icon = " " },
+        { "<leader>ss", group = "goto symbols (dynamic)", icon = " " },
+        { "<leader>lp", group = "plugins", icon = " " },
       },
     },
   },

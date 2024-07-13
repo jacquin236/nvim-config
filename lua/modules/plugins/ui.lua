@@ -6,4 +6,5 @@ return {
   { import = "modules.configs.ui.bufferline" },
   { import = "modules.configs.ui.transparent" },
   { import = "modules.configs.ui.lualine" },
+  { import = "modules.configs.ui.dashboard" },
 }

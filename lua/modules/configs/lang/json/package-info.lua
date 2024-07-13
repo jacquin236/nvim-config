@@ -37,8 +37,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>p", name = "Packages/Dependencies" },
-        { "<leader>pw", name = "web/app: package.json" },
+        { "<leader>pw", name = "web/app: package.json", icon = "🧰" },
       },
     },
   },

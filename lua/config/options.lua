@@ -113,7 +113,7 @@ opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift t
 
 -- number
 opt.number = true
-opt.numberwidth = 3
+opt.numberwidth = 2
 opt.relativenumber = true
 opt.ruler = false
 
@@ -128,7 +128,6 @@ opt.swapfile = false
 opt.updatetime = 150
 o.timeout = true
 o.timeoutlen = 200
-o.ttimeoutlen = 10
 
 -- Popup
 opt.pumblend = 0

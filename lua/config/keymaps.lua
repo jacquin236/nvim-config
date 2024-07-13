@@ -64,8 +64,8 @@ map("n", "<leader>glL", function()
 end, { desc = "Lazygit Log (cwd)" })
 
 ------------------------------------------ Plugin Info ------------------------------------------
-map("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "Formatting" })
-map("n", "<leader>ic", "<cmd>ConformInfo<cr>", { desc = "Conform" })
+map("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "format" })
+map("n", "<leader>ic", "<cmd>ConformInfo<cr>", { desc = "conform" })
 local linters = function()
   local linters_attached = require("lint").linters_by_ft[vim.bo.filetype]
   local buf_linters = {}
@@ -84,18 +84,12 @@ local linters = function()
 
   LazyVim.notify(linters, { title = "Linter" })
 end
-map("n", "<leader>iL", linters, { desc = "Lint" })
-map("n", "<leader>ir", "<cmd>LazyRoot<cr>", { desc = "Root" })
+map("n", "<leader>iL", linters, { desc = "lint" })
+map("n", "<leader>ir", "<cmd>LazyRoot<cr>", { desc = "root" })
 
 -------------------------------------------------------------------------------------------------
---  Redo
-map({ "n", "i" }, "<C-z>", "<C-r>", { desc = "Redo" })
--- Copy whole text to clipboard
-map({ "n", "i" }, "<C-c>", ":%y+<CR>", { desc = "Copy Whole Text to Clipboard", silent = true })
--- Select all text
-map({ "n", "i", "x" }, "<C-a>", "gg<S-V>G", { desc = "Select all Text", silent = true, noremap = true })
 -- Paste options
-map({ "i", "n", "x" }, "<C-v>", '<C-r>"', { desc = "Paste on Insert Mode" })
+map({ "i" }, "<C-v>", '<C-r>"', { desc = "Paste on Insert Mode" })
 map("v", "p", '"_dP', { desc = "Paste Without Overwriting" })
 -- Move to beginning/end of line
 map("n", "<a-h>", "_", { desc = "First Character of Line" })

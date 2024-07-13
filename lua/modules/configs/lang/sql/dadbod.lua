@@ -57,7 +57,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>D", group = "Database" },
+        { "<leader>D", group = "database", icon = " " },
       },
     },
   },

@@ -1,72 +1,59 @@
 local border = require("util.icons").border.rounded
 local divider = require("util.icons").dividers.ThinLineMiddle
-local map_icons = require("util.keymap-icons")
 
 return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    opts_extend = { "spec" },
     opts = {
       spec = {
-        {
-          mode = { "n", "v" },
-          { "<leader><tab>", group = "Tabs" },
-          { "<leader>b", group = "Buffer" },
-          { "<leader>c", group = "Code" },
-          { "<leader>f", group = "File/Find" },
-          { "<leader>g", group = "Git" },
-          { "<leader>gh", group = "[git] hunks" },
-          { "<leader>q", group = "Quit/Session" },
-          { "<leader>s", group = "Search" },
-          { "<leader>u", group = "Ui" },
-          { "<leader>w", group = "Windows" },
-          { "<leader>x", group = "Diagnostics/Quickfix" },
-          { "<leader>i", group = "Info" },
-          { "<leader>l", group = "Lazy" },
-          { "[", group = "★ prev" },
-          { "]", group = "★ next" },
-          { "g", group = "★ goto" },
-          { "gs", group = "★ surround" },
-          { "z", group = "★ fold" },
-        },
+        { "<leader>i", group = "info", icon = " " },
+        { "<leader>iL", group = "lint", icon = " " },
+        { "<leader>ir", group = "root", icon = "󰆥 " },
+        { "<leader>ic", group = "conform", icon = "󰊄 " },
+        { "<leader>iC", group = "cmp (status)", icon = "󱖫 " },
+        { "<leader>l", group = "lazy", icon = "󰒲 " },
+        { "<leader>u", group = "ui", icon = " " },
+        { "<leader>x", group = "diagnostic/quickfix", icon = "󰁨 " },
+        { "<leader>b", group = "buffer", icon = " " },
+        { "<leader>f", group = "find/file", icon = "󰈞" },
+        { "<leader>s", group = "search/replace", icon = " " },
       },
       ---@type wk.Win
       win = {
-        height = { min = 3, max = 25 },
-        padding = { 2, 1 },
+        height = { min = 4, max = 20 },
+        padding = { 2, 2 },
         title = true,
         title_pos = "center",
         zindex = 1000,
         wo = { winblend = 0 },
         border = border,
+        row = -3,
       },
-      sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase", "desc" },
       preset = "modern",
+      sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase", "desc" },
       layout = {
-        width = { min = 25, max = 50 },
+        width = { min = 20, max = 40 },
         align = "center",
-        spacing = 5,
+        spacing = 4,
       },
       icons = {
         separator = divider .. " ",
-        group = " 󰜴 ",
+        group = " •",
         colors = false,
-        rules = map_icons,
+        rules = {
+          { pattern = "octo", icon = " " },
+          { pattern = "hover", icon = "" },
+          { pattern = "inspect", icon = " " },
+          { pattern = "replace", icon = "󰛔" },
+          { pattern = "history", icon = " " },
+          { pattern = "help", icon = "󰋖" },
+          { pattern = "grep", icon = " " },
+          { pattern = "select", icon = " " },
+          { pattern = "lsp", icon = " " },
+          { pattern = "breakpoints", icon = " " },
+        },
       },
     },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "[which-key] Local Keymaps Buffer",
-      },
-    },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-    end,
   },
 }

@@ -1,6 +1,7 @@
 return {
   {
     "nvim-orgmode/orgmode",
+    event = "VeryLazy",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter",
@@ -14,14 +15,11 @@ return {
     opts = {
       org_agenda_files = { "~/notes/orgfiles/**/*", "~/projects/notes/org/*" },
       org_default_notes_file = "~/notes/orgfiles/refile.org",
-      mappings = {
-        prefix = "<leader>oo",
-        global = {
-          org_agenda = "<prefix>a",
-          org_carture = "<prefix>c",
-        },
-      },
+      mappings = {},
     },
+    config = function(_, opts)
+      require("orgmode").setup(opts)
+    end,
   },
   {
     "akinsho/org-bullets.nvim",
@@ -31,8 +29,6 @@ return {
         list = "•",
         checkboxes = {
           half = { "🌙", "@org.checkbox.halfchecked" },
-          done = { "🌕", "@org.keyword.done" },
-          todo = { "🟢", "@org.keyword.todo" },
         },
       },
     },
@@ -41,5 +37,14 @@ return {
     "chipsenkbeil/org-roam.nvim",
     tag = "0.1.0",
     opts = {},
+  },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>oa", group = "[orgmode]⭐agenda", icon = " " },
+        { "<leader>oc", group = "[orgmode]⭐capture", icon = " " },
+      },
+    },
   },
 }

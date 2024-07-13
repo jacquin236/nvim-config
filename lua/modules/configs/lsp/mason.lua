@@ -32,4 +32,12 @@ return {
       { "<leader>im", "<cmd>Mason<cr>", desc = "Mason" },
     },
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>im", group = "Mason", icon = "󰊠 " },
+      },
+    },
+  },
 }

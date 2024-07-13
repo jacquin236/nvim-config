@@ -10,50 +10,11 @@ return {
   { import = "modules.configs.completion.luasnip" },
   { import = "modules.configs.completion.format" },
   { import = "modules.configs.completion.lint" },
-  {
-    "danymat/neogen",
-    cmd = "Neogen",
-    keys = {
-      -- stylua: ignore start
-      { "<leader>a", "", desc = "Annotation/Snippets" },
-      { "<leader>ad", function() require("neogen").generate() end, desc = "Default Annotation" },
-      { "<leader>aC", function() require("neogen").generate({ type = "class" }) end, desc = "Class" },
-      { "<leader>af", function() require("neogen").generate({ type = "func" }) end, desc = "Function" },
-      { "<leader>at", function() require("neogen").generate({ type = "type" }) end, desc = "Type" },
-      { "<leader>aF", function() require("neogen").generate({ type = "file" }) end, desc = "File" },
-      -- stylua: ignore end
-    },
-  },
-  {
-    "Zeioth/dooku.nvim",
-    cmd = { "DookuGenerate", "DookuOpen", "DookuAutoSetup" },
-    opts = {},
-    -- stylua: ignore
-    keys = {
-      { "<leader>ag", "<Cmd>DookuGenerate<cr>", desc = "Generate HTML Docs" },
-      { "<leader>ao", "<Cmd>DookuOpen<cr>", desc = "Open HTML Docs" },
-    },
-  },
-  {
-    "chrisgrieser/nvim-scissors",
-    dependencies = { "rcarriga/nvim-notify" },
-    keys = {
-      -- stylua: ignore start
-      { "<leader>aS", function() require("scissors").editSnippet() end, desc = "Edit Snippets" },
-      { "<leader>as", mode = { "n", "v" }, function() require("scissors").addNewSnippet() end, desc = "Add Snippets" },
-      -- stylua: ignore end
-    },
-  },
+  { import = "modules.configs.completion.snippets" },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     opts = function(_, opts)
-      -- @see: https://github.com/nvim-orgmode/orgmode/issues/481
-      local ok, orgmode = pcall(require, "orgmode")
-      if ok then
-        orgmode.setup_ts_grammar()
-      end
-
       opts.autopairs = { enable = true }
       opts.playground = { persist_queries = true }
       opts.query_linter = {

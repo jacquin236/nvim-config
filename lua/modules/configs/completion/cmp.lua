@@ -133,6 +133,7 @@ local cmp_extended = function()
 
     sources = cmp.config.sources({
       { name = "nvim_lsp", priority = 1000 },
+      { name = "nvim_lsp_signature_help", priority = 800 },
       { name = "luasnip", priority = 750 },
       { name = "lazydev", group_index = 0 },
       {
@@ -199,9 +200,10 @@ return {
     { "f3fora/cmp-spell", ft = { "gitcommit", "NeogitCommitMessage", "markdown", "norg", "org" } },
     "hrsh7th/cmp-cmdline",
     "dmitmel/cmp-cmdline-history",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   keys = {
-    { "<leader>iC", "<cmd>CmpStatus<CR>", desc = "Cmp Status" },
+    { "<leader>iC", "<cmd>CmpStatus<CR>", desc = "cmp (status)" },
   },
   config = cmp_extended,
 }

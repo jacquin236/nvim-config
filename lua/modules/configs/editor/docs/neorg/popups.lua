@@ -1,5 +1,5 @@
 local function augroup(name)
-  return vim.api.nvim_create_augroup("docs" .. name)
+  return vim.api.nvim_create_augroup("docs" .. name, { clear = true })
 end
 local autocmd = vim.api.nvim_create_autocmd
 

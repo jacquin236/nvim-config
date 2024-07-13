@@ -108,7 +108,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<localleader>t", group = "[toggleterm] Terminals" },
+        { "<localleader>t", group = "[toggleterm] terminal", icon = " " },
       },
     },
   },

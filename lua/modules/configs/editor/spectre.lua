@@ -13,7 +13,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>sr", group = "search/replace" },
+        { "<leader>sr", group = "search/replace", icon = " " },
       },
     },
   },

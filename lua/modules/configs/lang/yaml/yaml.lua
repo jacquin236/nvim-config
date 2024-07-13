@@ -58,11 +58,19 @@ return {
     config = function(_, opts)
       require("yaml-companion").setup(opts)
       LazyVim.on_load("telescope.nvim", function()
-        require("telescope").load_extension "yaml_schema"
+        require("telescope").load_extension("yaml_schema")
       end)
     end,
     keys = {
       { "<leader>cy", "<cmd>Telescope yaml_schema<cr>", desc = "Yaml Schema" },
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>cy", group = "Yaml Schema", icon = "󰘦 " },
+      },
     },
   },
 }

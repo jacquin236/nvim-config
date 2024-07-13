@@ -19,7 +19,7 @@ return {
                 maxPreload = 100000,
                 preloadFileSize = 10000,
               },
-              codeLens = { enable = true },
+              codeLens = { enable = false },
               completion = {
                 enable = true,
                 callSnippet = "Both",

@@ -29,7 +29,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>cc", group = "Colorizer" },
+        { "<leader>cc", group = "colorizer", icon = " " },
       },
     },
   },

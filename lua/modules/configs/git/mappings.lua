@@ -3,9 +3,9 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>G", group = "Github" },
-        { "<leader>Gg", group = "Gist" },
-        { "<leader>GR", group = "Repo" },
+        { "<leader>G", group = "github", icon = " " },
+        { "<leader>Gg", group = "gist", icon = " " },
+        { "<leader>GR", group = "repo", icon = " " },
         { "<leader>Gc", group = "[octo] comments" },
         { "<leader>Gt", group = "[octo] threads" },
         { "<leader>Gi", group = "[octo] issues" },
@@ -16,10 +16,10 @@ return {
         { "<leader>Gv", group = "[octo] re[v]iew" },
         { "<leader>Gpm", group = "Merge Current PR" },
 
-        { "<leader>gC", group = "[git] conflicts" },
-        { "<leader>gl", group = "[git] lazygit" },
-        { "<leader>gn", group = "[git] neogit" },
-        { "<leader>gw", group = "[git] worktrees" },
+        { "<leader>gC", group = "[git] conflicts", icon = " " },
+        { "<leader>gl", group = "[git] lazygit", icon = " " },
+        { "<leader>gn", group = "[git] neogit", icon = " " },
+        { "<leader>gw", group = "[git] worktrees", icon = "󰙅 " },
       },
     },
   },
