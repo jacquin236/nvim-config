@@ -1,87 +1,72 @@
 local border = require("util.icons").border.rounded
 local divider = require("util.icons").dividers.ThinLineMiddle
-local group = require("util.icons").ui.CircleSmallEmpty
+local map_icons = require("util.keymap-icons")
 
 return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
-    cmd = "WhichKey",
+    opts_extend = { "spec" },
     opts = {
-      plugins = {
-        marks = true,
-        registers = true,
-        spelling = { enabled = true, suggestions = 15 },
+      spec = {
+        {
+          mode = { "n", "v" },
+          { "<leader><tab>", group = "Tabs" },
+          { "<leader>b", group = "Buffer" },
+          { "<leader>c", group = "Code" },
+          { "<leader>f", group = "File/Find" },
+          { "<leader>g", group = "Git" },
+          { "<leader>gh", group = "[git] hunks" },
+          { "<leader>q", group = "Quit/Session" },
+          { "<leader>s", group = "Search" },
+          { "<leader>u", group = "Ui" },
+          { "<leader>w", group = "Windows" },
+          { "<leader>x", group = "Diagnostics/Quickfix" },
+          { "<leader>i", group = "Info" },
+          { "<leader>l", group = "Lazy" },
+          { "[", group = "★ prev" },
+          { "]", group = "★ next" },
+          { "g", group = "★ goto" },
+          { "gs", group = "★ surround" },
+          { "z", group = "★ fold" },
+        },
       },
-      icons = {
-        group = group .. " ",
-        separator = divider .. " ",
-      },
-      layout = {
-        align = "center",
+      ---@type wk.Win
+      win = {
         height = { min = 3, max = 25 },
+        padding = { 2, 1 },
+        title = true,
+        title_pos = "center",
+        zindex = 1000,
+        wo = { winblend = 0 },
+        border = border,
+      },
+      sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase", "desc" },
+      preset = "modern",
+      layout = {
         width = { min = 25, max = 50 },
+        align = "center",
         spacing = 5,
       },
-      window = {
-        border = border,
-        position = "bottom",
-        margin = { 0, 1, 0, 1 },
-        padding = { 2, 1, 2, 1 },
-        winblend = 0,
-        zindex = 1000,
-      },
-      key_labels = {
-        ["<space>"] = "[SPACE]",
-        ["<CR>"] = "[RETURN]",
-        ["<tab>"] = "[TAB]",
-        ["<Tab>"] = "[TAB]",
-        ["<S-Tab>"] = "[SHIFT] + [TAB]",
-        ["<leader>"] = "[LEADER]",
-        ["<localleader>"] = "[LOCAL LEADER]",
-        ["<Left>"] = " ",
-        ["<Right>"] = " ",
-        ["<Up>"] = "",
-        ["<Down>"] = "",
-        ["<C-Left>"] = "[CTRL] +  ",
-        ["<C-Right>"] = "[CTRL] +  ",
-        ["<C-Up>"] = "[CTRL] + ",
-        ["<C-Down>"] = "[CTRL] + ",
-        ["<C-/>"] = "[CTRL] + [/]",
-        ["<C-Bslash>"] = "[CTRL] + [\\]",
-        ["<C-Space>"] = "[CTRL] + [SPACE]",
-        ["<c-w>"] = "[CTRL] + w",
-        ["<C-B>"] = "[CTRL] + b",
-        ["<C-A>"] = "[CTRL] + s",
-        ["<C-C>"] = "[CTRL] + c",
-        ["<C-S>"] = "[CTRL] + a",
-        ["<C-D>"] = "[CTRL] + d",
-        ["<C-F>"] = "[CTRL] + f",
-        ["<C-H>"] = "[CTRL] + h",
-        ["<C-J>"] = "[CTRL] + j",
-        ["<C-K>"] = "[CTRL] + k",
-        ["<C-L>"] = "[CTRL] + l",
-      },
-      defaults = {
-        ["g"] = { name = "★ goto" },
-        ["gs"] = { name = "★ surround" },
-        ["z"] = { name = "★ fold" },
-        ["]"] = { name = "★ next" },
-        ["["] = { name = "★ prev" },
-        ["<leader>i"] = { name = " Info" },
-        ["<leader><tab>"] = { name = "󰓩 Tabs" },
-        ["<leader>b"] = { name = "󰖯 Buffer" },
-        ["<leader>c"] = { name = " Code" },
-        ["<leader>f"] = { name = "󰈔 File/Find" },
-        ["<leader>g"] = { name = " Git" },
-        ["<leader>gh"] = { name = "[git] hunks", ["_"] = "which_key_ignore" },
-        ["<leader>l"] = { name = "󰒲 Lazy" },
-        ["<leader>q"] = { name = "󰗼 Quit/Session" },
-        ["<leader>s"] = { name = " Search" },
-        ["<leader>u"] = { name = " Ui" },
-        ["<leader>w"] = { name = "󱂬 Windows" },
-        ["<leader>x"] = { name = "󰁨 Diagnostics/Quickfix" },
+      icons = {
+        separator = divider .. " ",
+        group = " 󰜴 ",
+        colors = false,
+        rules = map_icons,
       },
     },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "[which-key] Local Keymaps Buffer",
+      },
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.setup(opts)
+    end,
   },
 }

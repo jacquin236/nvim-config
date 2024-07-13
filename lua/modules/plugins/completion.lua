@@ -15,7 +15,7 @@ return {
     cmd = "Neogen",
     keys = {
       -- stylua: ignore start
-      { "<leader>a", "", desc = " Annotation/Snippets" },
+      { "<leader>a", "", desc = "Annotation/Snippets" },
       { "<leader>ad", function() require("neogen").generate() end, desc = "Default Annotation" },
       { "<leader>aC", function() require("neogen").generate({ type = "class" }) end, desc = "Class" },
       { "<leader>af", function() require("neogen").generate({ type = "func" }) end, desc = "Function" },
@@ -42,24 +42,6 @@ return {
       { "<leader>aS", function() require("scissors").editSnippet() end, desc = "Edit Snippets" },
       { "<leader>as", mode = { "n", "v" }, function() require("scissors").addNewSnippet() end, desc = "Add Snippets" },
       -- stylua: ignore end
-    },
-  },
-  {
-    "smoka7/multicursors.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter", "smoka7/hydra.nvim" },
-    cmd = { "MCstart", "MCvisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
-    keys = {
-      -- stylua: ignore
-      { mode = { "v", "n" }, "<leader>M", "<cmd>MCstart<cr>", desc = "Multicursor" },
-    },
-    opts = {
-      hint_config = { border = require("util.icons").border.rounded, position = "bottom-right" },
-      generate_hints = {
-        normal = true,
-        insert = true,
-        extend = true,
-        config = { column_count = 1 },
-      },
     },
   },
   {

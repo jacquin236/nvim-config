@@ -20,7 +20,7 @@ return {
     keys = {
       -- stylua: ignore start
       { "<leader>prR", function() require("crates").reload() end, desc = "Reload" },
-      { "<leader>ptC", function() require("crates").toggle() end, desc = "Toggle" },
+      { "<leader>pro", function() require("crates").toggle() end, desc = "Toggle" },
 
       { "<leader>pru", function() require("crates").update_crate() end, desc = "Update Crate" },
       { "<leader>pru", mode = "v", function() require("crates").update_crates() end, desc = "Update Crates" },

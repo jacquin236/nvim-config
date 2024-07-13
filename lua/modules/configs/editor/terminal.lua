@@ -52,23 +52,23 @@ return {
 
       local Terminal = require("toggleterm.terminal").Terminal
 
-      local lazygit = Terminal:new {
+      local lazygit = Terminal:new({
         cmd = "lazygit",
         dir = "git_dir",
         hidden = true,
         direction = "float",
         on_open = float_handler,
-      }
+      })
 
-      local lazydocker = Terminal:new {
+      local lazydocker = Terminal:new({
         cmd = "lazydocker",
         dir = "git_dir",
         hidden = true,
         direction = "float",
         on_open = float_handler,
-      }
+      })
 
-      local gh_dash = Terminal:new {
+      local gh_dash = Terminal:new({
         cmd = "gh dash",
         hidden = true,
         direction = "float",
@@ -81,7 +81,7 @@ return {
             return math.floor(vim.o.columns * 0.95)
           end,
         },
-      }
+      })
 
       map("n", "<localleader>th", function()
         gh_dash:toggle()
@@ -107,8 +107,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<localleader>t"] = "[toggleterm] Terminals",
+      spec = {
+        { "<localleader>t", group = "[toggleterm] Terminals" },
       },
     },
   },

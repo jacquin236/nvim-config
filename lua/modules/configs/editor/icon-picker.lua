@@ -18,8 +18,13 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>ci"] = { name = "Icons" },
+      spec = {
+        { "<leader>ci", group = "Icons" },
+      },
+      icons = {
+        rules = {
+          { pattern = "Icons", icon = " ", color = "cyan" },
+        },
       },
     },
   },

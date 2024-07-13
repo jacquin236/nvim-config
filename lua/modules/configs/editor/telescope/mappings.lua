@@ -19,21 +19,21 @@ return {
       { "<leader>fg", false },
       { "<leader>ffg", "<cmd>Telescope git_files<cr>", desc = "Git Files" },
       { "<leader>ffc", LazyVim.pick.config_files(), desc = "Config File" },
-      { "<leader>fff", LazyVim.pick "auto", desc = "Files (Root Dir)" },
+      { "<leader>fff", LazyVim.pick("auto"), desc = "Files (Root Dir)" },
       { "<leader>ffF", LazyVim.pick("auto", { root = false }), desc = "Files (cwd)" },
       { "<leader>ffr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
       { "<leader>ffR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "Recent Files (cwd)" },
       {
         "<leader>ffP",
         function()
-          require("telescope.builtin").find_files { cwd = require("lazy.core.config").options.root }
+          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
         end,
         desc = "Plugin File (Root)",
       },
       {
         "<leader>lpf",
         function()
-          require("telescope.builtin").find_files { cwd = require("lazy.core.config").options.root }
+          require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root })
         end,
         desc = "Lazy Plugin File",
       },
@@ -52,7 +52,7 @@ return {
               plugin = plugin._.super
             until not plugin
           end
-          require("telescope.builtin").live_grep { default_text = "/", search_dirs = vim.tbl_values(files) }
+          require("telescope.builtin").live_grep({ default_text = "/", search_dirs = vim.tbl_values(files) })
         end,
         desc = "Lazy Plugin Spec",
       },
@@ -71,7 +71,7 @@ return {
               plugin = plugin._.super
             until not plugin
           end
-          require("telescope.builtin").live_grep { default_text = "/", search_dirs = vim.tbl_values(files) }
+          require("telescope.builtin").live_grep({ default_text = "/", search_dirs = vim.tbl_values(files) })
         end,
         desc = "Plugin Spec",
       },
@@ -169,7 +169,7 @@ return {
         LazyVim.pick("lsp_dynamic_workspace_symbols", { symbols = { "Variable", "Parameter" } }),
         desc = "Variable",
       },
-      { "<leader>sA", LazyVim.pick "treesitter", desc = "Treesitter Symbols" },
+      { "<leader>sA", LazyVim.pick("treesitter"), desc = "Treesitter Symbols" },
       { "<leader>sP", "<cmd>Telescope builtin<cr>", desc = "Pickers (Telescope)" },
       { "<leader>ffh", LazyVim.pick("find_files", { hidden = true }), desc = "Hidden Files" },
       { "<leader><c-space>", LazyVim.pick("find_files", { hidden = true }), desc = "Hidden Files" },
@@ -180,10 +180,10 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>sS"] = { name = "Goto Symbols (Workspace)" },
-        ["<leader>ss"] = { name = "Goto Symbols (Dynamic)" },
-        ["<leader>lp"] = { name = "Plugins" },
+      spec = {
+        { "<leader>sS", group = "Goto Symbols (Workspace)" },
+        { "<leader>ss", group = "Goto Symbols (Dynamic)" },
+        { "<leader>lp", group = "Plugins" },
       },
     },
   },

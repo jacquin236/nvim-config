@@ -1,9 +1,9 @@
 return {
   "folke/which-key.nvim",
   opts = {
-    defaults = {
-      ["<leader>d"] = { name = " Debug" },
-      ["<leader>db"] = { name = "󰓛 breakpoints" },
+    spec = {
+      { "<leader>d", group = "Debug" },
+      { "<leader>db", group = "breakpoints" },
     },
   },
 }

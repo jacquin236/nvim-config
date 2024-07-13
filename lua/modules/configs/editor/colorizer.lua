@@ -28,8 +28,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>cc"] = { name = "Colorizer" },
+      spec = {
+        { "<leader>cc", group = "Colorizer" },
       },
     },
   },

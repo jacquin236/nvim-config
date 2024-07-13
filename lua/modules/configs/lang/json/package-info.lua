@@ -18,10 +18,10 @@ return {
     },
     config = function()
       LazyVim.on_load("telescope.nvim", function()
-        require("telescope").setup {
+        require("telescope").setup({
           extensions = { package_info = { theme = "ivy" } },
-        }
-        require("telescope").load_extension "package"
+        })
+        require("telescope").load_extension("package")
       end)
     end,
   },
@@ -36,9 +36,9 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>p"] = { name = " Packages/Dependencies" },
-        ["<leader>pw"] = { name = "web/app: package.json" },
+      spec = {
+        { "<leader>p", name = "Packages/Dependencies" },
+        { "<leader>pw", name = "web/app: package.json" },
       },
     },
   },

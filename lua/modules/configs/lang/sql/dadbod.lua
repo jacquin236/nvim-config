@@ -16,7 +16,7 @@ return {
       { "<leader>Dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last Query Info" },
     },
     init = function()
-      local data_path = vim.fn.stdpath "data"
+      local data_path = vim.fn.stdpath("data")
 
       vim.g.db_ui_auto_execute_table_helpers = 1
       vim.g.db_ui_save_location = data_path .. "/dadbod_ui"
@@ -40,7 +40,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         pattern = sql_ft,
         callback = function()
-          local cmp = require "cmp"
+          local cmp = require("cmp")
 
           ---@param source cmp.SourceConfig
           local sources = vim.tbl_map(function(source)
@@ -48,7 +48,7 @@ return {
           end, cmp.get_config().sources)
 
           table.insert(sources, { name = "vim-dadbod-completion" })
-          cmp.setup.buffer { sources = sources }
+          cmp.setup.buffer({ sources = sources })
         end,
       })
     end,
@@ -56,8 +56,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>D"] = { name = " Database" },
+      spec = {
+        { "<leader>D", group = "Database" },
       },
     },
   },

@@ -72,4 +72,12 @@ return {
       table.insert(opts.sources, { "cmp-dbee" })
     end,
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>Db", group = "[dbee] manager" },
+      },
+    },
+  },
 }

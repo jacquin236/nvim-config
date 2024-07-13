@@ -12,8 +12,8 @@ return {
   {
     "folke/which-key.nvim",
     opts = {
-      defaults = {
-        ["<leader>sr"] = { name = "search/replace" },
+      spec = {
+        { "<leader>sr", group = "search/replace" },
       },
     },
   },

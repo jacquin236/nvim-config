@@ -4,28 +4,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
-local auto_close_filetype = {
-  "lazy",
-  "mason",
-  "lspinfo",
-  "TelescopePrompt",
-  "notify",
-}
--- Auto close window when leaving
-autocmd("BufLeave", {
-  group = augroup("lazyvim_auto_close_win", { clear = true }),
-  callback = function(event)
-    local ft = vim.api.nvim_buf_get_option(event.buf, "filetype")
-
-    if vim.fn.index(auto_close_filetype, ft) ~= -1 then
-      local winids = vim.fn.win_findbuf(event.buf)
-      for _, win in pairs(winids) do
-        vim.api.nvim_win_close(win, true)
-      end
-    end
-  end,
-})
-
 -- Disable leader and localleader for some filetypes
 autocmd("FileType", {
   group = augroup("lazyvim_unbind_leader_key", { clear = true }),
@@ -107,15 +85,15 @@ autocmd("OptionSet", {
     for i = 1, vim.bo[bufnr].tabstop - 1 do
       lead = lead .. " "
     end
-    vim.opt_local.listchars:append { leadmultispace = lead }
+    vim.opt_local.listchars:append({ leadmultispace = lead })
   end,
 })
 
 -- Disable next line comments
 autocmd("BufEnter", {
   callback = function()
-    vim.cmd "set formatoptions-=cro"
-    vim.cmd "setlocal formatoptions-=cro"
+    vim.cmd("set formatoptions-=cro")
+    vim.cmd("setlocal formatoptions-=cro")
   end,
 })
 ------------------------------------------------- Colors Helpers -------------------------------------------
@@ -156,10 +134,10 @@ local update_highlight = function()
     vim.api.nvim_set_hl(0, "IlluminatedWordRead", { link = "LSPReferenceText" })
     vim.api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "LSPReferenceText" })
   end
-  vim.cmd [[
+  vim.cmd([[
       " highlight! Folded guibg=NONE
       highlight! MiniCursorwordCurrent guifg=NONE guibg=NONE gui=NONE cterm=NONE
-      ]]
+      ]])
 end
 
 autocmd(

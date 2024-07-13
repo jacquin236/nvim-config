@@ -1,0 +1,17 @@
+@document.meta
+title: literature
+description:
+authors: takuto
+categories:
+created: 2023-04-16
+updated: 2023-06-28
+version: 1.0.0
+@end
+
+* {TITLE}
+  {URL_TAG}
+  |comment
+  {INSERT}
+  |end
+
+  {CURSOR}
