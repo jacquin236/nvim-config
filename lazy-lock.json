@@ -72,7 +72,7 @@
   "neorg-templates": { "branch": "main", "commit": "2808ec9796e0ba89377e1eeb73bd25af3d10ef7f" },
   "neotest": { "branch": "master", "commit": "32ff2ac21135a372a42b38ae131e531e64833bd3" },
   "neotest-bash": { "branch": "main", "commit": "57eab5b80a5296dc3fc5b22112b3ed78da3a5732" },
-  "neotest-golang": { "branch": "main", "commit": "51ffe508a90b884bebf5b9f53fbffbfeaee5dac2" },
+  "neotest-golang": { "branch": "main", "commit": "c068d3713e6e68c888b85ba5135cfdc0c91c65f2" },
   "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
   "neotest-mocha": { "branch": "main", "commit": "780afb9ed021431fbf056b69295170d68d273234" },
   "neotest-plenary": { "branch": "master", "commit": "dcaf5ed67a9e28a246e9783319e5aa6c9ea1c584" },

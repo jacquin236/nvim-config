@@ -1,123 +1,107 @@
 return {
+  { import = "lazyvim.plugins.extras.util.octo" },
   {
     "pwntester/octo.nvim",
     cmd = "Octo",
     event = { { event = "BufReadCmd", pattern = "octo://*" } },
     opts = {
-      enable_builtin = true,
-      default_to_projects_v2 = true,
-      default_merge_method = "squash",
-      picker = "telescope",
-      use_diagnostic_signs = true,
       mappings = {},
     },
+    -- stylua: ignore
     keys = {
-      { "<leader>a", "", desc = "+assignee (Octo)", ft = "octo" },
-      { "<leader>c", "", desc = "+comment/code (Octo)", ft = "octo" },
-      { "<leader>l", "", desc = "+label (Octo)", ft = "octo" },
-      { "<leader>i", "", desc = "+issue (Octo)", ft = "octo" },
-      { "<leader>r", "", desc = "+react (Octo)", ft = "octo" },
-      { "<leader>p", "", desc = "+pr (Octo)", ft = "octo" },
-      { "<leader>v", "", desc = "+review (Octo)", ft = "octo" },
-      { "@", "@<C-x><C-o>", mode = "i", ft = "octo", silent = true },
-      { "#", "#<C-x><C-o>", mode = "i", ft = "octo", silent = true },
+      -- issues
+      { "<leader>Gil", "<cmd>Octo issue list<cr>", desc = "[octo] list issues" },
+      { "<leader>Gis", "<cmd>Octo issue search<cr>", desc = "[octo] search issues" },
+      { "<leader>Gic", "<cmd>Octo issue close<cr>", desc = "[octo] close issue" },
+      { "<leader>Gir", "<cmd>Octo issue reopen<cr>", desc = "[octo] reopen issue" },
+      { "<leader>Gie", "<cmd>Octo issue edit<cr>", desc = "[octo] edit issue <number> in repo" },
+      { "<leader>Gil", "<cmd>Octo issue list<cr>", desc = "[octo] list issues" },
+      { "<leader>Giu", "<cmd>Octo issue url<cr>", desc = "[octo] copy url of issue" },
+      { "<leader>GiR", "<cmd>Octo issue reload<cr>", desc = "[octo] reload issue" },
+      { "<leader>GiC", "<cmd>Octo issue create<cr>", desc = "[octo] create new issue" },
 
-      -- comment
-      { "<leader>Gca", "<cmd>Octo comment add<CR>", desc = "Add a New Comment" },
-      { "<leader>Gcd", "<cmd>Octo comment delete<CR>", desc = "Delete a Comment" },
-
-      -- thread
-      { "<leader>Gta", "<cmd>Octo thread resolve<CR>", desc = "Mark Thread as Resolved" },
-      { "<leader>Gtd", "<cmd>Octo thread unresolve<CR>", desc = "Mark Thread as Unresolved" },
-
-      -- issue
-      { "<leader>Gic", "<cmd>Octo issue close<CR>", desc = "Close Current Issue" },
-      { "<leader>Gir", "<cmd>Octo issue reopen<CR>", desc = "Reopen Current Issue" },
-      { "<leader>Gil", "<cmd>Octo issue list<CR>", desc = "List Open Issues" },
-      { "<leader>Giu", "<cmd>Octo issue url<CR>", desc = "Copies URL of Current Issue" },
-      { "<leader>Gio", "<cmd>Octo issue browser<CR>", desc = "Open Current Issue in Browser" },
-
-      -- pr
-      { "<leader>Gpp", "<cmd>Octo pr checkout<CR>", desc = "[octo] Checkout PR" },
-      -- pr merge
-      { "<leader>Gpmm", "<cmd>Octo pr merge commit<CR>", desc = "Merge Commit PR" },
-      { "<leader>Gpms", "<cmd>Octo pr merge squash<CR>", desc = "Squash Merge PR" },
-      { "<leader>Gpmd", "<cmd>Octo pr merge delete<CR>", desc = "Delete Merge PR" },
-      { "<leader>Gpmr", "<cmd>Octo pr merge rebase<CR>", desc = "Rebase Merge PR" },
-
-      { "<leader>Gpc", "<cmd>Octo pr close<CR>", desc = "Close Current PR" },
-      { "<leader>Gpn", "<cmd>Octo pr create<CR>", desc = "Create PR for Current Branch" },
-      { "<leader>Gpd", "<cmd>Octo pr diff<CR>", desc = "Show PR Diff" },
-      { "<leader>Gps", "<cmd>Octo pr list<CR>", desc = "List Open PRs" },
-      { "<leader>Gpr", "<cmd>Octo pr ready<CR>", desc = "Mark Draft as Ready for Review" },
-      { "<leader>Gpo", "<cmd>Octo pr browser<CR>", desc = "Open Current PR in Browser" },
-      { "<leader>Gpu", "<cmd>Octo pr url<CR>", desc = "Copies URL of Current PR" },
-      { "<leader>Gpt", "<cmd>Octo pr commits<CR>", desc = "List PR Commits" },
-      { "<leader>Gpl", "<cmd>Octo pr commits<CR>", desc = "List Changed Files in PR" },
-      { "<leader>GpS", "<cmd>Octo pr search<CR>", desc = "Search PRs" },
+      -- pull requests
+      { "<leader>Gpl", "<cmd>Octo pr list<cr>", desc = "[octo] list all PRs" },
+      { "<leader>Gps", "<cmd>Octo pr search<cr>", desc = "[octo] search PRs" },
+      { "<leader>Gpe", "<cmd>Octo pr edit<cr>", desc = "[octo] edit PR <number> in repo" },
+      { "<leader>Gpr", "<cmd>Octo pr reopen<cr>", desc = "[octo] reopen PR" },
+      { "<leader>GpC", "<cmd>Octo pr create<cr>", desc = "[octo] create new PR" },
+      { "<leader>Gpc", "<cmd>Octo pr close<cr>", desc = "[octo] close PR" },
+      { "<leader>Gpk", "<cmd>Octo pr checkout<cr>", desc = "[octo] checkout PR" },
+      { "<leader>Gpo", "<cmd>Octo pr commits<cr>", desc = "[octo] list PR commits" },
+      { "<leader>Gpd", "<cmd>Octo pr changes<cr>", desc = "[octo] show PR changes (diff hunks)" },
+      { "<leader>GpD", "<cmd>Octo pr diff<cr>", desc = "[octo] show PR diff" },
+      { "<leader>Gpy", "<cmd>Octo pr ready<cr>", desc = "[octo] mark draft PR ready for review" },
+      { "<leader>GpK", "<cmd>Octo pr checks<cr>", desc = "[octo] show status of all checks run on PR" },
+      { "<leader>GpR", "<cmd>Octo pr reload<cr>", desc = "[octo] reload" },
+      { "<leader>Gpb", "<cmd>Octo pr browser<cr>", desc = "[octo] open PR in browser" },
+      { "<leader>Gpu", "<cmd>Octo pr url<cr>", desc = "[octo] copy url of PR" },
+      -- merge PRs
+      { "<leader>Gpmo", "<cmd>Octo pr merge commit<cr>", desc = "PR merge commit" },
+      { "<leader>Gpms", "<cmd>Octo pr merge squash<cr>", desc = "PR merge squash" },
+      { "<leader>Gpmd", "<cmd>Octo pr merge delete<cr>", desc = "PR merge delete" },
+      { "<leader>Gpmr", "<cmd>Octo pr merge rebase<cr>", desc = "PR merge rebase" },
 
       -- repo
-      { "<leader>GRl", "<cmd>Octo repo list<CR>", desc = "[octo] List Repo User Stats" },
-      { "<leader>GRf", "<cmd>Octo repo fork<CR>", desc = "[octo] Fork Repo" },
-      { "<leader>GRu", "<cmd>Octo repo url<CR>", desc = "[octo] Copies URL of Current Repo" },
+      { "<leader>GRl", "<cmd>Octo repo list<cr>", desc = "[octo] list repo user stats" },
+      { "<leader>GRk", "<cmd>Octo repo fork<cr>", desc = "[octo] folk repo" },
+      { "<leader>GRu", "<cmd>Octo repo url<cr>", desc = "[octo] copy url of repo" },
+      { "<leader>GRv", "<cmd>Octo repo view<cr>", desc = "[octo] open a repo by path ({organization}/{name})" },
 
-      -- assignee
-      { "<leader>Gaa", "<cmd> Octo assignee add<CR>", desc = "Assign a User" },
-      { "<leader>Gar", "<cmd> Octo assignee remove<CR>", desc = "Remove a User" },
-      { "<leader>Gap", "<cmd> Octo reviewer add<CR>", desc = "Assign a PR Reviewer" },
+      -- comments
+      { "<leader>Gca", "<cmd>Octo comment add<cr>", desc = "[octo] add comment" },
+      { "<leader>Gcd", "<cmd>Octo comment delete<cr>", desc = "[octo] delete comment" },
 
-      -- label
-      { "<leader>Gla", "<cmd> Octo label add<CR>", desc = "Assign a Label" },
-      { "<leader>Glr", "<cmd> Octo label remove<CR>", desc = "Remove a Label" },
-      { "<leader>Glc", "<cmd> Octo label create<CR>", desc = "Create a Label" },
+      -- threads
+      { "<leader>Gtr", "<cmd>Octo thread resolve<cr>", desc = "[octo] mark review thread as resolved" },
+      { "<leader>Gtu", "<cmd>Octo thread unresolve<cr>", desc = "[octo] mark review thread as unresolved" },
 
-      -- react
-      { "<leader>Gr1", "<cmd>Octo reaction thumbs_up<CR>", desc = "Add 👍 Reaction" },
-      { "<leader>Gr2", "<cmd>Octo reaction thumbs_down<CR>", desc = "Add 👎 Reaction" },
-      { "<leader>Gr3", "<cmd>Octo reaction eyes<CR>", desc = "Add 👀 Reaction" },
-      { "<leader>Gr4", "<cmd>Octo reaction laugh<CR>", desc = "Add 😄 Reaction" },
-      { "<leader>Gr5", "<cmd>Octo reaction confused<CR>", desc = "Add 😕 Reaction" },
-      { "<leader>Gr6", "<cmd>Octo reaction rocket<CR>", desc = "Add 🚀 Reaction" },
-      { "<leader>Gr7", "<cmd>Octo reaction heart<CR>", desc = "Add ❤️ Reaction" },
-      { "<leader>Gr8", "<cmd>Octo reaction party<CR>", desc = "Add 🎉 Reaction" },
+      -- labels
+      { "<leader>Gla", "<cmd>Octo label add<cr>", desc = "[octo] add label" },
+      { "<leader>Glr", "<cmd>Octo label remove<cr>", desc = "[octo] remove label" },
+      { "<leader>GlC", "<cmd>Octo label create<cr>", desc = "[octo] create label" },
 
-      { "<leader>Gx", "<cmd>Octo actions<CR>", desc = "[octo] Run an Action" },
+      -- assignee/reviewer
+      { "<leader>Gaa", "<cmd>Octo assignee add<cr>", desc = "[octo] assign a user" },
+      { "<leader>Gar", "<cmd>Octo assignee remove<cr>", desc = "[octo] unassign a user" },
+      { "<leader>Gaw", "<cmd>Octo reviewer add<cr>", desc = "[octo] assign a PR reviewer" },
 
-      { "<leader>Gvs", "<cmd> Octo review start<CR>", desc = "Start Review" },
-      { "<leader>Gvf", "<cmd> Octo review submit<CR>", desc = "Submit Review" },
-      { "<leader>Gvr", "<cmd> Octo review resume<CR>", desc = "Submit Resume" },
-      { "<leader>Gvd", "<cmd> Octo review discard<CR>", desc = "Delete Pending Review" },
-      { "<leader>Gvc", "<cmd> Octo review comments<CR>", desc = "View Pending Comments" },
-      { "<leader>Gvp", "<cmd> Octo review commit<CR>", desc = "Select Commit to Review" },
-      { "<leader>Gvc", "<cmd> Octo review close<CR>", desc = "Return to PR" },
+      -- reaction
+      { "<leader>Gr1", "<cmd>Octo reaction thumbs_up<cr>", desc = "[octo] add 👍" },
+      { "<leader>Gr2", "<cmd>Octo reaction thumbs_down<cr>", desc = "[octo] add 👎" },
+      { "<leader>Gr3", "<cmd>Octo reaction eyes<cr>", desc = "[octo] add 👀" },
+      { "<leader>Gr4", "<cmd>Octo reaction laugh<cr>", desc = "[octo] add 😄" },
+      { "<leader>Gr5", "<cmd>Octo reaction confused<cr>", desc = "[octo] add 😕" },
+      { "<leader>Gr6", "<cmd>Octo reaction rocket<cr>", desc = "[octo] add 🚀" },
+      { "<leader>Gr7", "<cmd>Octo reaction heart<cr>", desc = "[octo] add ❤️ " },
+      { "<leader>Gr8", "<cmd>Octo reaction party<cr>", desc = "[octo] add 🎉" },
+
+      -- review
+      { "<leader>Gva", "<cmd>Octo review start<cr>", desc = "[octo] start new review" },
+      { "<leader>Gvs", "<cmd>Octo review submit<cr>", desc = "[octo] submit review" },
+      { "<leader>Gvr", "<cmd>Octo review resume<cr>", desc = "[octo] edit pending review" },
+      { "<leader>Gvd", "<cmd>Octo review discard<cr>", desc = "[octo] delete pending review" },
+      { "<leader>Gvc", "<cmd>Octo review comments<cr>", desc = "[octo] view pending review comments" },
+      { "<leader>Gvp", "<cmd>Octo review commit<cr>", desc = "[octo] pick a commit to review" },
+      { "<leader>GvR", "<cmd>Octo review close<cr>", desc = "[octo] close review window & return to PR" },
+
+      -- actions
+      { "<leader>Gx", "<cmd>Octo actions<cr>", desc = "[octo] list available actions" },
+      -- search
+      { "<leader>Gs", "<cmd>Octo search<cr>", desc = "[octo] search for issues and PRs" },
+
+      { "<leader>gi", false },
+      { "<leader>gI", false },
+      { "<leader>gp", false },
+      { "<leader>gP", false },
+      { "<leader>gr", false },
+      { "<leader>gS", false },
+      { "<leader>goi", "<cmd>Octo issue list<cr>", desc = "[octo] list issues" },
+      { "<leader>goI", "<cmd>Octo issue search<CR>", desc = "[octo] search issues" },
+      { "<leader>gop", "<cmd>Octo pr list<CR>", desc = "[octo] list PRs" },
+      { "<leader>goP", "<cmd>Octo pr search<CR>", desc = "[octo] search PRs" },
+      { "<leader>gor", "<cmd>Octo repo list<CR>", desc = "[octo] list repos" },
+      { "<leader>gos", "<cmd>Octo search<CR>", desc = "[octo] search" },
     },
-  },
-  -- Octo Picker
-  {
-    "pwntester/octo.nvim",
-    opts = function(_, opts)
-      vim.treesitter.language.register("markdown", "octo")
-      if LazyVim.has "telescope.nvim" then
-        opts.picker = "telescope"
-      elseif LazyVim.has "fzf-lua" then
-        opts.picker = "fzf-lua"
-      else
-        LazyVim.error "`octo.nvim` requires `telescope.nvim` or `fzf-lua`"
-      end
-
-      -- Keep some empty windows in sessions
-      vim.api.nvim_create_autocmd("ExitPre", {
-        group = vim.api.nvim_create_augroup("octo_exit_pre", { clear = true }),
-        callback = function(ev)
-          local keep = { "octo" }
-          for _, win in ipairs(vim.api.nvim_list_wins()) do
-            local buf = vim.api.nvim_win_get_buf(win)
-            if vim.tbl_contains(keep, vim.bo[buf].filetype) then
-              vim.bo[buf].buftype = "" -- set buftype to empty to keep the window
-            end
-          end
-        end,
-      })
-    end,
   },
 }

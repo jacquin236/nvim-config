@@ -69,7 +69,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>cy", group = "Yaml Schema", icon = "󰘦 " },
+        { "<leader>cy", group = "[yaml-companion] Yaml Schema", icon = "󰘦  " },
       },
     },
   },

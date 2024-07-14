@@ -178,15 +178,6 @@ map(
   { desc = "Redraw/Clear Hlsearch/Diff Update" }
 )
 
--- Toggle statusline
-map("n", "<leader>uS", function()
-  if o.laststatus:get() == 0 then
-    o.laststatus = 3
-  else
-    o.laststatus = 0
-  end
-end, { desc = "Toggle Statusline" })
-
 -- Comment box
 map("n", "]/", "/\\S\\zs\\s*╭<CR>zt", { desc = "Next Block Comment" })
 map("n", "[/", "?\\S\\zs\\s*╭<CR>zt", { desc = "Prev Block Comment" })

@@ -89,6 +89,7 @@ return {
       { "<leader>sdw", "<cmd>Telescope diagnostics<cr>", desc = "Workspace Diagnostics" },
 
       -- Goto Symbols (lsp)
+      { "<leader>ss", false },
       {
         "<leader>ssa",
         LazyVim.pick("lsp_document_symbols", {
@@ -125,6 +126,7 @@ return {
         LazyVim.pick("lsp_document_symbols", { symbols = { "Variable", "Parameter" } }),
         desc = "Variable",
       },
+      { "<leader>sS", false },
       {
         "<leader>sSa",
         LazyVim.pick("lsp_dynamic_workspace_symbols", {
@@ -184,6 +186,12 @@ return {
         { "<leader>sS", group = "goto symbols (workspace)", icon = " " },
         { "<leader>ss", group = "goto symbols (dynamic)", icon = " " },
         { "<leader>lp", group = "plugins", icon = " " },
+        { "<leader>s#", group = "Headings", icon = " " },
+        { "<leader>sI", group = "Imports", icon = " " },
+        { "<leader>sp", group = "Snippets", icon = " " },
+        { "<leader>su", group = "Undos", icon = " " },
+        { "<leader>sc", group = "command", icon = "󰘳 " },
+        { "<leader>sd", group = "document diagnostics", icon = " " },
       },
     },
   },

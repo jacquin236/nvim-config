@@ -149,4 +149,12 @@ return {
       -- stylua: ignore end
     },
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>sn", group = "noice", icon = " " },
+      },
+    },
+  },
 }

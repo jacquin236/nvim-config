@@ -21,7 +21,7 @@ return {
         { "<leader>w", group = "windows", icon = " " },
         { "<leader>c", group = "code", icon = " " },
         { "<leader>b", group = "buffer" },
-        { "<leader>g", group = "git", icon = " " },
+        { "<leader>g", group = "git", icon = "󰊢 " },
         { "<leader>q", group = "quit/session", icon = " " },
         { "<leader>f", group = "file/find", icon = "󰈞" },
         { "<leader><tab>", group = "tabs" },
@@ -46,7 +46,7 @@ return {
         group = " •",
         colors = false,
         rules = {
-          { pattern = "octo", icon = " " },
+          { plugin = "octo.nvim", icon = " " },
           { pattern = "hover", icon = "" },
           { pattern = "inspect", icon = " " },
           { pattern = "replace", icon = "󰛔" },
@@ -56,7 +56,21 @@ return {
           { pattern = "select", icon = " " },
           { pattern = "lsp", icon = " " },
           { pattern = "breakpoints", icon = " " },
+          { pattern = "mark", icon = " " },
+          { pattern = "up", icon = " " },
+          { pattern = "down", icon = " " },
+          { pattern = "keyword", icon = "󰌆 " },
+          { pattern = "keymap", icon = "  " },
         },
+      },
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Keymaps (local buffer)",
       },
     },
   },
