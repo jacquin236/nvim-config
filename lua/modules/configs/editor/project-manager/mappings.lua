@@ -4,7 +4,6 @@ return {
     opts = {
       spec = {
         { "<leader>Pp", group = "[project] search for projects", icon = " " },
-        { "<leader>Pn", group = "[harpoon] goto file ", icon = " " }
       },
     },
   },

@@ -26,7 +26,6 @@ return {
         { "<leader>f", group = "file/find", icon = "󰈞" },
         { "<leader><tab>", group = "tabs" },
       },
-      ---@type wk.Win
       win = {
         height = { min = 4, max = 20 },
         padding = { 2, 2 },
