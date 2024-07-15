@@ -7,7 +7,7 @@ return {
     },
     opts = {
       adapters = {
-        ["neotest-plenary"] = {},
+        ["neotest-plenary"] = {}
       },
     },
   },
