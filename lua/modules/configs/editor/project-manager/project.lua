@@ -10,14 +10,14 @@ return {
       LazyVim.on_load("telescope.nvim", function()
         require("telescope").load_extension("projects")
       end)
-    end
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>Pp", pick, desc = "[project] search for projects", remap = true },
+      { "<leader>P", pick, desc = "projects", remap = true },
     },
   },
   {
@@ -25,7 +25,7 @@ return {
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>Pp", pick, desc = "[project] search for projects", remap = true },
+      { "<leader>P", pick, desc = "projects", remap = true },
     },
   },
   {
