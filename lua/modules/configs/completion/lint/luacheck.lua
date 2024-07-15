@@ -2,9 +2,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_installed = {
-        "luacheck",
-      },
+      ensure_installed = { "luacheck" },
     },
   },
   {
