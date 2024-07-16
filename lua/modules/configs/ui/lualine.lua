@@ -1,9 +1,9 @@
-local colors = require "util.colors"
-local icons = require "util.icons"
+local colors = require("util.colors")
+local icons = require("util.icons")
 
 local conditions = {
   buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand "%t:t") ~= 1
+    return vim.fn.empty(vim.fn.expand("%t:t")) ~= 1
   end,
   hide_in_width = function()
     return vim.o.columns > 100
@@ -15,7 +15,7 @@ local formatter = function()
   if not status then
     return "Conform not installed"
   end
-  local lsp_format = require "conform.lsp_format"
+  local lsp_format = require("conform.lsp_format")
   -- Get formatters for the current buffer
   local formatters = conform.list_formatters_for_buffer()
   if formatters and #formatters > 0 then
@@ -29,7 +29,7 @@ local formatter = function()
 
   -- Check if there's an LSP formatter
   local bufnr = vim.api.nvim_get_current_buf()
-  local lsp_clients = lsp_format.get_format_clients { bufnr = bufnr }
+  local lsp_clients = lsp_format.get_format_clients({ bufnr = bufnr })
 
   if not vim.tbl_isempty(lsp_clients) then
     return "󰷈 LSP Formatter"
@@ -75,8 +75,8 @@ local tabwidth = function()
 end
 
 local scrollbar = function()
-  local current_line = vim.fn.line "."
-  local total_lines = vim.fn.line "$"
+  local current_line = vim.fn.line(".")
+  local total_lines = vim.fn.line("$")
   local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
   local line_ratio = current_line / total_lines
   local index = math.ceil(line_ratio * #chars)
@@ -94,7 +94,7 @@ end
 return {
   "nvim-lualine/lualine.nvim",
   opts = function(_, opts)
-    opts.options.theme = "onedark_dark"
+    opts.options.theme = "catppuccin-mocha"
     opts.options.component_separators = ""
     opts.options.section_separators = ""
     opts.options.disabled_filetypes = {
@@ -132,11 +132,11 @@ return {
     opts.sections.lualine_c[2] = "" -- No diagnostics since we already have it
 
     opts.sections.lualine_c[4] = {
-      LazyVim.lualine.pretty_path {
+      LazyVim.lualine.pretty_path({
         filename_hl = "Bold",
         modified_hl = "MatchParen",
         directory_hl = "Conceal",
-      },
+      }),
     }
 
     table.insert(opts.sections.lualine_x, 1, yaml_schema)
@@ -148,15 +148,12 @@ return {
     )
     table.insert(opts.sections.lualine_x, 2, { formatter, color = { fg = colors.velvet, gui = "italic" } })
     table.insert(opts.sections.lualine_x, 2, linter)
-    opts.sections.lualine_y = {
-      { "progress" },
-      { tabwidth, color = { gui = "bold" } },
-      { "location" },
-    }
+    table.insert(opts.sections.lualine_x, 2, { tabwidth, color = { fg = colors.light_lavender } })
+    opts.sections.lualine_y = { "progress", "location" }
     opts.sections.lualine_z = {
       {
         function()
-          return " " .. os.date "%I:%M %p"
+          return " " .. os.date("%I:%M %p")
         end,
         color = { gui = "bold" },
       },

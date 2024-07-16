@@ -17,7 +17,7 @@ return {
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>P", pick, desc = "projects", remap = true },
+      { "<leader>P", pick, desc = "Projects", remap = true },
     },
   },
   {
@@ -25,7 +25,7 @@ return {
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>P", pick, desc = "projects", remap = true },
+      { "<leader>P", pick, desc = "Projects", remap = true },
     },
   },
   {
