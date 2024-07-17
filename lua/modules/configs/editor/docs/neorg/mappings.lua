@@ -45,8 +45,8 @@ return {
   { "<leader>onq", "<cmd>Neorg return<cr>", desc = "[neorg] Return" },
 
   -- Headline
-  { "[h", function() goto_headline("previous") end, desc = "[neorg] Goto Previous Headline" },
-  { "]h", function() goto_headline("next") end, desc = "[neorg] Goto Next Headline" },
+  { "[l", function() goto_headline("previous") end, desc = "Previous Headline (neorg)" },
+  { "]l", function() goto_headline("next") end, desc = "Next Headline (neorg)" },
 
   { "<localleader>nx", "<cmd>Neorg exec cursor<cr>", desc = "[neorg] code block under cursor" },
   { "<localleader>nX", "<cmd>Neorg exec current-file<cr>", desc = "[neorg] code block whole file" },
@@ -75,11 +75,20 @@ return {
   { "<localleader>nmi", "<Plug>(neorg.qol.todo-items.todo.task-important)", desc = "important" },
   { "<localleader>nma", "<Plug>(nerog.qol.todo-items.todo.task-ambiguous)", desc = "ambiguous" },
 
+  { "<leader>onu", "<Plug>(neorg.qol.todo-items.todo.task-undone)", desc = "[neorg] Mark as Undone", remap = true },
+  { "<leader>onp", "<Plug>(neorg.qol.todo-items.todo.task-pending)", desc = "[neorg] Mark as Pending", remap = true },
+  { "<leader>ond", "<Plug>(neorg.qol.todo-items.todo.task-done)", desc = "[neorg] Mark as Done", remap = true },
+  { "<leader>onh", "<Plug>(neorg.qol.todo-items.todo.task-on-hold)", desc = "[neorg] Mark as On-hold", remap = true },
+  { "<leader>onc", "<Plug>(neorg.qol.todo-items.todo.task-cancalled)", desc = "[neorg] Mark as Cancelled", remap = true },
+  { "<leader>onr", "<Plug>(neorg.qol.todo-items.todo.task-recurring)", desc = "[neorg] Mark as Recurring", remap = true },
+  { "<leader>onI", "<Plug>(neorg.qol.todo-items.todo.task-important)", desc = "[neorg] Mark as Important", remap = true },
+  { "<leader>ona", "<Plug>(nerog.qol.todo-items.todo.task-ambiguous)", desc = "[neorg] Mark as Ambiguous", remap = true },
+
   -- Toggle list from ordered <-> unordered
   { "<leader>onl", "<Plug>(neorg.pivot.list.toggle)", desc = "[neorg] Toogle (Un)ordered List" },
   { "<localleader>nl", "<Plug>(neorg.pivot.list.toggle)", desc = "[neorg] toggle (un)ordered list", remap = true },
   -- Insert all items in a list
   { "<localleader>nL", "<Plug>(neorg.pivot.list.invert)", desc = "[neorg] invert (un)ordered list" },
-  -- Insert date 
+  -- Insert date
   { "<localleader>nd", "<Plug>(neorg.tempus.insert-date)", desc = "[neorg] insert date" },
 }
