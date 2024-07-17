@@ -1,3 +1,19 @@
+vim.filetype.add({
+  -- extension = {},
+  -- filename = {},
+  pattern = {
+    -- can be comma-separated for a list of paths
+    [".*/%.github/dependabot.yml"] = "dependabot",
+    [".*/%.github/dependabot.yaml"] = "dependabot",
+    [".*/%.github/workflows[%w/]+.*%.yml"] = "gha",
+    [".*/%.github/workflows/[%w/]+.*%.yaml"] = "gha",
+  },
+})
+
+-- use the yaml parser for the custom filetypes
+vim.treesitter.language.register("yaml", "gha")
+vim.treesitter.language.register("yaml", "dependabot")
+
 return {
   { "b0o/SchemaStore.nvim", version = false },
   {
@@ -70,6 +86,30 @@ return {
     opts = {
       spec = {
         { "<leader>cy", group = "[yaml-companion] Yaml Schema", icon = "󰘦  " },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          vim.list_extend(opts.ensure_installed, { "yamlfmt" })
+        end,
+      },
+    },
+    ft = { "yaml", "gha", "dependabot" },
+    opts = {
+      formatters_by_ft = {
+        -- TODO: the default is very strict, might be good to add a config
+        -- file: https://github.com/google/yamlfmt/blob/main/docs/config-file.md#basic-formatter
+        -- fix:
+        --   - do not remove empty lines
+        yaml = { "yamlfmt" },
+        gha = { "yamlfmt" },
+        dependabot = { "yamlfmt" },
       },
     },
   },
