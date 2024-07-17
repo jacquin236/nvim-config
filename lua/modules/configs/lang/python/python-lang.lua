@@ -51,11 +51,14 @@ return {
     opts = function(_, opts)
       local formatters = require("conform.formatters")
       local ruff_path = prefer_bin_from_venv("ruff")
-      opts.formatters_by_ft.python = { "ruff_format" }
+      opts.formatters_by_ft.python = opts.formatters_by_ft.python or {}
+      table.insert(opts.formatters_by_ft.python, "ruff_format")
+      table.insert(opts.formatters_by_ft.python, "ruff_fix")
 
       if ruff_path then
         formatters.ruff_format.command = ruff_path
       end
+      return opts
     end,
   },
   {

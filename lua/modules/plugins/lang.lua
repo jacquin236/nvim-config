@@ -17,5 +17,5 @@ return {
   -- go
   { import = "modules.configs.lang.go" },
   -- python
-  -- { import = "modules.configs.lang.python" },
+  { import = "modules.configs.lang.python" },
 }

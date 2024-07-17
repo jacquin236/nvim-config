@@ -38,5 +38,29 @@ return {
       local debugpy_path = find_debugpy_python_path()
       dap_python.setup(debugpy_path)
     end,
+    keys = {
+      {
+        "<leader>dPt",
+        function()
+          require("dap-python").test_method()
+        end,
+        desc = "[dap-python] Debug Method",
+      },
+      {
+        "<leader>dPc",
+        function()
+          require("dap-python").test_class()
+        end,
+        desc = "[dap-python] Debug Class",
+      },
+      {
+        "<leader>dPs",
+        function()
+          require("dap-python").debug_selection()
+        end,
+        mode = "v",
+        desc = "[dap-python] Debug Selection",
+      },
+    },
   },
 }
