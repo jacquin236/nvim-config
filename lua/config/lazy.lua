@@ -87,7 +87,7 @@ require("lazy").setup({
     backdrop = 80,
   },
   dev = {
-    path = vim.g.projects_dir .. "/nvim-projects/",
+    path = vim.g.projects_dir .. "/nvim-projects",
     patterns = {},
     fallback = true,
   },
