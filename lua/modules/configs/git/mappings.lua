@@ -3,7 +3,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>G", group = "github", icon = " " },
+        { "<leader>G", group = "github", icon = " ", mode = { "n", "v" } },
         -- gist
         { "<leader>Gg", group = "gist", icon = " " },
         { "<leader>Ggc", group = "[gist] create", icon = " " },
@@ -11,7 +11,7 @@ return {
         { "<leader>Ggl", group = "[gist] list all", icon = " " },
 
         -- repo
-        { "<leader>GR", group = "repo", icon = " " },
+        { "<leader>GR", group = "repo", icon = " ", mode = { "n", "v" } },
         -- openingh
         { "<leader>GRa", group = "[openingh] open git repo in web", icon = "󰖟 " },
         { "<leader>GRb", group = "[openingh] open git file in web", icon = "󰖟 " },

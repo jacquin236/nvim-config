@@ -2,7 +2,7 @@ return {
   "folke/which-key.nvim",
   opts = {
     spec = {
-      { "<leader>d", group = "debug", icon = " " },
+      { "<leader>d", group = "debug", icon = " ", mode = { "n", "v" } },
       { "<leader>db", group = "breakpoints", icon = "󰙦" },
 
       { "<leader>di", group = "[dap] Step Into", icon = " " },
