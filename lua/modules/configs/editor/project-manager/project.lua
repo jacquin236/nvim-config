@@ -17,7 +17,7 @@ return {
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>P", pick, desc = "Projects", remap = true },
+      { "<leader>Pp", pick, desc = "[project] Find project dir", remap = true },
     },
   },
   {
@@ -25,7 +25,7 @@ return {
     optional = true,
     keys = {
       { "<leader>fp", pick, desc = "Projects" },
-      { "<leader>P", pick, desc = "Projects", remap = true },
+      { "<leader>Pp", pick, desc = "[project] Find project dir", remap = true },
     },
   },
   {

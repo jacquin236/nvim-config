@@ -12,8 +12,8 @@ return {
   { import = "modules.configs.lang.sql" },
   -- markdown
   { import = "modules.configs.lang.markdown" },
-  -- go
-  { import = "modules.configs.lang.go" },
   -- bash
   { import = "modules.configs.lang.bash" },
+  -- go
+  { import = "modules.configs.lang.go" },
 }

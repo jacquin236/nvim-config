@@ -19,7 +19,7 @@ return {
       { "rcarriga/nvim-dap-ui" },
       { "theHamsta/nvim-dap-virtual-text", opts = { all_frames = true } },
     },
-    -- stylua: ignore
+    -- stylua: ignore 
     keys = {
       { "<leader>dc", function() require("dap").continue() end, desc = "[dap] Continue" },
       { "<leader>da", function() require("dap").continue({ before = get_args }) end, desc = "[dap] Run with Args" },

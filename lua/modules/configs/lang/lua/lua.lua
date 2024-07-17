@@ -39,7 +39,7 @@ return {
               telemetry = { enable = false },
               diagnostics = {
                 globals = { "vim" },
-                disable = { "incomplete-signature-doc", "trailing-space", "undefined-field" },
+                disable = { "incomplete-signature-doc", "trailing-space" },
                 groupSeverity = {
                   strong = "Warning",
                   strict = "Warning",

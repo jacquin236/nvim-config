@@ -101,6 +101,9 @@ map("n", "<A-s>", "<cmd>noautocmd w<CR>", { desc = "Save Without Formatting" })
 map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search Selected Text", silent = true })
 map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search Selected Text (Backwards)", silent = true })
 
+-- Select all
+map("n", "==", "gg<S-v>G")
+
 ------------------------------------------ Dashboard -------------------------------------------
 -- Navigate to Dashboard
 -- Dashboard
