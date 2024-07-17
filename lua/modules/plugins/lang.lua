@@ -18,4 +18,6 @@ return {
   { import = "modules.configs.lang.go" },
   -- python
   { import = "modules.configs.lang.python" },
+  -- docker
+  { import = "modules.configs.lang.docker" },
 }

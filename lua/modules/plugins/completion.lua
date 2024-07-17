@@ -43,4 +43,5 @@ return {
       opts.indent = { enable = true }
     end,
   },
+  { import = "modules.configs.completion.sniprun" },
 }

@@ -63,4 +63,12 @@ return {
       },
     },
   },
+  {
+    "folke/which-key.nvim",
+    opts = {
+      spec = {
+        { "<leader>dP", group = "debug (python)", icon = " ", mode = { "n", "v" } },
+      },
+    },
+  },
 }
