@@ -18,7 +18,14 @@ return {
     config = function()
       require("neorg").setup({
         load = {
-          ["core.concealer"] = {},
+          ["core.concealer"] = {
+            config = {
+              icon_preset = "basic",
+              icons = {
+                code_block = { spell_check = false },
+              },
+            },
+          },
           ["core.completion"] = {
             config = {
               engine = "nvim-cmp",
@@ -52,7 +59,12 @@ return {
           ["core.keybinds"] = {
             config = {
               default_keybinds = true,
-              hook = require("modules.configs.editor.docs.neorg.keybinds").hook,
+            },
+          },
+          ["core.looking-glass"] = {},
+          ["core.tangle"] = {
+            config = {
+              report_on_empty = false,
             },
           },
           ["external.exec"] = {},
@@ -61,6 +73,12 @@ return {
             keywords = require("modules.configs.editor.docs.neorg.templates"),
           },
         },
+      })
+    end,
+    init = function()
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = "norg",
+        command = "Neorg tangle current-file",
       })
     end,
     keys = {
