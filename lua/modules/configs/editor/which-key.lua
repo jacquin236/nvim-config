@@ -25,6 +25,7 @@ return {
         { "<leader>q", group = "quit/session", icon = " " },
         { "<leader>f", group = "file/find", icon = "󰈞" },
         { "<leader><tab>", group = "tabs" },
+        { "<localleader>", group = "[LOCALLEADER]" },
       },
       win = {
         height = { min = 4, max = 20 },

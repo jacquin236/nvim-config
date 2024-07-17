@@ -6,6 +6,7 @@ return {
         { "<leader>o", group = "docs/notes", icon = "󱓧 " },
         { "<leader>od", group = "󰓎 DevDocs", icon = "" },
         { "<leader>on", group = "󰓎 Neorg", icon = "𝝢" },
+        { "<localleader>n", group = "Neorg", icon = "𝚴" },
       },
     },
   },

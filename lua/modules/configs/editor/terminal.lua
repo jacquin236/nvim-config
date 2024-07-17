@@ -94,21 +94,14 @@ return {
       end, { desc = "ToggleTerm: Toggle lazydocker" })
     end,
     keys = {
-      { [[<c-\>]], "<cmd>ToggleTerm<cr>", mode = "n", desc = "Toggle Terminal" },
-    },
-  },
-  {
-    "ryanmsnyder/toggleterm-manager.nvim",
-    opts = {},
-    keys = {
-      { "<c-/>", "<cmd>Telescope toggleterm_manager<cr>", desc = "Terminals" },
+      { [[<c-\>]], "<cmd>ToggleTerm<cr>", mode = "n", desc = "Toggle Terminal (toggleterm)" },
     },
   },
   {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<localleader>t", group = "[toggleterm] terminal", icon = " " },
+        { "<localleader>t", group = "Terminal", icon = " " },
       },
     },
   },
