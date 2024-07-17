@@ -17,4 +17,17 @@ return {
       { "<leader>srf", "<CMD>SearchReplaceSingleBufferCFile<CR>", desc = "File on Buffer", mode = "n" },
     },
   },
+  {
+    "cshuaimin/ssr.nvim",
+    opts = {},
+    keys = {
+      {
+        "<leader>srs",
+        function()
+          require("ssr").open()
+        end,
+        desc = "Structural [ssr]",
+      },
+    },
+  },
 }
