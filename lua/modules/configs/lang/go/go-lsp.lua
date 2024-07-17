@@ -6,7 +6,13 @@ return {
         gopls = {
           settings = {
             gopls = {
-              gofumpt = true,
+              analyses = {
+                fieldalignment = false,
+                nilness = true,
+                unusedparams = true,
+                unusedwrite = true,
+                useany = true,
+              },
               codelenses = {
                 gc_details = false,
                 generate = true,
@@ -26,26 +32,21 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
               },
-              analyses = {
-                fieldalignment = true,
-                nilness = true,
-                unusedparams = true,
-                unusedwrite = true,
-                useany = true,
-                undeclaredname = true,
-                nonewvars = true,
-                shadow = true,
-                fillreturns = true,
-                unreachable = true,
-              },
-              usePlaceholders = true,
               completeUnimported = true,
-              staticcheck = true,
-              directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+              directoryFilters = { "-**/node_modules", "-**/.git", "-.vscode", "-.idea", "-.vscode-test" },
+              gofumpt = true,
               semanticTokens = true,
-              buildFlags = { "-tags", "integration" },
-              diagnosticsDelay = "500ms",
+              staticcheck = true,
+              usePlaceholders = true,
             },
+          },
+        },
+        golangci_lint_ls = {
+          cmd = { "golangci-lint-langserver" },
+          filetypes = { "go", "gomod" },
+          rootdir = require("lspconfig.util").root_pattern("go.mod"),
+          init_options = {
+            command = { "golangci-lint", "run", "--enable-all", "--out-format", "json", "--issues-exit-code=1" },
           },
         },
       },
@@ -70,33 +71,5 @@ return {
         end,
       },
     },
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = { "goimports", "gofumpt", "golangci-lint" },
-    },
-  },
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      local function add_linters(tbl)
-        for ft, linters in pairs(tbl) do
-          if opts.linters_by_ft[ft] == nil then
-            opts.linters_by_ft[ft] = linters
-          else
-            vim.list_extend(opts.linters_by_ft[ft], linters)
-          end
-        end
-      end
-
-      add_linters({
-        ["go"] = { "golangcilint" },
-        ["gomod"] = { "golangcilint" },
-        ["gowork"] = { "golangcilint" },
-      })
-
-      return opts
-    end,
   },
 }

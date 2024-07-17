@@ -8,9 +8,12 @@ return {
     opts = {
       runtime = vim.env.VIMRUNTIME,
       library = {
+        "lazy.nvim",
+        "luvit-meta/library",
+        "neotest",
+        "plenary",
         { path = "luvit-meta/library", words = { "vim%.uv" } },
         { path = "LazyVim", words = { "LazyVim" } },
-        "lazy.nvim",
       },
       integrations = {
         lspconfig = true,
