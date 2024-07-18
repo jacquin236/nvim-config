@@ -22,4 +22,6 @@ return {
   { import = "modules.configs.lang.docker", enabled = false },
   -- ruby
   { import = "modules.configs.lang.ruby", enabled = false },
+  -- log files
+  { "fei6409/log-highlight.nvim", event = "BufRead *.log", opts = {} },
 }

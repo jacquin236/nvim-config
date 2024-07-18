@@ -6,7 +6,6 @@ return {
     ft = "lua",
     cmd = "LazyDev",
     opts = {
-      runtime = vim.env.VIMRUNTIME,
       library = {
         "lazy.nvim",
         "luvit-meta/library",
@@ -22,4 +21,6 @@ return {
     },
   },
   { "Bilal2453/luvit-meta" }, -- optional `vim.uv` typings
+  { "LuaCATS/luassert", name = "luassert-types" },
+  { "LuaCATS/busted", name = "busted-types" },
 }

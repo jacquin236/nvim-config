@@ -8,7 +8,7 @@ return {
     },
     opts = {
       adapters = {
-        ["neotest-plenary"] = {},
+        ["neotest-plenary"] = { min_init = "./tests/init.lua" },
       },
     },
   },
