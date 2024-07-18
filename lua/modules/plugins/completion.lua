@@ -11,6 +11,7 @@ return {
   { import = "modules.configs.completion.format" },
   { import = "modules.configs.completion.lint" },
   { import = "modules.configs.completion.annotations" },
+  { import = "modules.configs.completion.ai" },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",

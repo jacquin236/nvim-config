@@ -73,4 +73,30 @@ return {
       end
     end,
   },
+  { -- Overlay cell marker & metadata so it's less distracting
+    "echasnovski/mini.hipatterns",
+    ft = { "python" },
+    opts = function(_, opts)
+      local censor_extmark_opts = function(buf_id, match, data)
+        local mask = string.rep("⎯", vim.api.nvim_win_get_width(0))
+        return {
+          virt_text = { { mask, "SignColumn" } },
+          virt_text_pos = "overlay",
+          virt_text_hide = true,
+          -- virt_text_win_col = 5,
+          priority = 200,
+          right_gravity = false,
+        }
+      end
+      opts.highlighters["cell_marker"] = {
+        pattern = function(bufid)
+          -- local cms = vim.api.nvim_get_option_value("commentstring", { buf = bufid })
+          -- return "^" .. string.gsub(cms, [[%s]], "") .. [[%%.*]]
+          return "^# *%%"
+        end,
+        group = "",
+        extmark_opts = censor_extmark_opts,
+      }
+    end,
+  },
 }

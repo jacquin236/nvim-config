@@ -34,6 +34,11 @@ return {
                   reportUnusedImport = "information",
                   reportUnusedClass = "information",
                   reportUnusedFunction = "information",
+                  reportGeneralTypeIssues = "information",
+                  reportPrivateImportUsage = "information",
+                  reportOptionalOperand = "information",
+                  reportOptionalSubscript = "information",
+                  reportOptionalMemberAccess = "information",
                 },
                 typeCheckingMode = "strict",
                 autoSearchPaths = true,
@@ -49,15 +54,19 @@ return {
           settings = {
             basedpyright = {
               analysis = {
+                typeCheckingMode = "standard",
                 diagnosticSeverityOverrides = {
+                  reportOptionalMemberAccess = "none",
                   reportUnusedCallResult = "information",
                   reportUnusedExpression = "information",
                   reportUnknownMemberType = "none",
                   reportUnknownLambdaType = "none",
                   reportUnknownParameterType = "none",
                   reportMissingParameterType = "none",
+                  reportMissingTypeStub = "information",
                   reportUnknownVariableType = "none",
                   reportUnknownArgumentType = "none",
+                  reportImplicitOverride = "none",
                   reportAny = "none",
                 },
               },

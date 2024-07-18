@@ -156,4 +156,5 @@ return {
       })
     end,
   },
+  { "tiagovla/scope.nvim", opts = {}, event = "VeryLazy" },
 }

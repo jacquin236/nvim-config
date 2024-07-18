@@ -13,6 +13,8 @@ return {
         "plenary",
         { path = "luvit-meta/library", words = { "vim%.uv" } },
         { path = "LazyVim", words = { "LazyVim" } },
+        { path = "luassert-types/library", words = { "assert" } },
+        { path = "busted-types/library", words = { "describe" } },
       },
       integrations = {
         lspconfig = true,
