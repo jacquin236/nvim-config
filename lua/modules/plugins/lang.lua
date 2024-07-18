@@ -9,7 +9,7 @@ return {
   -- yaml
   { import = "modules.configs.lang.yaml" },
   -- sql
-  { import = "modules.configs.lang.sql", enabled = false },
+  { import = "modules.configs.lang.sql" },
   -- markdown
   { import = "modules.configs.lang.markdown" },
   -- bash
