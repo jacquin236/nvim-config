@@ -5,6 +5,18 @@ return {
       servers = {
         lua_ls = {
           single_file_support = true,
+          root_dir = function()
+            require("lspconfig").util.root_pattern(
+              ".luarc.json",
+              ".luarc.jsonc",
+              ".luacheckrc",
+              ".stylua.toml",
+              "stylua.toml",
+              "selene.toml",
+              "selene.yml",
+              ".git"
+            )
+          end,
           settings = {
             Lua = {
               runtime = { version = "LuaJIT" },
@@ -62,6 +74,17 @@ return {
                 workspaceEvent = "OnChange",
               },
               hover = { enable = true },
+              format = {
+                enable = false,
+                defaultConfig = {
+                  indent_style = "space",
+                  indent_size = "2",
+                  quote_style = "AutoPreferDouble",
+                  call_parentheses = "Always",
+                  column_width = "120",
+                  line_endings = "Unix",
+                },
+              },
             },
           },
         },

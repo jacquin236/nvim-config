@@ -6,6 +6,8 @@ return {
   { import = "modules.configs.lang.json" },
   -- typescript
   { import = "modules.configs.lang.typescript" },
+  -- html-css
+  { import = "modules.configs.lang.html-css" },
   -- yaml
   { import = "modules.configs.lang.yaml" },
   -- sql

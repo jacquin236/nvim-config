@@ -68,7 +68,7 @@ return {
     opts = function(_, opts)
       opts.formatters_by_ft = opts.formatters_by_ft or {}
       for _, ft in ipairs(supported) do
-        opts.formatters_by_ft[ft] = { "prettier", "prettierd" }
+        opts.formatters_by_ft[ft] = { { "prettier", "prettierd" } }
       end
 
       opts.formatters = opts.formatters or {}
