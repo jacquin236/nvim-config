@@ -1,7 +1,13 @@
 return {
   "L3MON4D3/LuaSnip",
   dependencies = { "rafamadriz/friendly-snippets" },
+  build = "make install_jsregexp",
   config = function()
+    require("luasnip").config.set_config({
+      enable_autosnippets = true,
+      history = true,
+      updateevents = "TextChanged, TextChangedI",
+    })
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip").filetype_extend("typescript", { "tsdoc" })
     require("luasnip").filetype_extend("typescript", { "next-ts" })
@@ -18,6 +24,6 @@ return {
     require("luasnip").filetype_extend("kotlin", { "kdoc" })
     require("luasnip").filetype_extend("ruby", { "rdoc" })
     require("luasnip").filetype_extend("sh", { "shelldoc" })
-    require("luasnip.loaders.from_vscode").lazy_load { paths = vim.fn.stdpath "config" .. "/snippets" }
+    require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
   end,
 }

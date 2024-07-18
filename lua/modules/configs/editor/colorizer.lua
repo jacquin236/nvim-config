@@ -17,6 +17,19 @@ return {
         hsl_fn = true,
         always_update = true,
       },
+      filetypes = {
+        "*",
+        "!lazy",
+        "!TelescopePrompt",
+        "!TelescopeResults",
+        "!TelescopePreview",
+      },
+      buftypes = {
+        "*",
+        "!prompt",
+        "!nofile",
+        "!popup",
+      },
     },
     keys = {
       { "<leader>cct", "<cmd>ColorizerToggle<cr>", desc = "[colorizer] Toggle" },

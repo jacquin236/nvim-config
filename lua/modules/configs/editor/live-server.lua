@@ -2,7 +2,7 @@ return {
   {
     "barrett-ruth/live-server.nvim",
     cmd = { "LiveServerStart", "LiveServerStop", "LiveServerToggle" },
-    build = "npm install -g live-server",
+    build = "pnpm add -g live-server",
     opts = {},
     config = function(_, opts)
       require("live-server").setup(opts)

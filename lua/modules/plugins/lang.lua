@@ -9,15 +9,17 @@ return {
   -- yaml
   { import = "modules.configs.lang.yaml" },
   -- sql
-  { import = "modules.configs.lang.sql" },
+  { import = "modules.configs.lang.sql", enabled = false },
   -- markdown
   { import = "modules.configs.lang.markdown" },
   -- bash
   { import = "modules.configs.lang.bash" },
   -- go
-  { import = "modules.configs.lang.go" },
+  { import = "modules.configs.lang.go", enabled = false },
   -- python
-  { import = "modules.configs.lang.python" },
+  { import = "modules.configs.lang.python", enabled = false },
   -- docker
-  { import = "modules.configs.lang.docker" },
+  { import = "modules.configs.lang.docker", enabled = false },
+  -- ruby
+  { import = "modules.configs.lang.ruby", enabled = false },
 }
