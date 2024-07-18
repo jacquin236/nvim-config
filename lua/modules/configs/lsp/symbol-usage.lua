@@ -4,6 +4,7 @@ local symbol_usage_config = function()
   end
   local hl = vim.api.nvim_set_hl
   local bg_color = "#2f334d"
+
   hl(0, "SymbolUsageRounding", { fg = bg_color })
   hl(0, "SymbolUsageContent", { bg = bg_color, fg = h("Comment").fg, italic = true })
   hl(0, "SymbolUsageRef", { bg = bg_color, fg = h("Function").fg, italic = true })
