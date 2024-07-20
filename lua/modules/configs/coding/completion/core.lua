@@ -1,4 +1,4 @@
-local cmp_extended = require("modules.configs.coding.completion.util.cmp_extended")
+local cmp_extended = require("util.cmp_extended")
 
 return {
   {

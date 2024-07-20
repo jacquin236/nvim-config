@@ -17,6 +17,7 @@ return {
   { import = "modules.configs.coding.completion.extras.cmp-emoji" },
   { import = "modules.configs.coding.completion.extras.cmp-nerdfont" },
   { import = "modules.configs.coding.completion.extras.cmp-npm" },
+  { import = "modules.configs.coding.completion.mini-surround" },
 
   -- annotations
   { import = "modules.configs.coding.annotations.comment-box" },
