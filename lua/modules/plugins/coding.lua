@@ -7,6 +7,7 @@ return {
   { import = "modules.configs.coding.treesitter.extras.rainbow-delimiters" },
   { import = "modules.configs.coding.treesitter.extras.text-case" },
   { import = "modules.configs.coding.treesitter.extras.various-textobjects" },
+  { import = "modules.configs.coding.treesitter.extras.vim-matchup" },
   { import = "modules.configs.coding.treesitter.core" },
 
   -- Completion
@@ -16,4 +17,9 @@ return {
   { import = "modules.configs.coding.completion.extras.cmp-emoji" },
   { import = "modules.configs.coding.completion.extras.cmp-nerdfont" },
   { import = "modules.configs.coding.completion.extras.cmp-npm" },
+
+  -- annotations
+  { import = "modules.configs.coding.annotations.comment-box" },
+  { import = "modules.configs.coding.annotations.dooku" },
+  { import = "modules.configs.coding.annotations.nvim-scissors" },
 }
