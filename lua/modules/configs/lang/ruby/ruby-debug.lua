@@ -12,6 +12,7 @@ return {
     },
     opts = function()
       local dap = require("dap")
+
       dap.adapters.ruby = {
         type = "server",
         host = "127.0.0.1",

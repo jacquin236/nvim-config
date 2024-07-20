@@ -8,16 +8,16 @@ return {
       require("live-server").setup(opts)
     end,
     keys = {
-      { "<leader>Ls", "<cmd>LiveServerStart<cr>", desc = "[live-server] Start" },
-      { "<leader>LS", "<cmd>LiveServerStop<cr>", desc = "[live-server] Stop" },
-      { "<leader>Ll", "<cmd>LiveServerToggle<cr>", desc = "[live-server] Toggle" },
+      { "<leader>Ss", "<cmd>LiveServerStart<cr>", desc = "[live-server] Start" },
+      { "<leader>SS", "<cmd>LiveServerStop<cr>", desc = "[live-server] Stop" },
+      { "<leader>Sl", "<cmd>LiveServerToggle<cr>", desc = "[live-server] Toggle" },
     },
   },
   {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>L", group = "live server", icon = "󰖟 " },
+        { "<leader>S", group = "server/client", icon = "󰖟 " },
       },
     },
   },
