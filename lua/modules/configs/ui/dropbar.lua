@@ -6,6 +6,7 @@ return {
     event = "VeryLazy",
     dependencies = {
       "nvim-telescope/telescope-fzf-native.nvim",
+      "onsails/lspkind.nvim",
     },
     init = function()
       vim.api.nvim_set_hl(0, "DropBarIconUISeparator", { link = "Delimiter" })
