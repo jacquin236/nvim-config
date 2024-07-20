@@ -33,6 +33,12 @@ return function()
       },
     },
 
+    snippet = {
+      expand = function(args)
+        require("luasnip").lsp_expand(args.body)
+      end,
+    },
+
     formatting = {
       expandable_indicator = true,
       fields = { "abbr", "kind", "menu" },
@@ -111,6 +117,7 @@ return function()
       { name = "nvim_lsp" },
       { name = "nvim_lsp_signature_help" },
       { name = "lazydev", group_index = 0 },
+      { name = "luasnip" },
       {
         name = "buffer",
         option = {

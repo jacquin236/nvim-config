@@ -1,3 +1,3 @@
 return {
-  { "RRethy/nvim-treesitter-endwise", event = "VeryLazy" },
+  { "RRethy/nvim-treesitter-endwise" },
 }

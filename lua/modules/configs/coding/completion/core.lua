@@ -14,9 +14,8 @@ return {
       "ray-x/cmp-treesitter",
       "hrsh7th/cmp-cmdline",
       "dmitmel/cmp-cmdline-history",
+      "saadparwaiz1/cmp_luasnip",
       { "f3fora/cmp-spell", ft = { "gitcommit", "NeogitCommitMessage", "markdown", "norg", "org" } },
-      "rafamadriz/friendly-snippets",
-      { "garymjr/nvim-snippets", opts = { friendly_snippets = true } },
     },
     keys = {
       { "<leader>iC", "<cmd>CmpStatus<cr>", desc = "cmp (status)" },
