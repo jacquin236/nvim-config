@@ -10,11 +10,7 @@ return {
         text = "💡",
       },
       float = {
-        enabled = true,
-        text = "💡",
-        win_opts = {
-          winblend = 0,
-        },
+        enabled = false,
       },
     },
     config = function(_, opts)

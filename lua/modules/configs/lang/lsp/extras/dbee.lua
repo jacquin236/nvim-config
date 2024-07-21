@@ -51,7 +51,7 @@ return {
     end,
     config = function(_, opts)
       require("dbee").setup(opts)
-
+      ---@diagnostic disable-next-line: param-type-mismatch
       local base = vim.fs.joinpath(vim.fn.stdpath "state", "dbee", "notes")
       local pattern = string.format("%s/.*", base)
       vim.filetype.add({
@@ -62,9 +62,6 @@ return {
             end
             return "sql"
           end,
-        },
-        pattern = {
-          [pattern] = "sql.dbee",
         },
       })
     end,
