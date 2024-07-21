@@ -1,6 +1,8 @@
 return {
   -- List of languages
   { import = "modules.configs.lang.lsp.bash" },
+  { import = "modules.configs.lang.lsp.clangd", enabled = false },
+  { import = "modules.configs.lang.lsp.cmake", enabled = false },
   { import = "modules.configs.lang.lsp.docker" },
   { import = "modules.configs.lang.lsp.git" },
   { import = "modules.configs.lang.lsp.go", enabled = false },
@@ -8,6 +10,7 @@ return {
   { import = "modules.configs.lang.lsp.log" },
   { import = "modules.configs.lang.lsp.lua" },
   { import = "modules.configs.lang.lsp.markdown" },
+  { import = "modules.configs.lang.lsp.omnisharp", enabled = false },
   { import = "modules.configs.lang.lsp.python", enabled = false },
   { import = "modules.configs.lang.lsp.ruby", enabled = false },
   { import = "modules.configs.lang.lsp.rust" },
@@ -39,6 +42,7 @@ return {
   { import = "modules.configs.lang.debug.languages.bash", enabled = false },
   { import = "modules.configs.lang.debug.languages.go", enabled = false },
   { import = "modules.configs.lang.debug.languages.lua" },
+  { import = "modules.configs.lang.debug.languages.omnisharp", enabled = false },
   { import = "modules.configs.lang.debug.languages.python", enabled = false },
   { import = "modules.configs.lang.debug.languages.ruby", enabled = false },
   { import = "modules.configs.lang.debug.languages.rust" },
@@ -49,6 +53,7 @@ return {
   { import = "modules.configs.lang.testing.core" }, -- Main
   { import = "modules.configs.lang.testing.languages.bash", enabled = false },
   { import = "modules.configs.lang.testing.languages.lua" },
+  { import = "modules.configs.lang.testing.languages.omnisharp", enabled = false },
   { import = "modules.configs.lang.testing.languages.python", enabled = false },
   { import = "modules.configs.lang.testing.languages.ruby", enabled = false },
   { import = "modules.configs.lang.testing.languages.rust" },
