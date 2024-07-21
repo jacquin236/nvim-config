@@ -1,0 +1,37 @@
+{
+  "DOCS": [
+    "https://code.visualstudio.com/api/language-extensions/snippet-guide",
+    "https://code.visualstudio.com/docs/editor/userdefinedsnippets",
+    "https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "json",
+        "path": "./languages/json.json"
+      },
+      {
+        "language": [
+          "css",
+          "scss",
+          "sass",
+          "less",
+          "stylus"
+        ],
+        "path": "./languages/css.json"
+      },
+      {
+        "language": "lua",
+        "path": "/languages/lua.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./languages/markdown.json"
+      },
+      {
+        "language": "python",
+        "path": "./languages/python.json"
+      }
+    ]
+  }
+}

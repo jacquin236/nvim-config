@@ -25,14 +25,7 @@ return {
       end)
     end,
   },
-  {
-    "voldikss/vim-floaterm",
-    optional = true,
-    -- stylua: ignore
-    keys = {
-      { "<leader>pwp", "<cmd>FloatermNew --disposable --name=lazynpm --opener=edit --titleposition=center --height=0.85 --width=0.85 --cwd=<root> lazynpm<CR>", desc = "Lazynpm" },
-    },
-  },
+
   {
     "folke/which-key.nvim",
     opts = {

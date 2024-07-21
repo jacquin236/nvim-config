@@ -35,7 +35,7 @@ return function()
 
     snippet = {
       expand = function(args)
-        require("luasnip").lsp_expand(args.body)
+        vim.snippet.lsp_expand(args.body)
       end,
     },
 
