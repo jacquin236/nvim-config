@@ -13,6 +13,7 @@ return {
   -- cmp config
   { import = "modules.configs.coding.completion.luasnip" },
   { import = "modules.configs.coding.completion.core" },
+  { import = "modules.configs.coding.completion.extras.cmp-luasnip-choice" },
   { import = "modules.configs.coding.completion.extras.cmp-dotenv" },
   { import = "modules.configs.coding.completion.extras.cmp-emoji" },
   { import = "modules.configs.coding.completion.extras.cmp-nerdfont" },

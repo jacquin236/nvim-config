@@ -2,6 +2,53 @@ local cmp_extended = require("util.cmp_extended")
 
 return {
   {
+    "abecodes/tabout.nvim",
+    event = "InsertCharPre",
+    lazy = false,
+    opts = {},
+    keys = {
+      {
+        "<Tab>",
+        function()
+          if vim.snippet.jumpable(1) then
+            vim.schedule(function()
+              vim.snippet.jump(1)
+            end)
+            return
+          end
+          return vim.api.nvim_replace_termcodes("<Plug>(Tabout)", true, true, false)
+        end,
+        expr = true,
+        mode = "i",
+      },
+      {
+        "<Tab>",
+        function()
+          vim.schedule(function()
+            vim.snippet.jump(1)
+          end)
+        end,
+        silent = true,
+        mode = "s",
+      },
+      {
+        "<S-Tab>",
+        function()
+          if vim.snippet.jumpable(-1) then
+            vim.schedule(function()
+              vim.snippet.jump(-1)
+            end)
+            return
+          end
+          return vim.api.nvim_replace_termcodes("<Plug>(TaboutBack)", true, true, false)
+        end,
+        expr = true,
+        silent = true,
+        mode = { "i", "s" },
+      },
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
@@ -20,6 +67,25 @@ return {
     keys = {
       { "<leader>iC", "<cmd>CmpStatus<cr>", desc = "Cmp" },
     },
-    config = cmp_extended,
+    opts = cmp_extended,
+    config = function(_, opts)
+      local cmp = require("cmp")
+      cmp.setup(opts)
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        completion = { completeopt = "menu,menuone,noinsert" },
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = { { name = "buffer" } },
+      })
+
+      cmp.setup.cmdline(":", {
+        completion = { completeopt = "menu,menuone,noselect,noinsert" },
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = "cmdline" },
+          { name = "cmdline_history" },
+        }),
+      })
+    end,
   },
 }

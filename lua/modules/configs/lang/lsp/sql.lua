@@ -102,4 +102,6 @@ return {
       },
     },
   },
+
+  { import = "modules.configs.lang.lsp.extras.dbee" },
 }

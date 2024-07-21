@@ -76,7 +76,7 @@ return {
     fmt([[{{"{}"{}}}]], {
       d(1, function()
         -- Get the author and URL in the clipboard and auto populate the author and project
-        local default = snippet("", { i(1, "author"), t("/"), i(2, "plugin") })
+        local default = s("", { i(1, "author"), t("/"), i(2, "plugin") })
         local clip = fn.getreg("*")
         if not vim.startswith(clip, "https://github.com/") then
           return default
@@ -86,7 +86,7 @@ return {
           return default
         end
         local author, project = parts[#parts - 1], parts[#parts]
-        return snippet("", { t(author .. "/" .. project) })
+        return s("", { t(author .. "/" .. project) })
       end),
       c(2, {
         fmt(

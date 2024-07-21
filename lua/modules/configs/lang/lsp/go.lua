@@ -12,6 +12,7 @@ return {
                 unusedparams = true,
                 unusedwrite = true,
                 useany = true,
+                composites = false,
               },
               codelenses = {
                 gc_details = false,
@@ -46,7 +47,27 @@ return {
           filetypes = { "go", "gomod" },
           rootdir = require("lspconfig.util").root_pattern("go.mod"),
           init_options = {
-            command = { "golangci-lint", "run", "--enable-all", "--out-format", "json", "--issues-exit-code=1" },
+            command = (function()
+              local cwd = vim.fn.getcwd()
+              local cfgs_prio_list = {
+                cwd .. ".golangci.yml",
+                cwd .. ".golangci.yaml",
+                cwd .. ".golangci.toml",
+                cwd .. ".golangci.json",
+                cwd .. "/.ci/golangci.yml",
+                cwd .. "/golangci.yml",
+                vim.fn.stdpath("config") .. "/assets/golangci.yml",
+              }
+
+              for _, path in ipairs(cfgs_prio_list) do
+                if vim.fn.filereadable(path) == 1 then
+                  return { "golangci-lint", "run", "--config", path, "--out-format", "json" }
+                end
+              end
+
+              -- fallback
+              return { "golangci-lint", "run", "--out-format", "json" }
+            end)(),
           },
         },
       },

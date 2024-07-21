@@ -43,6 +43,11 @@ return {
           keys = {
             { "<leader>co", LazyVim.lsp.action["source.organizeImports"], desc = "Organize Imports" },
           },
+          init_options = {
+            settings = {
+              format = { args = { "--line-length", "120" } },
+            },
+          },
         },
         pyright = {
           settings = {

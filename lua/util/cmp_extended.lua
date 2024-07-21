@@ -1,9 +1,11 @@
 return function()
   local icons = require("util.icons")
+  local cmp = require("cmp")
+  local luasnip = require("luasnip")
 
   vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-  local cmp = require("cmp")
-  cmp.setup({
+
+  return {
     preselect = cmp.PreselectMode.None,
     window = {
       completion = {
@@ -35,7 +37,7 @@ return function()
 
     snippet = {
       expand = function(args)
-        vim.snippet.lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
 
@@ -94,30 +96,26 @@ return function()
     },
 
     mapping = cmp.mapping.preset.insert({
-      ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
       ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<S-CR>"] = cmp.mapping.confirm({
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = true,
-      }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<CR>"] = LazyVim.cmp.confirm({ select = true }),
+      ["<S-CR>"] = LazyVim.cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ["<C-CR>"] = function(fallback)
         cmp.abort()
         fallback()
       end,
     }),
 
-    sources = cmp.config.sources({
-      { name = "nvim_lsp" },
-      { name = "nvim_lsp_signature_help" },
+    sources = {
       { name = "lazydev", group_index = 0 },
-      { name = "luasnip" },
+      { name = "nvim_lsp", group_index = 1 },
+      { name = "nvim_lsp_signature_help" },
+      { name = "nvim_lua" },
+      { name = "luasnip", group_index = 1 },
       {
         name = "buffer",
         option = {
@@ -125,29 +123,15 @@ return function()
             return vim.api.nvim_list_bufs()
           end,
         },
+        group_index = 2,
       },
-      { name = "path" },
-      { name = "nvim_lua" },
+      { name = "path", group_index = 1 },
       { name = "spell", group_index = 2 },
       { name = "treesitter" },
-    }),
+    },
+
     experimental = {
       ghost_text = { hl_group = "CmpGhostText" },
     },
-  })
-
-  cmp.setup.cmdline({ "/", "?" }, {
-    completion = { completeopt = "menu,menuone,noinsert" },
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = { { name = "buffer" } },
-  })
-
-  cmp.setup.cmdline(":", {
-    completion = { completeopt = "menu,menuone,noselect,noinsert" },
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = "cmdline" },
-      { name = "cmdline_history" },
-    }),
-  })
+  }
 end

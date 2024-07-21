@@ -41,7 +41,6 @@ return {
       })
 
       require("luasnip.loaders.from_vscode").lazy_load()
-      require("luasnip.loaders.from_lua").lazy_load()
       ls.filetype_extend("c", { "cdoc" })
       ls.filetype_extend("cpp", { "cppdoc" })
       ls.filetype_extend("cs", { "csharpdoc" })
@@ -59,7 +58,8 @@ return {
       ls.filetype_extend("ruby", { "rdoc" })
       ls.filetype_extend("rust", { "rustdoc" })
       ls.filetype_extend("sh", { "shelldoc" })
-      require("luasnip.loaders.from_vscode").lazy_load({ paths = "./snippets/vscode" })
+      require("luasnip.loaders.from_vscode").lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets/vscode" })
+      require("luasnip.loaders.from_lua").load({ paths = vim.fn.stdpath("config") .. "/snippets" })
 
       vim.snippet.expand = ls.lsp_expand
 
@@ -90,17 +90,13 @@ return {
 
       vim.snippet.stop = ls.unlink_current
 
-      for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/snippets/*.lua", true)) do
-        loadfile(ft_path)()
-      end
-
       local map = vim.keymap.set
       map({ "i", "s" }, "<c-k>", function()
         return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
       end, { silent = true })
 
       map({ "i", "s" }, "<c-j>", function()
-        return vim.snippet.activve({ direction = -1 }) and vim.snippet.jump(-1)
+        return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
       end, { silent = true })
     end,
   },

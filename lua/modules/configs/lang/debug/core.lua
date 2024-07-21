@@ -79,6 +79,15 @@ return {
     -- mason-nvim-dap is loaded when nvim-dap loads
     config = function() end,
   },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = { "rcarriga/cmp-dap" },
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      cmp.setup(opts)
+      cmp.setup.filetype({ "dap-repl", "dapui_watches" }, { sources = { { name = "dap" } } })
+    end,
+  },
 
   { import = "modules.configs.lang.debug.extras" },
 }
