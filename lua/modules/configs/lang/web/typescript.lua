@@ -131,4 +131,6 @@ return {
       flags = { watch = false },
     },
   },
+
+  { import = "modules.configs.lang.lsp.extras.package-info" },
 }

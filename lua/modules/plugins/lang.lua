@@ -1,4 +1,12 @@
 return {
+  { import = "modules.configs.lang.lspconfig" },
+
+  -- Additional icons for filetypes
+  { import = "modules.configs.lang.mini-icons" },
+  -- Tools related to lsp
+  { import = "modules.configs.lang.symbol-usage" },
+  { import = "modules.configs.lang.nvim-lightbulb" },
+
   -- List of languages
   { import = "modules.configs.lang.lsp.bash" },
   { import = "modules.configs.lang.lsp.clangd", enabled = false },
@@ -6,6 +14,7 @@ return {
   { import = "modules.configs.lang.lsp.docker" },
   { import = "modules.configs.lang.lsp.git" },
   { import = "modules.configs.lang.lsp.go", enabled = false },
+  { import = "modules.configs.lang.lsp.haskell", enabled = false },
   { import = "modules.configs.lang.lsp.json" },
   { import = "modules.configs.lang.lsp.log" },
   { import = "modules.configs.lang.lsp.lua" },
@@ -29,9 +38,6 @@ return {
   { import = "modules.configs.lang.web.tailwind" },
   { import = "modules.configs.lang.web.typescript" },
   { import = "modules.configs.lang.web.vue", enabled = false },
-
-  -- Additional icons for filetypes
-  { import = "modules.configs.lang.mini-icons" },
 
   -- Debug
   { import = "modules.configs.lang.debug.core" }, -- Main

@@ -93,5 +93,13 @@ return {
       end
     end,
   },
-  { "nanotee/sqls.nvim", enabled = false, opts = {} },
+  { "nanotee/sqls.nvim", opts = {} },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        sqls = {},
+      },
+    },
+  },
 }

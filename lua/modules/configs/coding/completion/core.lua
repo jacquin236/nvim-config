@@ -18,7 +18,7 @@ return {
       { "f3fora/cmp-spell", ft = { "gitcommit", "NeogitCommitMessage", "markdown", "norg", "org" } },
     },
     keys = {
-      { "<leader>iC", "<cmd>CmpStatus<cr>", desc = "cmp (status)" },
+      { "<leader>iC", "<cmd>CmpStatus<cr>", desc = "Cmp" },
     },
     config = cmp_extended,
   },

@@ -7,11 +7,10 @@ return {
     event = "VeryLazy",
     opts = {
       spec = {
+        { "<leader>", group = "[SPACE]" },
+        { "<localleader>", group = "[\\]" },
+
         { "<leader>i", group = "info", icon = " " },
-        { "<leader>iL", group = "lint", icon = " " },
-        { "<leader>ir", group = "root", icon = "󰆥 " },
-        { "<leader>ic", group = "conform", icon = "󰊄 " },
-        { "<leader>iC", group = "cmp (status)", icon = "󱖫 " },
         { "<leader>l", group = "lazy", icon = "󰒲 " },
         { "<leader>u", group = "ui", icon = " " },
         { "<leader>x", group = "diagnostic/quickfix", icon = "󰁨 " },
@@ -25,7 +24,6 @@ return {
         { "<leader>q", group = "quit/session", icon = " " },
         { "<leader>f", group = "file/find", icon = "󰈞" },
         { "<leader><tab>", group = "tabs" },
-        { "<localleader>", group = "[LOCALLEADER]" },
       },
       win = {
         height = { min = 4, max = 20 },
@@ -35,7 +33,7 @@ return {
         zindex = 1000,
         border = border,
       },
-      sort = { "local", "order", "group", "alphanum", "mod", "lower", "icase", "desc" },
+      sort = { "local", "group", "alphanum", "mod", "order" },
       layout = {
         width = { min = 20, max = 40 },
         align = "center",
@@ -61,6 +59,7 @@ return {
           { pattern = "down", icon = " " },
           { pattern = "keyword", icon = "󰌆 " },
           { pattern = "keymap", icon = "  " },
+          { pattern = "dictionary", icon = " " },
         },
       },
     },

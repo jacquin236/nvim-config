@@ -12,7 +12,9 @@ return {
       transparent.setup({
         extra_groups = {
           "NormalFloat",
-          "FloatBorder",
+        },
+        exclude_groups = {
+          "CursorLine",
         },
       })
     end,

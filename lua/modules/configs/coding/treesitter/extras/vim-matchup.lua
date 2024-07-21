@@ -1,6 +1,8 @@
 return {
   "andymass/vim-matchup",
-  config = function()
+  dependencies = "nvim-treesitter/nvim-treesitter",
+  init = function()
     vim.g.matchup_matchparen_offscreen = { method = "popup" }
+    vim.g.matchup_matchparen_deferred = 1 -- improves performance
   end,
 }

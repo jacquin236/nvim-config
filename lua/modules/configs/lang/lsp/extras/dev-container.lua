@@ -63,9 +63,9 @@ return {
       { "<leader>Cr", "<cmd>DevcontainerRemoveAll<cr>", desc = "[devcontainer] Remove All" },
       { "<leader>Cl", "<cmd>DevcontainerLogs<cr>", desc = "[devcontainer] Open Log File" },
       {
-        "<leader>cE",
+        "<leader>CE",
         "<cmd>DevcontainerEditNearestConfig<cr>",
-        desc = "[devcontainer] Open Nearest Config/Create A New One",
+        desc = "[devcontainer] Edit/Create Nearest Config",
       },
     },
   },

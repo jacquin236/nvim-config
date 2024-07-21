@@ -1,3 +1,9 @@
+vim.filetype.add({
+  extension = {
+    avsc = "json", -- avro
+  },
+})
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",

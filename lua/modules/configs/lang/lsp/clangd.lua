@@ -47,9 +47,14 @@ return {
               "build.ninja"
             )(fname) or require("lspconfig").util.root_pattern("compile_commands.json", "compile_flags.txt")(
               fname
-            ) or require("lspconfig").util.find_git_ancestor(fname)
+            ) or require("lspconfig").util.find_git_ancestor(fname) or vim.fs.dirname(
+              vim.fs.find(
+                { ".clangd", ".clang-tidy", ".clang-format", "compile_commands.json", "compile_flags.txt" },
+                { upward = true }
+              )[1]
+            )
           end,
-
+          single_file_support = true,
           capabilities = { offsetEncoding = { "utf-16" } },
           cmd = {
             "clangd",

@@ -32,7 +32,11 @@ return {
           settings = {
             yaml = {
               keyOrdering = false,
-              format = { enable = true },
+              format = {
+                enable = true,
+                printWidth = 100,
+                proseWrap = "always",
+              },
               validate = true,
               hover = true,
               schemaStore = { enable = false, url = "" },

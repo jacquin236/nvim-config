@@ -9,29 +9,18 @@ local lazy = require("lazy")
 ------------------------------------------ LazyVim ------------------------------------------
 map_del("n", "<leader>l")
 map_del("n", "<leader>L")
+
+-- stylua: ignore start
 map("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>lx", "<cmd>LazyExtras<cr>", { desc = "Lazy Extras" })
-map("n", "<leader>lC", function()
-  LazyVim.news.changelog()
-end, { desc = "LazyVim Changelog" })
-
-map("n", "<leader>lu", function()
-  lazy.update()
-end, { desc = "Lazy Update" })
-map("n", "<leader>lc", function()
-  lazy.check()
-end, { desc = "Lazy Check" })
-map("n", "<leader>ls", function()
-  lazy.sync()
-end, { desc = "Lazy Sync" })
-
 map("n", "<leader>lr", "<cmd>LazyRoot<cr>", { desc = "Lazy Root" })
-map("n", "<leader>ld", function()
-  vim.fn.system({ "xdg-open", "https://lazyvim.org" })
-end, { desc = "LazyVim Docs" })
-map("n", "<leader>lR", function()
-  vim.fn.system({ "xdg-open", "https://github.com/LazyVim/LazyVim" })
-end, { desc = "LazyVim Repo" })
+map("n", "<leader>lc", function() LazyVim.news.changelog() end, { desc = "LazyVim Changelog" })
+map("n", "<leader>ld", function() vim.fn.system({ "xdg-open", "https://lazyvim.org" }) end, { desc = "LazyVim Docs" })
+map("n", "<leader>lR", function() vim.fn.system({ "xdg-open", "https://github.com/LazyVim/LazyVim" }) end, { desc = "LazyVim Repo" })
+map("n", "<leader>lu", function() lazy.update() end, { desc = "Lazy Update" })
+map("n", "<leader>lC", function() lazy.check() end, { desc = "Lazy Check" })
+map("n", "<leader>ls", function() lazy.sync() end, { desc = "Lazy Sync" })
+-- stylua: ignore end
 
 --------------------------------------------- LazyGit ------------------------------------------
 map_del("n", "<leader>gg")
@@ -64,8 +53,8 @@ map("n", "<leader>glL", function()
 end, { desc = "Lazygit Log (cwd)" })
 
 ------------------------------------------ Plugin Info ------------------------------------------
-map("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "format" })
-map("n", "<leader>ic", "<cmd>ConformInfo<cr>", { desc = "conform" })
+map("n", "<leader>if", "<cmd>LazyFormatInfo<cr>", { desc = "Format" })
+map("n", "<leader>ic", "<cmd>ConformInfo<cr>", { desc = "Conform" })
 local linters = function()
   local linters_attached = require("lint").linters_by_ft[vim.bo.filetype]
   local buf_linters = {}
@@ -84,25 +73,31 @@ local linters = function()
 
   LazyVim.notify(linters, { title = "Linter" })
 end
-map("n", "<leader>iL", linters, { desc = "lint" })
-map("n", "<leader>ir", "<cmd>LazyRoot<cr>", { desc = "root" })
+map("n", "<leader>iL", linters, { desc = "Lint" })
+map("n", "<leader>ir", "<cmd>LazyRoot<cr>", { desc = "Root" })
 
--------------------------------------------------------------------------------------------------
--- Paste options
-map({ "i" }, "<C-v>", '<C-r>"', { desc = "Paste on Insert Mode" })
-map("v", "p", '"_dP', { desc = "Paste Without Overwriting" })
--- Move to beginning/end of line
-map("n", "<a-h>", "_", { desc = "First Character of Line" })
-map("n", "<a-l>", "$", { desc = "Last Character of Line" })
--- Save without formatting
-map("n", "<A-s>", "<cmd>noautocmd w<CR>", { desc = "Save Without Formatting" })
+------------------------------------------ Editing ----------------------------------------------
+-- Select
+map({ "n", "i" }, "<C-a>", "gg<S-V>G", { desc = "Select All Text", silent = true, noremap = true })
+-- Paste
+map("i", "<C-v>", '<C-r>"', { desc = "Paste on Insert Mode", silent = true })
+-- Copy
+map({ "n", "x" }, "<C-c>", ":%y+<cr>", { desc = "Copy Whole Text to Clipboard", silent = true })
 
 -- Search visually selected text (slightly better than builtins in Neovim>=0.8)
 map("x", "*", [[y/\V<C-R>=escape(@", '/\')<CR><CR>]], { desc = "Search Selected Text", silent = true })
 map("x", "#", [[y?\V<C-R>=escape(@", '?\')<CR><CR>]], { desc = "Search Selected Text (Backwards)", silent = true })
 
--- Select all
-map("n", "==", "gg<S-v>G")
+-- Move to beginning/end of line
+map("n", "<a-h>", "_", { desc = "First Character of Line" })
+map("n", "<a-l>", "$", { desc = "Last Character of Line" })
+
+-- Save without formatting
+map("n", "<a-s>", "<cmd>noautocmd w<CR>", { desc = "Save Without Formatting" })
+
+-- Spelling
+map("n", "<leader>!", "zg", { desc = "Add Word to Dictionary" })
+map("n", "<leader>@", "zug", { desc = "Remove Word from Dictionary" })
 
 ------------------------------------------ Dashboard -------------------------------------------
 -- Navigate to Dashboard
@@ -153,34 +148,38 @@ map("n", "<leader><tab><tab>", function()
   end)
 end, { desc = "Select Tabs" })
 
---------------------------------------------- Buffer ---------------------------------------------
+--------------------------------------------- Buffer --------------------------------------------
 -- Buffers
 map("n", "<leader>bf", "<cmd>bfirst<cr>", { desc = "First Buffer" })
 map("n", "<leader>ba", "<cmd>blast<cr>", { desc = "Last Buffer" })
 map("n", "<leader>b<tab>", "<cmd>tabnew %<cr>", { desc = "Current Buffer in New Tab" })
 
 -------------------------------------------------------------------------------------------------
--- Resize window using <ctrl> arrow keys
-map_del("n", "<C-Up>")
-map_del("n", "<C-Down>")
-map_del("n", "<C-Left>")
-map_del("n", "<C-Right>")
+-- Add `,` or `;` to end of line.
+---@param character string
+---@return function
+local function modify_line_end_delimiter(character)
+  local delimiters = { ",", ";" }
+  return function()
+    local line = vim.api.nvim_get_current_line()
+    local last_char = line:sub(-1)
+    if last_char == character then
+      vim.api.nvim_set_current_line(line:sub(1, #line - 1))
+    elseif vim.tbl_contains(delimiters, last_char) then
+      vim.api.nvim_set_current_line(line:sub(1, #line - 1) .. character)
+    else
+      vim.api.nvim_set_current_line(line .. character)
+    end
+  end
+end
 
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = " Height [Window]" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = " Height [Window]" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = " Width [Window]" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = " Width [Window]" })
--------------------------------------------------------------------------------------------------
--- Clear search, diff update and redraw
--- taken from runtime/lua/_editor.lua
-map_del("n", "<leader>ur")
-map(
-  "n",
-  "<leader>ur",
-  "<cmd>nohlsearch<Bar>diffupdate<Bar>normal! <c-l><cr>",
-  { desc = "Redraw/Clear Hlsearch/Diff Update" }
-)
+map("n", "<localleader>,", modify_line_end_delimiter(","), { desc = 'Add "," to end of line' })
+map("n", "<localleader>;", modify_line_end_delimiter(";"), { desc = 'Add ";" to end of line' })
 
--- Comment box
-map("n", "]/", "/\\S\\zs\\s*╭<CR>zt", { desc = "Next Block Comment" })
-map("n", "[/", "?\\S\\zs\\s*╭<CR>zt", { desc = "Prev Block Comment" })
+----------------------------------------- Windows ------------------------------------------------
+map("n", "<localleader>w", "", { desc = "Windows" })
+map("n", "<localleader>wh", "<C-W>t <C-W>K", { desc = "Horizontal   Vertical Splits" })
+map("n", "<localleader>wv", "<C-W>t <C-W>H", { desc = "Vertical   Horizontal Splits" })
+map("n", "<c-w>f", "<C-W>vgf", { desc = "Open File in Vert Split" })
+map("n", "<localleader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<localleader>wq", "<cmd>bd!<cr>", { desc = "Close Current Buffer and Window" })

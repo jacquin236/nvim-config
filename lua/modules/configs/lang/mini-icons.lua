@@ -1,5 +1,4 @@
 return {
-  -- typescipt
   {
     "echasnovski/mini.icons",
     opts = {
@@ -13,6 +12,17 @@ return {
         ["tsconfig.json"] = { glyph = "", hl = "MiniIconsAzure" },
         ["tsconfig.build.json"] = { glyph = "", hl = "MiniIconsAzure" },
         ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
+        ["bash.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        ["json.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        ["ps1.tmpl"] = { glyph = "󰨊", hl = "MiniIconsGrey" },
+        ["sh.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        ["toml.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        ["yaml.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        ["zsh.tmpl"] = { glyph = "", hl = "MiniIconsGrey" },
+        [".go-version"] = { glyph = "", hl = "MiniIconsBlue" },
+      },
+      filetype = {
+        gotmpl = { glyph = "󰟓", hl = "MiniIconsGrey" },
       },
     },
   },

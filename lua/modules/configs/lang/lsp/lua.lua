@@ -2,14 +2,32 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
+      diagnostics = { virtual_text = { prefix = "icons" } },
+      capabilities = {
+        workspace = { didChangeWatchedFiles = { dynamicRegistration = false } },
+      },
       servers = {
         lua_ls = {
           single_file_support = true,
+          root_dir = function()
+            local root_files = {
+              ".git",
+              ".luarc.json",
+              ".luarc.jsonc",
+              ".luacheckrc",
+              ".stylua.toml",
+              "stylua.toml",
+              "selene.toml",
+              "selene.yml",
+            }
+            return vim.fs.dirname(vim.fs.find(root_files, { upward = true })[1])
+          end,
           settings = {
             Lua = {
+              runtime = { version = "LuaJIT" },
               type = { castNumbertoInteger = true },
               diagnostics = {
-                globals = { "vim" },
+                globals = { "vim", "describe", "it", "assert", "stub" },
                 disable = { "incomplete-signature-doc", "trailing-space" },
                 groupSeverity = {
                   strong = "Warning",
@@ -32,7 +50,7 @@ return {
                 unusedLocalExclude = { "_*" },
               },
               workspace = {
-                checkThirdParty = false,
+                checkThirdParty = "Disable",
                 didChangeWatchedFiles = { dynamicRegistration = false },
                 maxPreload = 100000,
                 preloadFileSize = 10000,
@@ -43,9 +61,18 @@ return {
                 callSnippet = "Both",
                 keywordSnippet = "Replace",
                 displayContext = 4,
+                postfix = ".",
+                showWord = "Disable",
+                workspaceWord = false,
               },
               doc = { privateName = { "^_" } },
               telemetry = { enable = false },
+              hint = {
+                enable = true,
+                setType = true,
+                arrayIndex = "Disable",
+                semiColon = "Disable",
+              },
             },
           },
         },

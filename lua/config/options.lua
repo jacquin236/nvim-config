@@ -115,7 +115,7 @@ opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift t
 
 -- number
 opt.number = true
-opt.numberwidth = 2
+opt.numberwidth = 3
 opt.relativenumber = true
 opt.ruler = false
 

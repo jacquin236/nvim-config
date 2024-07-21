@@ -12,6 +12,7 @@ return {
         "emmet-language-server",
         "html-lsp",
         "css-lsp",
+        "css-variables-language-server",
         "htmlhint",
         "stylelint",
       },
@@ -21,9 +22,13 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        emmet_language_server = {},
+        emmet_language_server = {
+          filetypes = { "html", "css", "scss" },
+          init_options = { showSuggestionsAsSnippets = true },
+        },
         html = {},
         cssls = {
+          init_options = { provideFormatter = false },
           lint = {
             compatibleVendorPrefixes = "ignore",
             vendorPrefix = "ignore",
@@ -41,6 +46,13 @@ return {
             unknownAtRules = "warning",
             ieHack = "warning",
             propertyIgnoredDueToDisplay = "warning",
+          },
+        },
+        css_variables = {},
+        stylelint_lsp = {
+          filetypes = { "css", "scss" },
+          settings = {
+            stylelintplus = { autoFixOnFormat = true },
           },
         },
       },

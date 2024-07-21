@@ -5,6 +5,7 @@ return {
   { import = "modules.configs.editor.navigation.neotree" },
   { import = "modules.configs.editor.navigation.toggleterm" },
   { import = "modules.configs.editor.navigation.hover" },
+  { import = "modules.configs.editor.navigation.grug-far" },
 
   -- telescope
   { import = "modules.configs.editor.telescope" },
@@ -17,6 +18,7 @@ return {
   -- tools
   { import = "modules.configs.editor.tools.colorizer" },
   { import = "modules.configs.editor.tools.icon-picker" },
+  { import = "modules.configs.editor.tools.overseer" },
   { import = "modules.configs.editor.tools.todo-comments" },
   { import = "modules.configs.editor.tools.trouble" },
 }

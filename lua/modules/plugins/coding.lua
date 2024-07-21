@@ -2,7 +2,6 @@ return {
   -- Treesitter
   -- Instead of importing the whole directory of `extras`, I separated each file for better maintained
   { import = "modules.configs.coding.treesitter.extras.auto-indent" },
-  { import = "modules.configs.coding.treesitter.extras.endwise" },
   { import = "modules.configs.coding.treesitter.extras.indent-blankline" },
   { import = "modules.configs.coding.treesitter.extras.rainbow-delimiters" },
   { import = "modules.configs.coding.treesitter.extras.text-case" },

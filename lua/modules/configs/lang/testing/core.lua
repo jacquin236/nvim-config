@@ -9,8 +9,11 @@ return {
     },
     opts = {
       adapters = {},
-      status = { virtual_text = true },
-      output = { open_on_run = true },
+      status = { enabled = true },
+      output = {
+        enabled = true,
+        open_on_run = false,
+      },
       quickfix = {
         open = function()
           if LazyVim.has("trouble.nvim") then
@@ -24,7 +27,28 @@ return {
       diagnostic = { enabled = true },
       floating = { border = require("util.icons").border.rounded },
       running = { concurrent = true },
-      summary = { animated = true },
+      summary = {
+        animated = true,
+        mappings = {
+          attach = "a",
+          expand = "l",
+          expand_all = "L",
+          jumpto = "gf",
+          output = "o",
+          run = "<C-r>",
+          short = "p",
+          stop = "u",
+        },
+      },
+      icons = {
+        passed = " ",
+        running = " ",
+        failed = " ",
+        unknown = " ",
+        running_animated = vim.tbl_map(function(s)
+          return s .. " "
+        end, { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }),
+      },
     },
     config = function(_, opts)
       local namespace_neotest = vim.api.nvim_create_namespace("neotest")

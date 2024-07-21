@@ -10,7 +10,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
-      ensure_installed = { "bash-language-server", "shellcheck" },
+      ensure_installed = { "bash-language-server", "shellcheck", "efm" },
     },
   },
   {
@@ -21,7 +21,14 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        bashls = {},
+        bashls = {
+          filetypes = { "sh", "zsh", "bash" },
+          settings = {
+            bashIde = {
+              globPattern = vim.env.GLOB_PATTERN or "*@(.sh|.inc|.bash|.command)",
+            },
+          },
+        },
       },
     },
   },

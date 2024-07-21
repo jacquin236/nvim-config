@@ -2,31 +2,49 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = {
-        "python",
-        "ninja",
-        "rst",
-      },
+      ensure_installed = { "ninja", "rst", "python" },
     },
   },
   {
     "williamboman/mason.nvim",
-    opts = { ensure_installed = { "ruff", "mypy" } },
+    opts = { ensure_installed = { "ruff", "mypy", "black" } },
+  },
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        ["python"] = { "mypy" },
+      },
+    },
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        ["python"] = { "black" },
+      },
+    },
   },
   {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        ruff = {
+          cmd_env = { RUFF_TRACE = "messages" },
+          init_options = { settings = { logLevel = "error" } },
+          keys = {
+            { "<leader>co", LazyVim.lsp.action["source.organizeImports"], desc = "Organize Imports" },
+          },
+          handlers = { ["textDocument/publishDiagnostics"] = function() end },
+        },
+        ruff_lsp = {
+          keys = {
+            { "<leader>co", LazyVim.lsp.action["source.organizeImports"], desc = "Organize Imports" },
+          },
+        },
         pyright = {
-          root_dir = function(fname)
-            local root_files = {
-              "pyproject.toml",
-              "requirements.txt",
-              "pyrightconfig.json",
-              ".git",
-            }
-            return require("lspconfig").util.root_pattern(unpack(root_files))(fname)
-          end,
           settings = {
             verboseOutput = true,
             autoImportCompletion = true,
@@ -75,17 +93,10 @@ return {
             },
           },
         },
-        ruff = {
-          keys = {
-            { "<leader>co", LazyVim.lsp.action["source.organizeImports"], desc = "Organize Imports" },
-          },
-          handlers = { ["textDocument/publishDiagnostics"] = function() end },
-        },
       },
       setup = {
         ruff = function()
           LazyVim.lsp.on_attach(function(client, _)
-            -- Disable hover in favor of pyright
             client.server_capabilities.hoverProvider = false
           end, "ruff")
         end,
@@ -99,21 +110,10 @@ return {
       table.insert(opts.auto_brackets, "python")
     end,
   },
-  {
-    "mfussenegger/nvim-lint",
-    opts = function(_, opts)
-      local mypy_path = prefer_bin_from_venv("mypy")
-      opts.linters_by_ft["python"] = { "mypy" }
-      if mypy_path then
-        opts.linters["mypy"] = {
-          cmd = prefer_bin_from_venv("mypy"),
-        }
-      end
-    end,
-  },
   { -- Overlay cell marker & metadata so it's less distracting
     "echasnovski/mini.hipatterns",
     ft = { "python" },
+    optional = true,
     opts = function(_, opts)
       local censor_extmark_opts = function(buf_id, match, data)
         local mask = string.rep("⎯", vim.api.nvim_win_get_width(0))
@@ -136,6 +136,23 @@ return {
         extmark_opts = censor_extmark_opts,
       }
     end,
+  },
+  {
+    "linux-cultist/venv-selector.nvim",
+    ft = { "python" },
+    branch = "regexp", -- Use this branch for the new version
+    cmd = "VenvSelect",
+    enabled = function()
+      return LazyVim.has("telescope.nvim")
+    end,
+    opts = {
+      settings = {
+        options = {
+          notify_user_on_venv_activation = true,
+        },
+      },
+    },
+    keys = { { "<leader>cv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv", ft = "python" } },
   },
 
   { import = "modules.configs.lang.lsp.extras.py-requirements" },
