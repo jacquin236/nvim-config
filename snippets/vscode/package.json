@@ -31,6 +31,22 @@
       {
         "language": "python",
         "path": "./languages/python.json"
+      },
+      {
+        "language": "go",
+        "path": "./languages/go.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./languages/javascriptreact.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./languages/typescriptreact.json"
+      },
+      {
+        "language": "rust",
+        "path": "./languages/rust.json"
       }
     ]
   }

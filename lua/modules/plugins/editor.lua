@@ -21,4 +21,9 @@ return {
   { import = "modules.configs.editor.tools.overseer" },
   { import = "modules.configs.editor.tools.todo-comments" },
   { import = "modules.configs.editor.tools.trouble" },
+
+  -- projects
+  { import = "modules.configs.editor.project.cd-project" },
+  { import = "modules.configs.editor.project.project" },
+  { import = "modules.configs.editor.project.template" },
 }

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Neovim Config",
+    "path": "/home/bubblegum/.config/nvim"
+  },
+  {
+    "name": "Starship Config",
+    "path": "/home/bubblegum/.config/starship"
+  },
+  {
+    "name": "exercism rust",
+    "path": "/home/bubblegum/projects/exercism/rust"
+  },
+  {
+    "name": "Rust Projects",
+    "path": "/home/bubblegum/projects/rust-projects"
+  },
+  {
+    "name": "Neovim Projects",
+    "path": "/home/bubblegum/projects/nvim-projects"
+  },
+  {
+    "name": "Go",
+    "path": "/home/bubblegum/projects/go"
+  },
+  {
+    "name": "notes",
+    "path": "/home/bubblegum/notes"
+  }
+]

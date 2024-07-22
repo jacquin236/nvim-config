@@ -21,7 +21,7 @@ return {
         require("telescope").setup({
           extensions = { package_info = { theme = "ivy" } },
         })
-        require("telescope").load_extension("package")
+        require("telescope").load_extension("package_info")
       end)
     end,
   },
