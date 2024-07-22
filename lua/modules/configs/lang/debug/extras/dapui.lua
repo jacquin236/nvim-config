@@ -7,7 +7,7 @@ return {
     --stylua: ignore
     keys = {
       { "<leader>du", function() require("dapui").toggle({ }) end, desc = "[dapui] toggle" },
-      { "<leader>de", function() require("dapui").eval() end, desc = "[dapui] eval", mode = { "n", "v" } },
+      { "<leader>dv", function() require("dapui").eval() end, desc = "[dapui] eval", mode = { "n", "v" } },
     },
     opts = {
       force_buffers = true,

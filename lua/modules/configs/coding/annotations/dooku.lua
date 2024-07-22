@@ -6,7 +6,7 @@ return {
     -- stylua: ignore
     keys = {
       { "<leader>ag", "<cmd>DookuGenerate<cr>", desc = "[dooku] generate HTML docs" },
-      { "<leader>ao", "<cmd>DookuOpen<cr>", desc = "[dooku] open HTML docs" },
+      { "<leader>aG", "<cmd>DookuOpen<cr>", desc = "[dooku] open HTML docs" },
     },
   },
   {
@@ -14,7 +14,7 @@ return {
     opts = {
       spec = {
         { "<leader>ag", group = "[dooku] generate HTML docs", icon = "" },
-        { "<leader>ao", group = "[dooku] open HTML docs", icon = "" },
+        { "<leader>aG", group = "[dooku] open HTML docs", icon = "" },
       },
     },
   },

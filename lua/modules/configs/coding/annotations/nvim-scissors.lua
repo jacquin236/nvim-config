@@ -4,8 +4,8 @@ return {
     dependencies = { "rcarriga/nvim-notify" },
     -- stylua: ignore
     keys = {
-      { "<leader>ae", function() require("scissors").editSnippet() end, desc = "[scissors] edit snippets" },
-      { "<leader>aa", function() require("scissors").addnewSnippet() end, desc = "[scissors] add snippets" },
+      { "<leader>as", function() require("scissors").editSnippet() end, desc = "[scissors] edit snippets" },
+      { "<leader>aS", function() require("scissors").addnewSnippet() end, desc = "[scissors] add snippets" },
     },
     opts = {
       snippetDir = vim.fn.stdpath("config") .. "/snippets/vscode",
@@ -15,8 +15,8 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>ae", group = "[scissors] edit snippets", icon = "󱇧" },
-        { "<leader>aa", group = "[scissors] add snippets", icon = " " },
+        { "<leader>as", group = "[scissors] edit snippets", icon = "󱇧" },
+        { "<leader>aS", group = "[scissors] add snippets", icon = " " },
       },
     },
   },

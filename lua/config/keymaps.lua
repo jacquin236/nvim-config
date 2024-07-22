@@ -99,6 +99,10 @@ map("n", "<a-s>", "<cmd>noautocmd w<CR>", { desc = "Save Without Formatting" })
 map("n", "<leader>!", "zg", { desc = "Add Word to Dictionary" })
 map("n", "<leader>@", "zug", { desc = "Remove Word from Dictionary" })
 
+-- map ]o [o to go to next block comment
+map("n", "]o", "/\\S\\zs\\s*╭<CR>zt", { desc = "Next Block Comment" })
+map("n", "[o", "?\\S\\zs\\s*╭<CR>zt", { desc = "Prev Block Comment" })
+
 ------------------------------------------ Dashboard -------------------------------------------
 -- Navigate to Dashboard
 -- Dashboard

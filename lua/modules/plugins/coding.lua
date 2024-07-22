@@ -23,5 +23,7 @@ return {
   -- annotations
   { import = "modules.configs.coding.annotations.comment-box" },
   { import = "modules.configs.coding.annotations.dooku" },
+  { import = "modules.configs.coding.annotations.neogen" },
   { import = "modules.configs.coding.annotations.nvim-scissors" },
+  { import = "modules.configs.coding.annotations.refactoring" },
 }

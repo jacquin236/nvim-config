@@ -1,11 +1,14 @@
 return {
   { import = "modules.configs.lang.lspconfig" },
 
-  -- Additional icons for filetypes
-  { import = "modules.configs.lang.mini-icons" },
   -- Tools related to lsp
+  { import = "modules.configs.lang.glance" },
+  { import = "modules.configs.lang.inc-rename" },
   { import = "modules.configs.lang.symbol-usage" },
   { import = "modules.configs.lang.nvim-lightbulb" },
+
+  -- Add supported icons for some filetypes
+  { import = "modules.configs.lang.mini-icons" },
 
   -- List of languages
   { import = "modules.configs.lang.lsp.bash" },
