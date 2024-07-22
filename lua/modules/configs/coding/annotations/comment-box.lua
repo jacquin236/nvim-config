@@ -46,7 +46,7 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
-        { "<leader>a", group = "annotation/snippets", icon = " " },
+        { "<leader>a", group = "annotation/snippets", icon = " ", mode = { "n", "v" } },
         { "<leader>ab", group = "[comment-box] boxes", mode = { "n", "v" }, icon = "󱃣 " },
         { "<leader>at", group = "[comment-box] titled lines", mode = { "n", "v" }, icon = "󱀡 " },
         { "<leader>al", group = "[comment-box] lines", mode = { "n", "v" }, icon = " " },

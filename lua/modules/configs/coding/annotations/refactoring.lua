@@ -33,8 +33,8 @@ return {
       { "<leader>ai", function() require("refactoring").refactor("Inline Variable") end, desc = "[refactoring] inline variable", mode = { "n", "x" } },
       { "<leader>af", function() require("refactoring").refactor("Extract Function") end, desc = "[refactoring] extract function", mode = "x" },
       { "<leader>aF", function() require("refactoring").refactor("Extract Function To File") end, desc = "[refactoring] extract function to file", mode = "x" },
-      { "<leader>ab", function() require("refactoring").refactor("Extract Block") end, desc = "[refactoring] extract block" },
-      { "<leader>aB", function() require("refactoring").refactor("Extract Block To File") end, desc = "[refactoring] extract block to file" },
+      { "<leader>ao", function() require("refactoring").refactor("Extract Block") end, desc = "[refactoring] extract block" },
+      { "<leader>aO", function() require("refactoring").refactor("Extract Block To File") end, desc = "[refactoring] extract block to file" },
 
       { "<leader>aP", function() require("telescope").extensions.refactoring.refactors() end, desc = "[refactoring] telescope", mode = { "n", "x" } },
       { "<leader>dz", function() require("refactoring").debug.print_var() end, desc = "[refactoring] Print Variables", mode = { "n", "x", "v" } },
